@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Make clicks pass-through */
+#nprogress {
+    pointer-events: none;
+}
+
+#nprogress .bar {
+    background: #003bf1;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #003bf1, 0 0 5px #003bf1;
+    opacity: 1.0;
+
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+        -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 15px;
+    right: 15px;
+}
+
+#nprogress .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+
+    border: solid 2px transparent;
+    border-top-color: #003bf1;
+    border-left-color: #003bf1;
+    border-radius: 50%;
+
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    background-color: rgb(30 41 59 / 0.5);
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+    position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+    0%   { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 70%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: rgb(136 136 136 / 28%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(241 241 241 / 12%);
+}
+
+.react-datepicker__input-container input {
+    @apply block w-full text-base md:text-sm bg-white border dark:bg-gray-700 shadow-sm ;
+}
+
+.react-datepicker-popper {
+    /* inset: 0px 0px auto auto !important; */
+    @apply z-40 w-72 text-sm bg-white shadow px-3 py-2 border-2 border-gray-200 dark:bg-gray-700 dark:border-gray-700 rounded;
+}
+
+.react-datepicker-left {
+    @apply absolute left-0 right-auto top-11 transform-none !important;
+}
+
+.react-datepicker-right {
+    @apply absolute right-0 left-auto top-11 transform-none !important;
+}
+
+.react-datepicker__portal {
+    @apply absolute z-10 w-72 text-sm transform-none bg-white shadow px-3 py-2 top-12 right-0 border-2 border-gray-200 rounded dark:bg-gray-700 dark:border-gray-700;
+}
+
+.react-datepicker__month-container {
+    @apply flex flex-col;
+}
+
+.react-datepicker__month {
+    @apply flex flex-col;
+}
+
+.react-datepicker__monthPicker {
+    @apply flex-col;
+}
+
+.react-datepicker__month-wrapper {
+    @apply flex flex-row;
+}
+
+.react-datepicker__month-0 {
+    @apply w-1/3;
+}
+.react-datepicker__month-1 {
+    @apply w-1/3;
+}
+.react-datepicker__month-2 {
+    @apply w-1/3;
+}
+.react-datepicker__month-3 {
+    @apply w-1/3;
+}
+.react-datepicker__month-4 {
+    @apply w-1/3;
+}
+.react-datepicker__month-5 {
+    @apply w-1/3;
+}
+.react-datepicker__month-6 {
+    @apply w-1/3;
+}
+.react-datepicker__month-7 {
+    @apply w-1/3;
+}
+.react-datepicker__month-8 {
+    @apply w-1/3;
+}
+.react-datepicker__month-9 {
+    @apply w-1/3;
+}
+.react-datepicker__month-10 {
+    @apply w-1/3;
+}
+.react-datepicker__month-11 {
+    @apply w-1/3;
+}
+
+.react-datepicker__current-month {
+    @apply ml-2.5 text-lg font-semibold text-gray-800 dark:text-gray-100;
+}
+
+.react-datepicker__week {
+    @apply flex justify-around;
+}
+
+.react-datepicker__day-names {
+    @apply flex justify-around text-gray-400 font-medium text-center text-xs;
+}
+
+.react-datepicker__day-name {
+    @apply w-8 h-8 flex items-center justify-center py-1 rounded-full;
+}
+
+.react-datepicker__navigation {
+    @apply absolute top-2;
+}
+
+.react-datepicker__navigation--previous {
+    @apply right-12 w-8 h-8 rounded transition flex items-center justify-center hover:bg-gray-200 text-gray-700 dark:text-white;
+}
+
+.react-datepicker__navigation--next {
+    @apply right-4 w-8 h-8 rounded transition flex items-center justify-center hover:bg-gray-200 text-gray-700 dark:text-white;
+}
+
+.react-datepicker__day {
+    @apply mb-1 w-8 h-8 flex items-center justify-center py-1 text-sm leading-loose transition text-gray-700 dark:text-gray-100 rounded;
+}
+
+.react-datepicker__day--disabled {
+    @apply cursor-not-allowed opacity-40 hover:bg-transparent;
+}
+
+.react-datepicker__day--outside-month {
+    @apply text-gray-300 dark:text-gray-500;
+}
+
+.react-datepicker__day--in-range {
+    @apply bg-gray-200 dark:bg-gray-800;
+}
+
+.react-datepicker__day--in-selecting-range {
+    @apply bg-blue-200;
+}
+
+.react-datepicker__day--selecting-range-start {
+    @apply bg-white border-2 border-blue-500;
+}
+
+.react-datepicker__day--selecting-range-end {
+    @apply bg-white border-2 border-blue-500;
+}
+
+.react-datepicker__day--selected {
+    @apply bg-blue-500 text-white;
+}
+
+.react-datepicker__day--range-start {
+    @apply bg-blue-500 text-white hover:text-gray-700 hover:bg-white dark:bg-blue-500;
+}
+
+.react-datepicker__day--range-end {
+    @apply bg-blue-500 text-white hover:text-gray-700 hover:bg-white dark:bg-blue-500;
+}
+
+.react-datepicker__month-text {
+    @apply mb-1 p-1 flex items-center justify-center text-sm leading-loose transition text-gray-700 dark:text-gray-100 rounded hover:bg-blue-500 hover:text-white dark:hover:text-white;
+}
+.react-datepicker__month--selected {
+    @apply bg-blue-500 text-white;
+}
+.react-datepicker-year-header {
+    @apply ml-2.5 mb-2 text-lg font-semibold text-gray-800 dark:text-gray-100;
+}
+
+.min-h-100 {
+    max-height: 45rem;
+}
