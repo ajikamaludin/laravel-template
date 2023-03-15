@@ -7,7 +7,7 @@ export default function Guest({ children }) {
         <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <Link href="/">
-                    <ApplicationLogo className="w-auto h-20 fill-current text-gray-500" />
+                    <ApplicationLogo className="w-auto h-20 fill-current text-gray-500 text-5xl font-bold" />
                 </Link>
             </div>
 

@@ -25,7 +25,7 @@ export default function Authenticated({ auth, children, flash, page = '', action
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href={route('dashboard')}>
-                                    <ApplicationLogo className="block h-12 w-auto fill-current" />
+                                    <ApplicationLogo className="block pt-2 h-12 w-full font-bold text-2xl fill-current" />
                                 </Link>
                             </div>
 

@@ -10,7 +10,7 @@
         @vite(['resources/css/app.css'])
 
     </head>
-    <body class="antialiased text-2xl">
-        Hello World
+    <body class="antialiased text-2xl w-screen justify-center h-screen items-center flex flex-row">
+        {{ env('APP_NAME') }}
     </body>
 </html>
