@@ -91,7 +91,7 @@ export default function Role(props) {
 
             <div>
                 <div className="mx-auto sm:px-6 lg:px-8 ">
-                    <div className="p-6 shadow-sm sm:rounded-lg bg-gray-200 dark:bg-gray-800 space-y-4">
+                    <div className="p-6 shadow-sm sm:rounded-lg bg-white dark:bg-gray-800 space-y-4">
                         <FormInput
                             name="name"
                             value={name}

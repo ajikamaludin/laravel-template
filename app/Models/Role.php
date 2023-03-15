@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Role extends Model
 {
-    protected $cascadeDeletes = ['permissions'];
+    public $cascadeDeletes = ['rolePermissions'];
 
     protected $fillable = [
         'name',

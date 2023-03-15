@@ -86,16 +86,10 @@ export default function Supplier(props) {
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" className="py-3 px-6">
-                                                Username
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Employee
+                                                Name
                                             </th>
                                             <th scope="col" className="py-3 px-6">
                                                 Role
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Aktif
                                             </th>
                                             <th scope="col" className="py-3 px-6"/>
                                         </tr>
@@ -104,16 +98,10 @@ export default function Supplier(props) {
                                         {data.map(user => (
                                             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={user.id}>
                                                 <td scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {user.username}
+                                                    {user.name}
                                                 </td>
                                                 <td className="py-4 px-6">
-                                                    {user.employee.name}
-                                                </td>
-                                                <td className="py-4 px-6">
-                                                    {+user.is_superadmin === 1 ? 'System Administrator' : user.role?.name}
-                                                </td>
-                                                <td className="py-4 px-6">
-                                                    {+user.is_enable === 1 ? 'Ya' : 'Tidak'}
+                                                    {user.role === null ? 'System' : user.role?.name}
                                                 </td>
                                                 <td className="py-4 px-6 flex justify-end">
                                                     <Dropdown

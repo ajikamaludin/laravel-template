@@ -50,4 +50,25 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function allow($permission, $abort = false)
+    {
+        if ($this->role_id == null) {
+            return true;
+        }
+
+        $permit = $this->role()->whereHas('permissions', function ($query) use ($permission) {
+            return $query->where('name', $permission);
+        })->first();
+
+        if ($permit != null) {
+            return true;
+        }
+
+        if ($abort) {
+            abort(403);
+        }
+
+        return false;
+    }
 }

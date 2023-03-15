@@ -4,20 +4,17 @@ import { useForm } from "@inertiajs/react";
 import Button from "@/Components/Button";
 import FormInput from "@/Components/FormInput";
 import RoleSelectionInput from "../Role/SelectionInput";
-import EmployeeSelectionInput from "../Employee/SelectionInput";
 
 import { isEmpty } from "lodash";
-import Checkbox from "@/Components/Checkbox";
 
 export default function FormModal(props) {
     const { modalState } = props
     const { data, setData, post, put, processing, errors, reset, clearErrors } = useForm({
-        username: '',
+        name: '',
+        email: '',
         password: '',
         role_id: null,
-        employee_id: null,
-        is_superadmin: 0,
-        is_enable: 0
+        role: '',
     })
 
     const handleOnChange = (event) => {
@@ -52,11 +49,10 @@ export default function FormModal(props) {
         const user = modalState.data
         if (isEmpty(user) === false) {
             setData({
-                username: user.username,
+                name: user.name,
+                email: user.email,
                 role_id: user.role_id,
-                employee_id: user.employee_id,
-                is_superadmin: user.is_superadmin,
-                is_enable: user.is_enable
+                role: user.role
             })
             return 
         }
@@ -69,11 +65,18 @@ export default function FormModal(props) {
             title={"User"}
         >
             <FormInput
-                name="username"
-                value={data.username}
+                name="name"
+                value={data.name}
                 onChange={handleOnChange}
-                label="Username"
-                error={errors.username}
+                label="name"
+                error={errors.name}
+            />
+            <FormInput
+                name="email"
+                value={data.email}
+                onChange={handleOnChange}
+                label="email"
+                error={errors.email}
             />
             <FormInput
                 type="password"
@@ -83,7 +86,7 @@ export default function FormModal(props) {
                 label="Password"
                 error={errors.password}
             />
-            {+data.is_superadmin === 0 && (
+            {data.role !== null && (
                 <>
                     <RoleSelectionInput
                         label="Role"
@@ -91,20 +94,8 @@ export default function FormModal(props) {
                         onItemSelected={(id) => setData('role_id', id)}
                         error={errors.role_id}
                     />
-                    <EmployeeSelectionInput
-                        label="Karyawan"
-                        itemSelected={data.employee_id}
-                        onItemSelected={(id) => setData('employee_id', id)}
-                        error={errors.employee_id}
-                    />
                 </>
             )}
-            <Checkbox
-                label='Aktif'
-                value={+data.is_enable === 1}
-                onChange={handleOnChange}
-                name='is_enable'
-            />
             <div className="flex items-center">
                 <Button
                     onClick={handleSubmit}

@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\VisitorCounter;
-use App\Models\Visitor;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +18,24 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [GeneralController::class, 'index'])->name('dashboard');
+    Route::get('/maintance', [GeneralController::class, 'maintance'])->name('maintance');
+
+    // User
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    // Role
+    Route::resource('/roles', RoleController::class);
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
