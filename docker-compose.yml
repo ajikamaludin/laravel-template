@@ -40,6 +40,15 @@ services:
     networks:
       template:
         ipv4_address: 10.8.0.99
+  nodejs:
+    image: node:16-alpine
+    container_name: template-node
+    ports:
+      - 5173:5173
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    entrypoint: ["npm","run", "dev"]
 
 volumes:
   templatedb: 
