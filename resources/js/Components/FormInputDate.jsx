@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+import { converToDate, dateToString } from "@/utils";
 
 export default function FormInputDate({ selected, onChange, label = '', error }) {
     return (
@@ -8,8 +9,8 @@ export default function FormInputDate({ selected, onChange, label = '', error })
                 <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
             )}
             <DatePicker
-                selected={selected}
-                onChange={onChange}
+                selected={converToDate(selected)}
+                onChange={date => onChange(dateToString(date))}
                 closeOnScroll={true}
                 shouldCloseOnSelect={true}
                 dateFormat="dd/MM/yyyy"

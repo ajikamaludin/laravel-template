@@ -253,6 +253,10 @@
     @apply ml-2.5 mb-2 text-lg font-semibold text-gray-800 dark:text-gray-100;
 }
 
+.react-datepicker__aria-live {
+    @apply hidden
+}
+
 .min-h-100 {
     max-height: 45rem;
 }
