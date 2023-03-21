@@ -72,6 +72,16 @@ services:
     networks:
       template:
         ipv4_address: 10.8.0.96
+  redis:
+    image: redis
+    container_name: template-redis
+    ports:
+      - 6379:6379
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      - template
   nodejs:
     image: node:16-alpine
     container_name: template-node
