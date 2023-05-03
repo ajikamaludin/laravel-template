@@ -7,8 +7,8 @@ services:
           uid: 1000
         context: ./
         dockerfile: ./Dockerfile
-      image: simplepos
-      container_name: simplepos-app
+      image: template
+      container_name: template-app
       working_dir: /var/www/
       volumes:
         - ./:/var/www
@@ -19,10 +19,10 @@ services:
       mem_reservation: 128M
       cpus: 0.5
       networks:
-        - simplepos
+        - template
   nginx:
     image: nginx:1.17-alpine
-    container_name: simplepos-nginx
+    container_name: template-nginx
     ports:
       - 8000:80
     volumes:
@@ -32,10 +32,59 @@ services:
     mem_reservation: 128M
     cpus: 0.5
     networks:
-      - simplepos
+      - template
+  mariadb:
+    image: mariadb:latest
+    container_name: template-mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb:/var/lib/mysql
+      - ./database:/database
+    environment:
+      MARIADB_DATABASE: app
+      MARIADB_USER: app
+      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: password
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      template:
+        ipv4_address: 10.8.0.99
+  postgresql:
+    # image: postgres:latest
+    image: postgres:14-alpine3.17
+    container_name: template-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./database:/database
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: password
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      template:
+        ipv4_address: 10.8.0.96
+  redis:
+    image: redis
+    container_name: template-redis
+    ports:
+      - 6379:6379
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      - template
   nodejs:
     image: node:16-alpine
-    container_name: simplepos-node
+    container_name: template-node
     ports:
       - 5173:5173
     volumes:
@@ -46,7 +95,7 @@ services:
     mem_reservation: 128M
     cpus: 0.5
     networks:
-      - simplepos
+      - template
 
 volumes:
   mariadb: 
@@ -55,10 +104,10 @@ volumes:
     driver: local
 
 networks:
-  simplepos:
+  template:
     driver: bridge
     ipam:
       driver: default
       config:
-          - subnet: 10.18.0.0/24
-            gateway: 10.18.0.1
+          - subnet: 10.18.10.0/24
+            gateway: 10.18.10.1
