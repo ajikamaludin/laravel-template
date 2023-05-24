@@ -11,7 +11,7 @@ class Setting extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
 
-    protected $fillalble = [
+    protected $fillable = [
         'key',
         'value',
         'type',
