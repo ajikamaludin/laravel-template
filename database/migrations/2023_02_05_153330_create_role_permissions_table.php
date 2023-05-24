@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('role_permissions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('role_id');
-            $table->uuid('permission_id');
+            $table->ulid('id')->primary();
+            $table->ulid('role_id');
+            $table->ulid('permission_id');
             $table->timestamps();
             $table->softDeletes();
         });

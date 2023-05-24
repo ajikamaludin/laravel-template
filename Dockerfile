@@ -32,8 +32,13 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml
+# Install PHP extensions (default version)
+# RUN docker-php-ext-install pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml
+
+# Install PHP extension with install php extension 
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions
+RUN install-php-extensions pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

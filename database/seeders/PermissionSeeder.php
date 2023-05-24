@@ -19,27 +19,27 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            ['id' => Str::uuid(), 'label' => 'View Dashboard', 'name' => 'view-dashboard'],
+            ['id' => Str::ulid(), 'label' => 'View Dashboard', 'name' => 'view-dashboard'],
 
-            ['id' => Str::uuid(), 'label' => 'Create User', 'name' => 'create-user'],
-            ['id' => Str::uuid(), 'label' => 'Update User', 'name' => 'update-user'],
-            ['id' => Str::uuid(), 'label' => 'View User', 'name' => 'view-user'],
-            ['id' => Str::uuid(), 'label' => 'Delete User', 'name' => 'delete-user'],
+            ['id' => Str::ulid(), 'label' => 'Create User', 'name' => 'create-user'],
+            ['id' => Str::ulid(), 'label' => 'Update User', 'name' => 'update-user'],
+            ['id' => Str::ulid(), 'label' => 'View User', 'name' => 'view-user'],
+            ['id' => Str::ulid(), 'label' => 'Delete User', 'name' => 'delete-user'],
 
-            ['id' => Str::uuid(), 'label' => 'Create Role', 'name' => 'create-role'],
-            ['id' => Str::uuid(), 'label' => 'Update Role', 'name' => 'update-role'],
-            ['id' => Str::uuid(), 'label' => 'View Role', 'name' => 'view-role'],
-            ['id' => Str::uuid(), 'label' => 'Delete Role', 'name' => 'delete-role'],
+            ['id' => Str::ulid(), 'label' => 'Create Role', 'name' => 'create-role'],
+            ['id' => Str::ulid(), 'label' => 'Update Role', 'name' => 'update-role'],
+            ['id' => Str::ulid(), 'label' => 'View Role', 'name' => 'view-role'],
+            ['id' => Str::ulid(), 'label' => 'Delete Role', 'name' => 'delete-role'],
         ];
 
-        foreach($permissions as $permission) {
+        foreach ($permissions as $permission) {
             Permission::insert($permission);
         }
 
         $role = Role::create(['name' => 'admin']);
 
         $permissions = Permission::all();
-        foreach($permissions as $permission) {
+        foreach ($permissions as $permission) {
             $role->rolePermissions()->create(['permission_id' => $permission->id]);
         }
 
@@ -56,8 +56,7 @@ class PermissionSeeder extends Seeder
             'role_id' => $role->id,
         ]);
 
-        $setting = [
-        ];
+        $setting = [];
 
         Setting::insert($setting);
     }

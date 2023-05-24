@@ -41,7 +41,7 @@ class RoleController extends Controller
         $request->validate([
             'name' => 'string|required|max:255',
             'permissions' => 'array|required',
-            'permissions.*.id' => 'uuid|required|exists:permissions,id',
+            'permissions.*.id' => 'ulid|required|exists:permissions,id',
         ]);
 
         DB::beginTransaction();
@@ -71,7 +71,7 @@ class RoleController extends Controller
         $request->validate([
             'name' => 'string|required|max:255',
             'permissions' => 'array|required',
-            'permissions.*.id' => 'uuid|required|exists:permissions,id',
+            'permissions.*.id' => 'ulid|required|exists:permissions,id',
         ]);
 
         if ($role->flag == 1) {

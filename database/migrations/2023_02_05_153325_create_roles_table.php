@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
+            $table->ulid('created_by')->nullable();
+            $table->ulid('updated_by')->nullable();
+            $table->ulid('deleted_by')->nullable();
         });
     }
 
