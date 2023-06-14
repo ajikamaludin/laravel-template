@@ -43,3 +43,8 @@ password : password
 ```bash
 npm run build
 ```
+
+## TODO
+
+- [ ] add dark mode
+- [ ] add default setting (app name)
