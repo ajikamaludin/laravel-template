@@ -30,6 +30,8 @@ class PermissionSeeder extends Seeder
             ['id' => Str::ulid(), 'label' => 'Update Role', 'name' => 'update-role'],
             ['id' => Str::ulid(), 'label' => 'View Role', 'name' => 'view-role'],
             ['id' => Str::ulid(), 'label' => 'Delete Role', 'name' => 'delete-role'],
+
+            ['id' => Str::ulid(), 'label' => 'View Setting', 'name' => 'view-setting'],
         ];
 
         foreach ($permissions as $permission) {
