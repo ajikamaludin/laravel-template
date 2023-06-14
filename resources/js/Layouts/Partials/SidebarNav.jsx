@@ -1,12 +1,15 @@
 import React from 'react'
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
 import { Sidebar } from 'flowbite-react'
 import { HiLogout } from 'react-icons/hi'
 import { filterOpenMenu } from './helpers'
 import routes from './routes'
-import { formatDate } from '@/utils'
 
 export default function SidebarNav({ user }) {
+    const {
+        props: { app_name },
+    } = usePage()
+
     const menus = routes.filter((item) => {
         item.open = false
         if (!item.show) {
@@ -68,7 +71,7 @@ export default function SidebarNav({ user }) {
                     </Sidebar.Item>
                 </Sidebar.ItemGroup>
                 <p className="text-sm font-light text-gray-900 dark:text-gray-100 text-center bottom-4 left-4 pt-10">
-                    App Name &copy; {new Date().getFullYear()}
+                    {app_name} &copy; {new Date().getFullYear()}
                 </p>
             </Sidebar.Items>
         </Sidebar>
