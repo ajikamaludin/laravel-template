@@ -1,6 +1,10 @@
-# Laravel Template - Flowbite
+# --- UNDERMAINTANCE ---
 
-This just a laravel template with breeze react, user role based access crud with setup flowbite admin template
+Checkout [v1 branch](https://github.com/ajikamaludin/laravel-template/tree/v1) for ready to use project
+
+# Laravel Template
+
+This just a laravel template with breeze react, user role based access crud with setup tailwind css admin template
 
 ## Support me
 
