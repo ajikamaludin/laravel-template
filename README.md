@@ -69,4 +69,4 @@ npm run build
 
 -   [ ] add dark mode
 -   [ ] add default setting (app name)
--   [ ] add ide helper for model (https://github.com/WendellAdriel/laravel-lift)
+-   [ ] add ide helper for model (https://github.com/WendellAdriel/laravel-lift) [temp not recommend]
