@@ -63,7 +63,3 @@ npm run build
 
 <hr/>
 
-## TODO
-
--   [ ] add dark mode
--   [ ] add permission command
