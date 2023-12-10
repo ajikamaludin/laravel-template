@@ -2,6 +2,7 @@
 
 -   [ ] add dark mode
 -   [ ] add permission command
+-   [ ] change docker compose nginx+php-fpm to frankenphp (still in research)
 
 ## migrate v1 to v2 
 -   [ ] changes frontend template to preline.co

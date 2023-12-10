@@ -1,5 +1,5 @@
 # FROM php:8.1-fpm
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
@@ -29,19 +29,25 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     postgresql-client \
     sudo
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # Install PHP extensions (default version)
 # RUN docker-php-ext-install pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml
 
 # Install PHP extension with install php extension 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
-RUN install-php-extensions pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml
+RUN install-php-extensions pdo mysqli pdo_mysql mbstring exif pcntl bcmath gd intl zip pgsql pdo_pgsql curl xml sockets
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Get roadrunner binary
+COPY --from=ghcr.io/roadrunner-server/roadrunner:latest /usr/bin/rr /usr/local/bin/rr
+
+# Clear cache package manager
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Clear tmp
+RUN rm -rf /tmp/*
 
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user && echo "$user:$user" | chpasswd && adduser $user sudo
