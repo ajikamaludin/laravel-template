@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-      image: ajikamaludin/php82user:latest
+      image: ajikamaludin/php83user:latest
       container_name: template-app
       working_dir: /var/www/
       volumes:

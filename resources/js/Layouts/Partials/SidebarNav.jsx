@@ -4,7 +4,6 @@ import { Sidebar } from 'flowbite-react'
 import { HiLogout } from 'react-icons/hi'
 import { filterOpenMenu } from './helpers'
 import routes from './routes'
-import { formatDate } from '@/utils'
 
 export default function SidebarNav({ user }) {
     const {

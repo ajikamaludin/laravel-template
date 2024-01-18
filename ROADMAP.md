@@ -1,11 +1,11 @@
 ## TODO
 
--   [ ] add dark mode
+-   [x] add dark mode
 -   [ ] add permission command
 -   [ ] change docker compose nginx+php-fpm to frankenphp (still in research)
 
 ## migrate v1 to v2 
--   [ ] changes frontend template to preline.co
+-   [ ] changes frontend template to preline.co -> on progress
 
 ## NICE TO CREATE 
 -   [ ] crud generator, a page that you can choose want create a single page, crud (modal, page), with/without permission 
