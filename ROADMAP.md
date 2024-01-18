@@ -6,6 +6,15 @@
 
 ## migrate v1 to v2 
 -   [ ] changes frontend template to preline.co -> on progress
+    -   [ ] login 
+    -   [ ] breadcrumb
+    -   [ ] sidebar
+    -   [ ] form
+    -   [ ] dashboard
+    -   [ ] role
+    -   [ ] table
+    -   [ ] pagination
+    -   [ ] select
 
 ## NICE TO CREATE 
 -   [ ] crud generator, a page that you can choose want create a single page, crud (modal, page), with/without permission 

@@ -9,7 +9,7 @@
     "@inertiajs/react": "^1.0.14",
     "@tailwindcss/forms": "^0.5.7",
     "@vitejs/plugin-react": "^3.1.0",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.17",
     "axios": "^1.6.5",
     "laravel-vite-plugin": "^0.7.8",
     "lodash": "^4.17.21",
@@ -30,7 +30,7 @@
     "react-datepicker": "^4.25.0",
     "react-icons": "^4.12.0",
     "react-number-format": "^5.3.1",
-    "react-toastify": "^9.1.3",
+    "react-toastify": "^10.0.3",
     "react-use": "^17.4.3"
   }
 }
