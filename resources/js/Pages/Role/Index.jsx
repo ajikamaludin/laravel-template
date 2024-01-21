@@ -49,8 +49,6 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout
-            auth={props.auth}
-            flash={props.flash}
             page={'System'}
             action={'Role'}
         >

@@ -1,6 +1,6 @@
-# Laravel Template - Flowbite
+# Laravel Template - Preline
 
-This just a laravel template with breeze react, user role based access crud with setup flowbite admin template
+This just a laravel template with breeze react, user role based access crud with setup <a href="https://preline.co?ref=github.com/ajikamaludin" target="_blank">preline</a> admin template
 
 ## Support me
 

@@ -6,11 +6,11 @@
 
 ## migrate v1 to v2 
 -   [ ] changes frontend template to preline.co -> on progress
-    -   [ ] login 
-    -   [ ] breadcrumb
-    -   [ ] sidebar
-    -   [ ] form
-    -   [ ] dashboard
+    -   [x] login 
+    -   [x] breadcrumb
+    -   [x] sidebar
+    -   [x] form
+    -   [x] dashboard
     -   [ ] role
     -   [ ] table
     -   [ ] pagination

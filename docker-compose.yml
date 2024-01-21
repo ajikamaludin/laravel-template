@@ -46,6 +46,18 @@ services:
     networks:
       template:
         ipv4_address: 10.255.255.99
+  phpmyadmin:
+    depends_on:
+      - mariadb
+    image: phpmyadmin
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: '2048M'
+    networks:
+      - template
   postgresql:
     # image: postgres:latest
     image: postgres:14-alpine3.17

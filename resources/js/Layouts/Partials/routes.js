@@ -1,24 +1,7 @@
 import {
     HiChartPie,
     HiUser,
-    HiCollection,
-    HiAdjustments,
-    HiPlusCircle,
-    HiCurrencyDollar,
-    HiCash,
-    HiClipboardList,
-    HiHashtag,
-    HiUsers,
-    HiUserGroup,
-    HiUserCircle,
-    HiOutlineTruck,
-    HiDatabase,
-    HiShoppingBag,
-    HiReceiptTax,
-    HiHome,
-    HiInboxIn,
-    HiOutlineCash,
-    HiOutlineTable,
+    HiCog,
 } from 'react-icons/hi'
 
 export default [
@@ -38,7 +21,6 @@ export default [
             {
                 name: 'Roles',
                 show: true,
-                icon: HiUserGroup,
                 route: route('roles.index'),
                 active: 'roles.*',
                 permission: 'view-role',
@@ -46,7 +28,6 @@ export default [
             {
                 name: 'Users',
                 show: true,
-                icon: HiUsers,
                 route: route('user.index'),
                 active: 'user.index',
                 permission: 'view-user',
@@ -56,7 +37,7 @@ export default [
     {
         name: 'Setting',
         show: true,
-        icon: HiChartPie,
+        icon: HiCog,
         route: route('setting.index'),
         active: 'setting.index',
         permission: 'view-setting',

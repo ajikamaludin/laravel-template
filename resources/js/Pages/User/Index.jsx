@@ -14,10 +14,7 @@ import SearchInput from '@/Components/SearchInput'
 import HasPermission from '@/Components/HasPermission'
 
 export default function Index(props) {
-    const {
-        data: { links, data },
-        auth,
-    } = props
+    const { data: { links, data } } = props
 
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
@@ -57,8 +54,6 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout
-            auth={props.auth}
-            flash={props.flash}
             page={'System'}
             action={'User'}
         >

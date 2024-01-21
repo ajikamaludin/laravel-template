@@ -4,11 +4,9 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import { Head } from '@inertiajs/react';
 
-export default function Edit({ auth, mustVerifyEmail, status, flash }) {
+export default function Edit({ mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout
-            auth={auth}
-            flash={flash}
             page={'Home'}
             action={'Profile'}
         >
@@ -16,7 +14,7 @@ export default function Edit({ auth, mustVerifyEmail, status, flash }) {
 
             <div className="pb-12 pt-2">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg  dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
@@ -24,7 +22,7 @@ export default function Edit({ auth, mustVerifyEmail, status, flash }) {
                         />
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg  dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
                 </div>

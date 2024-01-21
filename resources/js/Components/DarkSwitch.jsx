@@ -2,7 +2,7 @@ import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi'
 import React, { useEffect, useState } from 'react'
 
 export default function DarkSwitch() {
-    const [isDark, setIsDark] = useState(localStorage.theme ? false : true)
+    const [isDark, setIsDark] = useState(localStorage.theme == 'dark' ? false : true)
 
     const toggle = () => {
         localStorage.theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
@@ -11,7 +11,7 @@ export default function DarkSwitch() {
 
     useEffect(() => {
         if (localStorage.getItem('theme') === null ) {
-        localStorage.setItem('theme', 'dark')
+            localStorage.setItem('theme', 'dark')
         }
     }, [])
 
@@ -31,9 +31,9 @@ export default function DarkSwitch() {
     return (
         <div onClick={toggle} title="switch to dark mode">
             {isDark ? (
-                <HiOutlineMoon className="w-6 h-6 dark:text-white" />
+                <HiOutlineMoon className="w-5 h-5 dark:text-white" />
             ) : (
-                <HiOutlineSun className="w-6 h-6 dark:text-white" />
+                <HiOutlineSun className="w-5 h-5 dark:text-white" />
             )}
         </div>
     )

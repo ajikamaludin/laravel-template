@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import InputError from '@/Components/Defaults/InputError';
-import InputLabel from '@/Components/Defaults/InputLabel';
-import PrimaryButton from '@/Components/Defaults/PrimaryButton';
-import TextInput from '@/Components/Defaults/TextInput';
+import React from 'react';
+import TextInput from '@/Components/Preline/TextInput';
+import Button from '@/Components/Preline/Button';
 import { Link, useForm, usePage } from '@inertiajs/react';
-import { Transition } from '@headlessui/react';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        username: user.username,
+    const { data, setData, patch, errors, processing } = useForm({
+        name: user.name,
         email: user.email,
     });
 
@@ -22,45 +19,39 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">Profile Information</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
                     Update your account's profile information and email address.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <div className="mt-6 space-y-6">
                 <div>
-                    <InputLabel for="name" value="Name" />
-
                     <TextInput
-                        id="username"
+                        id="name"
                         type="text"
                         className="mt-1 block w-full"
-                        value={data.username}
-                        handleChange={(e) => setData('username', e.target.value)}
-                        required
-                        autofocus
-                        autocomplete="name"
+                        label="Name"
+                        value={data.name}
+                        onChange={(e) => setData('name', e.target.value)}
+                        autoFocus={true}
+                        autoComplete="name"
+                        error={errors.name}
                     />
-
-                    <InputError className="mt-2" message={errors.username} />
                 </div>
 
                 <div>
-                    <InputLabel for="email" value="Email" />
-
                     <TextInput
                         id="email"
                         type="email"
+                        label="Email"
                         className="mt-1 block w-full"
                         value={data.email}
-                        handleChange={(e) => setData('email', e.target.value)}
-                        required
-                        autocomplete="email"
+                        onChange={(e) => setData('email', e.target.value)}
+                        autoComplete="email"
+                        error={errors.email}
                     />
-
-                    <InputError className="mt-2" message={errors.email} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
@@ -86,18 +77,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton processing={processing}>Save</PrimaryButton>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enterFrom="opacity-0"
-                        leaveTo="opacity-0"
-                        className="transition ease-in-out"
-                    >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
+                    <Button onClick={submit} processing={processing}>Save</Button>
                 </div>
-            </form>
+            </div>
         </section>
     );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 const Label = ({ label }) => {
     if (!label) return null;
@@ -20,35 +20,27 @@ const BottomTextHelper = ({ error }) => {
     )
 }
 
-export default function TextInput(props) {
-    const defaultClassName = `
-    py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500
-    focus:ring-blue-500 disabled:opacity-50 dark:bg-slate-900
-    dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600`
+const TextInput = forwardRef((props, ref) => {
+    const { label, error, ...inputProps } = props;
+
+    const defaultClassName = `py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600`;
 
     const errorClassName = `py-3 px-4 block w-full border-red-500 rounded-lg text-sm 
-    focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400`
+    focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400`;
+
+    const className = error ? errorClassName : defaultClassName;
 
     return (
         <>
-            <Label label={props.label} />
-            
+            <Label label={label} />
             <input
-                type={props.type || 'text'}
-                id={props.id || `${props.type}-${props.name}`}
-                className={`${props.error ? errorClassName : defaultClassName} ${props.className}`}
-                name={props.name}
-                onChange={props.onChange}
-                value={props.value}
-                disabled={props.disabled}
-                placeholder={props.placeholder || ''}
-                autoComplete={props.autoComplete}
-                autoFocus={props.autoFocus}
-                readOnly={props.readOnly}
-                onKeyDownCapture={props.onKeyDownCapture}
+                ref={ref}
+                {...inputProps}
+                className={`${className} ${props.className}`}
             />
-
-            <BottomTextHelper error={props.error} />
+            <BottomTextHelper error={error} />
         </>
-    )
-}
+    );
+});
+
+export default TextInput;

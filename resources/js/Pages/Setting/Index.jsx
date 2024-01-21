@@ -40,17 +40,14 @@ export default function Setting(props) {
 
     return (
         <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            flash={props.flash}
             page={'Setting'}
-            action={'Index'}
+            action={['Index']}
         >
             <Head title="Setting" />
 
             <div>
                 <div className="mx-auto sm:px-6 lg:px-8">
-                    <div className="overflow-hidden p-4 shadow-sm sm:rounded-lg bg-white dark:bg-slate-800 dark:border-gray-700 dark:shadow-slate-700/[.7] flex flex-col">
+                    <div className="overflow-hidden p-4 shadow-sm border rounded-lg bg-white dark:bg-slate-800 dark:border-gray-700 dark:shadow-slate-700/[.7] flex flex-col">
                         <div className="text-xl font-bold mb-4 dark:text-white">Setting</div>
                         <TextInput
                             name="app_name"
@@ -59,7 +56,7 @@ export default function Setting(props) {
                             label="App Name"
                             error={errors.app_name}
                         />
-                        <div className="mt-2">
+                        <div className="mt-4">
                             <Button
                                 onClick={handleSubmit}
                                 processing={processing}

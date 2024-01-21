@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from '@inertiajs/react'
 
 const Breadcrumb = (props) => {
     return (
-        <ol className="flex items-center whitespace-nowrap py-3 px-4 w-full bg-gray-200 dark:bg-gray-800" aria-label="Breadcrumb">
+        <ol className="flex items-center whitespace-nowrap py-3 px-4 w-full border-y border-gray-200 dark:border-gray-700" aria-label="Breadcrumb">
             {props.children}
         </ol>
     )
