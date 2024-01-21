@@ -9,7 +9,7 @@ This just a laravel template with breeze react, user role based access crud with
 ## Requirements
 
 -   PHP 8.1 or latest
--   Node 16+ or latest
+-   Node 20+ or latest
 
 ## How to run
 

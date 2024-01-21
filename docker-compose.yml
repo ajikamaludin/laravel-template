@@ -90,7 +90,7 @@ services:
       - template
 
   build:
-    image: node:18-alpine
+    image: node:20-alpine
     # image: oven/bun
     container_name: template-build
     ports:

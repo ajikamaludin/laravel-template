@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, usePage } from '@inertiajs/react'
-import { filterAllowedMenu } from './helpers'
-import routes from './routes'
+import { filterAllowedMenu } from './helpers.cjs'
+import routes from './routes.cjs'
 
 const SidebarItem = ({ item }) => {
     return (
