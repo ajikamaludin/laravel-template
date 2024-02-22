@@ -4,6 +4,7 @@ import TextInput from '@/Components/Preline/TextInput'
 import Button from '@/Components/Preline/Button'
 import { Head, useForm } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
+import Card from '@/Components/Preline/Card'
 
 const extractValue = (set, key) => {
     const find = set.find((s) => s.key === key)
@@ -46,8 +47,8 @@ export default function Setting(props) {
             <Head title="Setting" />
 
             <div>
-                <div className="mx-auto sm:px-6 lg:px-8">
-                    <div className="overflow-hidden p-4 shadow-sm border rounded-lg bg-white dark:bg-slate-800 dark:border-gray-700 dark:shadow-slate-700/[.7] flex flex-col">
+                <div className="mx-auto sm:px-6 lg:px-8 overflow-hidden">
+                    <Card>
                         <div className="text-xl font-bold mb-4 dark:text-white">Setting</div>
                         <TextInput
                             name="app_name"
@@ -64,7 +65,7 @@ export default function Setting(props) {
                                 Simpan
                             </Button>
                         </div>
-                    </div>
+                    </Card>
                 </div>
             </div>
         </AuthenticatedLayout>

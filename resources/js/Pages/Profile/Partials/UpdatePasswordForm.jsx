@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import TextInput from '@/Components/Preline/TextInput';
 import { useForm } from '@inertiajs/react';
+
+import TextInput from '@/Components/Preline/TextInput';
 import Button from '@/Components/Preline/Button';
 
 export default function UpdatePasswordForm({ className }) {

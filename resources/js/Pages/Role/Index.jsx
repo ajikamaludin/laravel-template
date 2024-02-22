@@ -8,10 +8,12 @@ import { useModalState } from '@/hooks'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
 import ModalConfirm from '@/Components/ModalConfirm'
-import SearchInput from '@/Components/SearchInput'
-import HasPermission from '@/Components/HasPermission'
+import SearchInput from '@/Components/Preline/SearchInput'
+import HasPermission from '@/Components/Common/HasPermission'
 import Dropdown from '@/Components/Preline/Dropdown'
 import Button from '@/Components/Preline/Button'
+import Card from '@/Components/Preline/Card'
+import Table from '@/Components/Preline/Table'
 
 export default function Index(props) {
     const {
@@ -56,8 +58,8 @@ export default function Index(props) {
             <Head title="Role" />
 
             <div>
-                <div className="mx-auto sm:px-6 lg:px-8 ">
-                    <div className="p-6 overflow-hidden shadow-sm sm:rounded-lg bg-gray-200 dark:bg-gray-800 space-y-4">
+                <div className="mx-auto sm:px-6 lg:px-8">
+                    <Card>
                         <div className="flex justify-between">
                             <HasPermission p="create-role">
                                 <Link href={route('roles.create')}>
@@ -72,89 +74,68 @@ export default function Index(props) {
                                 />
                             </div>
                         </div>
-                        <div className="overflow-auto">
-                            <div>
-                                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-4">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th
-                                                scope="col"
-                                                className="py-3 px-6"
-                                            >
-                                                Nama
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="py-3 px-6"
-                                            />
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data.map((role) => (
-                                            <tr
-                                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                                                key={role.id}
-                                            >
-                                                <td
-                                                    scope="row"
-                                                    className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        <Table>
+                            <Table.Header>
+                                <Table.HeaderItem
+                                    className="col-span-3"
+                                >
+                                    Nama
+                                </Table.HeaderItem>
+                                <Table.HeaderItem
+                                    className="col-span-1"
+                                />
+                            </Table.Header>
+                            {data.map((role) => (
+                                <Table.Body key={role.id}>
+                                    <Table.BodyItem className="col-span-3 py-4 px-6 text-start">
+                                        {role.name}
+                                    </Table.BodyItem>
+                                    <Table.BodyItem className="col-span-1 relative py-4 px-6 flex justify-end">
+                                        <Dropdown label={'Opsi'} >
+                                            <HasPermission p="update-role">
+                                                <Dropdown.Item
+                                                    onClick={() =>
+                                                        router.visit(
+                                                            route(
+                                                                'roles.edit',
+                                                                role
+                                                            )
+                                                        )
+                                                    }
                                                 >
-                                                    {role.name}
-                                                </td>
-                                                <td className="py-4 px-6 flex justify-end">
-                                                    <Dropdown
-                                                        label={'Opsi'}
-                                                        arrowIcon={true}
-                                                        dismissOnClick={true}
-                                                        size={'sm'}
-                                                    >
-                                                        <HasPermission p="update-role">
-                                                            <Dropdown.Item
-                                                                onClick={() =>
-                                                                    router.visit(
-                                                                        route(
-                                                                            'roles.edit',
-                                                                            role
-                                                                        )
-                                                                    )
-                                                                }
-                                                            >
-                                                                <div className="flex space-x-1 items-center">
-                                                                    <HiPencil />
-                                                                    <div>
-                                                                        Ubah
-                                                                    </div>
-                                                                </div>
-                                                            </Dropdown.Item>
-                                                        </HasPermission>
-                                                        <HasPermission p="delete-role">
-                                                            <Dropdown.Item
-                                                                onClick={() =>
-                                                                    handleDeleteClick(
-                                                                        role
-                                                                    )
-                                                                }
-                                                            >
-                                                                <div className="flex space-x-1 items-center">
-                                                                    <HiTrash />
-                                                                    <div>
-                                                                        Hapus
-                                                                    </div>
-                                                                </div>
-                                                            </Dropdown.Item>
-                                                        </HasPermission>
-                                                    </Dropdown>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="w-full flex items-center justify-center">
-                                <Pagination links={links} params={params} />
-                            </div>
+                                                    <div className="flex space-x-1 items-center">
+                                                        <HiPencil />
+                                                        <div>
+                                                            Ubah
+                                                        </div>
+                                                    </div>
+                                                </Dropdown.Item>
+                                            </HasPermission>
+                                            <HasPermission p="delete-role">
+                                                <Dropdown.Item
+                                                    onClick={() =>
+                                                        handleDeleteClick(
+                                                            role
+                                                        )
+                                                    }
+                                                >
+                                                    <div className="flex space-x-1 items-center">
+                                                        <HiTrash />
+                                                        <div>
+                                                            Hapus
+                                                        </div>
+                                                    </div>
+                                                </Dropdown.Item>
+                                            </HasPermission>
+                                        </Dropdown>
+                                    </Table.BodyItem>
+                                </Table.Body>
+                            ))}
+                        </Table>
+                        <div className="w-full overflow-x-auto flex lg:justify-center">
+                            <Pagination links={links} params={params} />
                         </div>
-                    </div>
+                    </Card>
                 </div>
             </div>
             <ModalConfirm modalState={confirmModal} onConfirm={onDelete} />

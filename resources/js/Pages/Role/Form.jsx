@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { router, Head, Link, usePage } from '@inertiajs/react';
+import { isEmpty } from 'lodash';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import FormInput from '@/Components/FormInput';
-import Button from '@/Components/Button';
-import { isEmpty } from 'lodash';
-import Checkbox from '@/Components/Checkbox';
-import { router } from '@inertiajs/react';
+import TextInput from '@/Components/Preline/TextInput';
+import Button from '@/Components/Preline/Button';
+import Checkbox from '@/Components/Preline/Checkbox';
 
 export default function Role(props) {
     const { props: { errors } } = usePage()
@@ -92,7 +91,7 @@ export default function Role(props) {
             <div>
                 <div className="mx-auto sm:px-6 lg:px-8 ">
                     <div className="p-6 shadow-sm sm:rounded-lg bg-white dark:bg-gray-800 space-y-4">
-                        <FormInput
+                        <TextInput
                             name="name"
                             value={name}
                             onChange={e => setName(e.target.value)}
@@ -120,6 +119,7 @@ export default function Role(props) {
                             <p className="mb-2 text-sm text-red-600 dark:text-red-500">{errors.permissions}</p>
                         )}
                         <div className="flex items-center">
+                        <div className='flex space-x-2'>
                         <Button
                             onClick={handleSubmit}
                             processing={processing} 
@@ -133,6 +133,7 @@ export default function Role(props) {
                                 Kembali
                             </Button>
                         </Link>
+                        </div>
                     </div>
                     </div>
                 </div>

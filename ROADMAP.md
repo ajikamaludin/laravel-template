@@ -3,6 +3,7 @@
 -   [x] add dark mode
 -   [ ] add permission command
 -   [ ] change docker compose nginx+php-fpm to frankenphp (still in research)
+-   [ ] create a jwt token [https://github.com/firebase/php-jwt] | user login -> generate encode payload user id -> save in cache 
 
 ## migrate v1 to v2 
 -   [ ] changes frontend template to preline.co -> on progress
@@ -11,9 +12,9 @@
     -   [x] sidebar
     -   [x] form
     -   [x] dashboard
-    -   [ ] role
-    -   [ ] table
-    -   [ ] pagination
+    -   [x] role
+    -   [x] table
+    -   [x] pagination
     -   [ ] select
 
 ## NICE TO CREATE 

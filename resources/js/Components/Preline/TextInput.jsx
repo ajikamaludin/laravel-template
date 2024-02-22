@@ -26,7 +26,7 @@ const TextInput = forwardRef((props, ref) => {
     const defaultClassName = `py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600`;
 
     const errorClassName = `py-3 px-4 block w-full border-red-500 rounded-lg text-sm 
-    focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400`;
+    focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-red-500 dark:text-gray-400`;
 
     const className = error ? errorClassName : defaultClassName;
 
@@ -36,7 +36,7 @@ const TextInput = forwardRef((props, ref) => {
             <input
                 ref={ref}
                 {...inputProps}
-                className={`${className} ${props.className}`}
+                className={`${className} ${props.className ? props.className : ''}`}
             />
             <BottomTextHelper error={error} />
         </>
