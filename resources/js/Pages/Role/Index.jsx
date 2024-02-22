@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { router } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
 import { Head, Link } from '@inertiajs/react'
-import { Button, Dropdown } from 'flowbite-react'
 import { HiPencil, HiTrash } from 'react-icons/hi'
 import { useModalState } from '@/hooks'
 
@@ -11,6 +10,8 @@ import Pagination from '@/Components/Pagination'
 import ModalConfirm from '@/Components/ModalConfirm'
 import SearchInput from '@/Components/SearchInput'
 import HasPermission from '@/Components/HasPermission'
+import Dropdown from '@/Components/Preline/Dropdown'
+import Button from '@/Components/Preline/Button'
 
 export default function Index(props) {
     const {

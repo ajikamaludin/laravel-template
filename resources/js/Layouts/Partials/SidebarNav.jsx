@@ -45,7 +45,7 @@ const SidebarItemGroup = ({ item }) => {
             </button>
 
             <div className={`hs-accordion-content w-full overflow-hidden transition-[height] duration-300 ${open ? 'block' : 'hidden'}`}>
-                <ul className="pt-2 ps-2 space-y-1.5">
+                <ul className="p-2 ps-2 space-y-1.5">
                     {item.items.map((item) => (
                         <div key={item.route}>
                         <SidebarItem item={item}/>

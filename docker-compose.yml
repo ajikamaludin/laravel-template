@@ -47,6 +47,7 @@ services:
       template:
         ipv4_address: 10.255.255.99
   phpmyadmin:
+    container_name: template-phpmyadmin
     depends_on:
       - mariadb
     image: phpmyadmin
