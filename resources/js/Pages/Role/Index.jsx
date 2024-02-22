@@ -7,7 +7,7 @@ import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
-import ModalConfirm from '@/Components/ModalConfirm'
+import ModalConfirm from '@/Components/Preline/ModalConfirm'
 import SearchInput from '@/Components/Preline/SearchInput'
 import HasPermission from '@/Components/Common/HasPermission'
 import Dropdown from '@/Components/Preline/Dropdown'

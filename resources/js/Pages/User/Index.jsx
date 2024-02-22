@@ -6,14 +6,14 @@ import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
-import ModalConfirm from '@/Components/ModalConfirm'
-import FormModal from './FormModal'
+import ModalConfirm from '@/Components/Preline/ModalConfirm'
 import SearchInput from '@/Components/Preline/SearchInput'
 import Button from '@/Components/Preline/Button'
 import Dropdown from '@/Components/Preline/Dropdown'
 import HasPermission from '@/Components/Common/HasPermission'
 import Card from '@/Components/Preline/Card'
 import Table from '@/Components/Preline/Table'
+import FormModal from './FormModal'
 
 export default function Index(props) {
     const { data: { links, data } } = props

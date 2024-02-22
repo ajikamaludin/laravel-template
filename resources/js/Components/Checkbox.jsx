@@ -1,35 +1,30 @@
-import React from 'react'
+import React from "react";
 
-export default function Checkbox({
-    value,
-    name,
-    onChange,
-    label = '',
-    error,
-    disabled = false,
-}) {
+
+const BottomTextHelper = ({ error }) => {
+    if (!error) return null;
+
+    return (
+        <p className="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{error}</p>
+    )
+}
+
+export default function Checkbox(props) {
     return (
         <>
-            <div className="flex items-center mb-1">
+            <div className="flex">
                 <input
+                    name={props.name}
                     type="checkbox"
-                    checked={value}
-                    onChange={onChange}
-                    name={name}
-                    disabled={disabled}
-                    className="w-4 h-4 text-cyan-600 bg-gray-100 rounded border-gray-300 focus:ring-cyan-500 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                {label !== '' && (
-                    <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        {label}
-                    </label>
-                )}
+                    className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                    onChange={props.onChange}
+                    checked={props.value}
+                    disabled={props.disabled} />
+                <label className="text-sm text-gray-700 ms-3 dark:text-gray-400">
+                    {props.label}
+                </label>
             </div>
-            {error && (
-                <p className="mb-2 text-sm text-red-600 dark:text-red-500">
-                    {error}
-                </p>
-            )}
+            <BottomTextHelper error={props.error} />
         </>
     )
 }
