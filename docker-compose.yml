@@ -15,7 +15,7 @@ services:
       networks:
         - template
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:alpine
     container_name: template-nginx
     ports:
       - 8000:80
