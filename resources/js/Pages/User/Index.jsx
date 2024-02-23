@@ -90,7 +90,7 @@ export default function Index(props) {
                                 </Table.HeaderItem>
                                 <Table.HeaderItem className="col-span-1"/>
                             </Table.Header>
-                            {data.map((user) => (
+                            {data.map((user, index) => (
                                 <Table.Body className="grid-cols-5" key={user.id}>
                                     <Table.BodyItem className="col-span-2 py-4 px-6 text-start">
                                             {user.name}
@@ -103,9 +103,7 @@ export default function Index(props) {
                                     <Table.BodyItem className="col-span-1 py-4 px-6 text-end">
                                         <Dropdown
                                             label={'Opsi'}
-                                            arrowIcon={true}
-                                            dismissOnClick={true}
-                                            size={'sm'}
+                                            last={index + 1 === +data.length}
                                         >
                                             <HasPermission p="update-user">
                                                 <Dropdown.Item

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({ children, label }) => {
+const Dropdown = ({ children, label, last = false }) => {
     const ref = useRef()
     const [isOpen, setOpen] = useState(false)
 
@@ -27,7 +27,7 @@ const Dropdown = ({ children, label }) => {
                 <svg className="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" htmlfill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div className="relative">
-            <div className={`min-w-40 bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 top-full right-0 z-10 absolute origin-top-right ${isOpen ? 'block' : 'hidden opacity-0'}`}>
+            <div className={`min-w-40 bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 right-0 z-10 absolute  ${isOpen ? 'block' : 'hidden opacity-0'} ${last ? 'bottom-full mb-14' : 'top-full origin-top-right'}`}>
                 {children}
             </div>
         </div>

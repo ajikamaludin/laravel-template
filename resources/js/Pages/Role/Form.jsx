@@ -95,7 +95,7 @@ export default function Role(props) {
                             name="name"
                             value={name}
                             onChange={e => setName(e.target.value)}
-                            label="Nama"
+                            label="Name"
                             error={errors.name}
                         />
                         <Checkbox

@@ -79,19 +79,19 @@ export default function Index(props) {
                                 <Table.HeaderItem
                                     className="col-span-3"
                                 >
-                                    Nama
+                                    Name
                                 </Table.HeaderItem>
                                 <Table.HeaderItem
                                     className="col-span-1"
                                 />
                             </Table.Header>
-                            {data.map((role) => (
+                            {data.map((role, index) => (
                                 <Table.Body key={role.id}>
                                     <Table.BodyItem className="col-span-3 py-4 px-6 text-start">
                                         {role.name}
                                     </Table.BodyItem>
                                     <Table.BodyItem className="col-span-1 relative py-4 px-6 flex justify-end">
-                                        <Dropdown label={'Opsi'} >
+                                        <Dropdown label={'Opsi'} last={index + 1 === +data.length}>
                                             <HasPermission p="update-role">
                                                 <Dropdown.Item
                                                     onClick={() =>
