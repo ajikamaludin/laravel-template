@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
 import { HiLogout } from 'react-icons/hi'
-import { filterAllowedMenu } from './helpers.cjs'
-import routes from './routes.cjs'
+import { filterAllowedMenu } from './Partials/helpers.cjs'
+import routes from './Partials/routes.cjs'
 
 const SidebarItem = ({ item }) => {
     return (

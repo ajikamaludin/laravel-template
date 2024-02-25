@@ -5,7 +5,7 @@ import { HiMenu } from 'react-icons/hi'
 import { isArray, isEmpty } from 'lodash'
 
 import Dropdown from '@/Components/Defaults/Dropdown'
-import SidebarNav from './Partials/SidebarNav'
+import SidebarNav from './SidebarNav'
 import DarkSwitch from '@/Components/DarkSwitch'
 import Breadcrumb from '@/Components/Preline/Breadcrumb'
 
