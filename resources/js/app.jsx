@@ -1,6 +1,5 @@
 import './bootstrap'
 import '../css/app.css'
-import 'flowbite'
 import 'preline'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -14,11 +13,7 @@ const appName =
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob('./Pages/**/*.jsx')
-        ),
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx')),
     setup({ el, App, props }) {
         const root = createRoot(el)
 

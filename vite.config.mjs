@@ -16,7 +16,6 @@ export default defineConfig({
                 manualChunks: {
                     lodash: ['lodash'],
                     preline: ['preline'],
-                    flowbite: ['flowbite', 'flowbite-react'],
                     moment: ['moment'],
                     reactdatepicker: ['react-datepicker'],
                     reacttoastify: ['react-toastify'],
