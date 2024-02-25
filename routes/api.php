@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\SelectTableController;
-use App\Http\Controllers\Api\RoleController;
 use App\Http\Middleware\JwtCustomApiVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

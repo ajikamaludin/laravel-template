@@ -1,5 +1,5 @@
+import DashboardIcon from '@/Components/TailAdmin/Icons/Dashboard'
 import {
-    HiChartPie,
     HiUser,
     HiCog,
 } from 'react-icons/hi'
@@ -8,7 +8,7 @@ export default [
     {
         name: 'Dashboard',
         show: true,
-        icon: HiChartPie,
+        icon: DashboardIcon,
         route: route('dashboard'),
         active: 'dashboard',
         permission: 'view-dashboard',

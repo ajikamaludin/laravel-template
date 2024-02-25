@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout'
 import TextInput from '@/Components/Preline/TextInput'
 import Button from '@/Components/Preline/Button'
 import { Head, useForm } from '@inertiajs/react'

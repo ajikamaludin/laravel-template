@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { HiFire } from 'react-icons/hi';
 

@@ -109,6 +109,8 @@
     background: rgb(241 241 241 / 12%);
 }
 
+@layer base {
+
 .react-datepicker__input-container input {
     @apply block w-full text-base md:text-sm bg-white border dark:bg-gray-700 shadow-sm;
 }
@@ -267,4 +269,5 @@
 
 .min-h-100 {
     max-height: 45rem;
+}
 }

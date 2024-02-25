@@ -1,7 +1,7 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import Card from '@/Components/Preline/Card';

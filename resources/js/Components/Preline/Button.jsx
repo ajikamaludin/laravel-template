@@ -19,10 +19,10 @@ export default function Button(props) {
             className={!type ? types.default : types[type]}
         >
             {props.processing ? (
-                <>
+                <div className='flex flex-row items-center justify-center space-x-2'>
                     <Spinner/>
-                    Loading
-                </>
+                    <span>Loading</span>
+                </div>
             ) : 
                 props.children
             }

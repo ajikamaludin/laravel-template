@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { router, Head, Link, usePage } from '@inertiajs/react';
 import { isEmpty } from 'lodash';
 
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
 import TextInput from '@/Components/Preline/TextInput';
 import Button from '@/Components/Preline/Button';
 import Checkbox from '@/Components/Preline/Checkbox';

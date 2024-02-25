@@ -1,7 +1,10 @@
 import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
-import Card from '@/Components/Preline/Card';
+
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
+import Card from '@/Components/TailAdmin/Card';
+import CardDataStats from '@/Components/TailAdmin/CardDataStats';
+import UserIcon from '@/Components/TailAdmin/Icons/User';
 
 export default function Dashboard(props) {
     return (
@@ -11,45 +14,15 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
 
-            <div>
-                <div className="mx-auto sm:px-6 lg:px-8 ">
-                    <Card>Dashboard</Card>
-                    <div className='w-full grid grid-cols-4 py-2 space-x-2'>
-                        <Card>
-                            <h3 className="text-lg font-bold">
-                                {props.role_count}
-                            </h3>
-                            <p className="mt-1 text-gray-500 dark:text-gray-400">
-                                Roles
-                            </p>
-                        </Card>
-                        <Card>
-                            <h3 className="text-lg font-bold">
-                                {props.user_count}
-                            </h3>
-                            <p className="mt-1 text-gray-500 dark:text-gray-400">
-                                Users
-                            </p>
-                        </Card>
-                        <Card>
-                            <h3 className="text-lg font-bold">
-                                0
-                            </h3>
-                            <p className="mt-1 text-gray-500 dark:text-gray-400">
-                                Empty
-                            </p>
-                        </Card>
-                        <Card>
-                            <h3 className="text-lg font-bold">
-                                0
-                            </h3>
-                            <p className="mt-1 text-gray-500 dark:text-gray-400">
-                                Empty
-                            </p>
-                        </Card>
-                    </div>
-                </div>
-                
+            <div className="grid grid-cols-1 gap-4 md:gap-6 2xl:gap-7.5 mb-4">
+                <Card>Dashboard</Card>
+            </div>
+                    
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+                <CardDataStats title="Roles" total={props.role_count}><UserIcon/></CardDataStats>
+                <CardDataStats title="User" total={props.user_count}><UserIcon/></CardDataStats>
+                <CardDataStats title="Empty" total={0}><UserIcon/></CardDataStats>
+                <CardDataStats title="Empty" total={0}><UserIcon/></CardDataStats>
             </div>
         </AuthenticatedLayout>
     );

@@ -1,5 +1,7 @@
 import './bootstrap'
 import '../css/app.css'
+import '../css/tailadmin/css/satoshi.css'
+import '../css/tailadmin/css/style.css'
 import 'preline'
 import 'react-toastify/dist/ReactToastify.css'
 

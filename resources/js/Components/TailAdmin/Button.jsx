@@ -1,0 +1,31 @@
+import React from 'react'
+import Spinner from './Spinner';
+
+
+export default function Button(props) {
+    const { type } = props
+
+    const types = {
+        default: "w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90",
+        secondary: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600",
+        red: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+    };
+
+    return (
+        <button 
+            type="button"
+            disabled={props.disabled || props.processing || false}
+            onClick={props.onClick}
+            className={!type ? types.default : types[type]}
+        >
+            {props.processing ? (
+                <div className='flex flex-row items-center justify-center space-x-2'>
+                    <Spinner/>
+                    <span>Loading</span>
+                </div>
+            ) : 
+                props.children
+            }
+        </button>
+    )
+}

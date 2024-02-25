@@ -5,7 +5,7 @@ import { Head, Link } from '@inertiajs/react'
 import { HiPencil, HiTrash } from 'react-icons/hi'
 import { useModalState } from '@/hooks'
 
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
 import ModalConfirm from '@/Components/Preline/ModalConfirm'
 import SearchInput from '@/Components/Preline/SearchInput'
