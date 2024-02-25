@@ -59,7 +59,7 @@ npm run build
 
 ## Screen Capture
 
-![](screenshot1.gif?raw=true)
+![](screenshot_v2.gif?raw=true)
 
 <hr/>
 

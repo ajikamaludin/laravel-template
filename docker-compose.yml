@@ -6,7 +6,7 @@ services:
       working_dir: /var/www/
       volumes:
         - ./:/var/www
-        - ./user.ini:/usr/local/etc/php/php.ini
+        - ./php.ini:/usr/local/etc/php/php.ini
         - "/etc/timezone:/etc/timezone:ro"
         - "/etc/localtime:/etc/localtime:ro"
       mem_limit: 512m
