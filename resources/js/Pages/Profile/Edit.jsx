@@ -1,14 +1,14 @@
 import React from 'react';
+import { Head } from '@inertiajs/react';
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Head } from '@inertiajs/react';
+import Card from '@/Components/Preline/Card';
 
-export default function Edit({ auth, mustVerifyEmail, status, flash }) {
+export default function Edit({ mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout
-            auth={auth}
-            flash={flash}
             page={'Home'}
             action={'Profile'}
         >
@@ -16,17 +16,17 @@ export default function Edit({ auth, mustVerifyEmail, status, flash }) {
 
             <div className="pb-12 pt-2">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <Card>
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
                             className="max-w-xl"
                         />
-                    </div>
+                    </Card>
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <Card>
                         <UpdatePasswordForm className="max-w-xl" />
-                    </div>
+                    </Card>
                 </div>
             </div>
         </AuthenticatedLayout>

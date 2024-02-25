@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-      image: ajikamaludin/php82user:latest
+      image: ajikamaludin/php83user:latest
       container_name: template-app
       working_dir: /var/www/
       volumes:
@@ -15,7 +15,7 @@ services:
       networks:
         - template
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:alpine
     container_name: template-nginx
     ports:
       - 8000:80
@@ -46,6 +46,19 @@ services:
     networks:
       template:
         ipv4_address: 10.255.255.99
+  phpmyadmin:
+    container_name: template-phpmyadmin
+    depends_on:
+      - mariadb
+    image: phpmyadmin
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: '2048M'
+    networks:
+      - template
   postgresql:
     # image: postgres:latest
     image: postgres:14-alpine3.17
@@ -78,7 +91,7 @@ services:
       - template
 
   build:
-    image: node:18-alpine
+    image: node:20-alpine
     # image: oven/bun
     container_name: template-build
     ports:

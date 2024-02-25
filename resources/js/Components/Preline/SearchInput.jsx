@@ -1,5 +1,5 @@
-import React from 'react'
 import { HiSearch } from 'react-icons/hi'
+import TextInput from './TextInput'
 
 export default function SearchInput({ onChange, value }) {
     return (
@@ -7,10 +7,9 @@ export default function SearchInput({ onChange, value }) {
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <HiSearch className="text-base dark:text-white" />
             </div>
-            <input
-                type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+            <TextInput
                 placeholder="Search"
+                className="pl-10"
                 onChange={onChange}
                 value={value}
                 autoComplete="off"

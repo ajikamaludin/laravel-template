@@ -1,15 +1,21 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { useDebounce } from '@/hooks'
 import { usePage } from '@inertiajs/react'
-import axios from 'axios'
 import { HiChevronDown, HiChevronUp, HiX } from 'react-icons/hi'
-import { Spinner } from 'flowbite-react'
+import { isEmpty } from 'lodash'
+import axios from 'axios'
+import qs from 'qs'
+
+import { useDebounce } from '@/hooks'
+import Spinner from '@/Components/Preline/Spinner'
 
 export default function SelectionInput(props) {
     const ref = useRef()
     const {
         props: { auth },
     } = usePage()
+    const [display_name, setDisplayName] = useState([])
+    const [separator, setSeparator] = useState(' - ')
+    const [_placeholder, setPlaceholder] = useState('')
 
     const {
         label = '',
@@ -18,7 +24,15 @@ export default function SelectionInput(props) {
         disabled = false,
         placeholder = '',
         error = '',
-        all = 0,
+        limit = 100,
+        offset = 0,
+        data = {
+            table: '',
+            display_name: '',
+            separator: ' - ',
+            orderby: '',
+            qk: '',
+        }
     } = props
 
     const [showItems, setShowItem] = useState([])
@@ -45,7 +59,7 @@ export default function SelectionInput(props) {
 
     const handleSelectItem = (item) => {
         setIsSelected(true)
-        onItemSelected(item.id)
+        onItemSelected(item)
         setSelected(item.name)
         setIsOpen(false)
     }
@@ -53,7 +67,7 @@ export default function SelectionInput(props) {
     const removeItem = () => {
         setIsSelected(false)
         setSelected('')
-        onItemSelected(null)
+        onItemSelected(false)
     }
 
     const filterItems = (value) => {
@@ -81,30 +95,49 @@ export default function SelectionInput(props) {
     const fetch = (q = '') => {
         setLoading(true)
         axios
-            .get(route('api.role.index', { q: q, all: all }), {
+            .get(`
+                ${route('api.select.table', data.table)}?${qs.stringify({ 
+                    q,
+                    limit,
+                    offset,
+                    display_name: data.display_name,
+                    orderby: data.orderby,
+                    searchable_field: data.qk,
+                })}
+                ` , {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + auth.user.jwt_token,
+                    Accept: 'application/json',
+                    Authorization: auth.jwt_prefix + auth.jwt_token,
                 },
             })
             .then((response) => {
                 setShowItem(response.data)
             })
             .catch((err) => {
-                alert(err)
+                alert(err.response.data.message)
             })
-            .finally(() => setLoading(false))
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     // every select item open
     useEffect(() => {
+        setPlaceholder(placeholder)
         if (isOpen) {
             fetch(q)
+            setPlaceholder('type to search')
         }
     }, [q, isOpen])
 
     // once page load
     useEffect(() => {
+        // init
+        setDisplayName(data.display_name.split('.'))
+        setSeparator(data.separator ?? ' - ')
+        setPlaceholder(isEmpty(placeholder) ? '' : placeholder)
+
         fetch()
     }, [])
 
@@ -118,7 +151,11 @@ export default function SelectionInput(props) {
         if (itemSelected !== null) {
             const item = showItems.find((item) => item.id === itemSelected)
             if (item) {
-                setSelected(item.name)
+                let selected_name = ''
+                {display_name.map((dn, i) => (
+                        selected_name = selected_name + `${i == 0 ? '' : separator}` + item[`${dn}`]
+                ))}
+                setSelected(selected_name)
                 setIsSelected(true)
             }
             return
@@ -140,7 +177,6 @@ export default function SelectionInput(props) {
                     <div className="flex flex-col relative">
                         {label !== '' && (
                             <label
-                                htmlFor="first_name"
                                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                             >
                                 {label}
@@ -148,18 +184,18 @@ export default function SelectionInput(props) {
                         )}
                         <div className="w-full">
                             <div
-                                className={`p-1.5 bg-gray-50 dark:bg-gray-700 flex items-center border rounded-lg
+                                className={`
                                 ${
                                     error
-                                        ? 'border-red-500'
-                                        : 'border-gray-300 dark:border-gray-600'
+                                        ? 'flex items-center border rounded-lg border-red-500 dark:bg-gray-800'
+                                        : 'dark:bg-slate-900 flex items-center border rounded-lg border-gray-200 dark:border-gray-700'
                                 }
-                                ${disabled ? 'bg-gray-50' : ''}`}
+                                ${disabled ? 'bg-slate-100' : ''}`}
                             >
                                 <input
-                                    className="block w-full text-sm bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 px-1 outline-none border-none focus:border-none focus:outline-none focus:shadow-none focus:ring-transparent py-0"
+                                    className={`${error ? 'p-3 block w-full dark:bg-gray-800 dark:text-gray-400 text-sm outline-none border-none focus:border-none focus:outline-none focus:shadow-none focus:ring-transparent rounded-lg' : 'p-3 block w-full dark:bg-slate-900 dark:text-gray-400 text-sm outline-none border-none focus:border-none focus:outline-none focus:shadow-none focus:ring-transparent rounded-lg'}`}
                                     onMouseDown={onInputMouseDown}
-                                    placeholder={placeholder}
+                                    placeholder={_placeholder}
                                     value={`${
                                         isSelected
                                             ? selected === null
@@ -201,7 +237,7 @@ export default function SelectionInput(props) {
                         </div>
                         {isOpen && (
                             <div
-                                className="absolute mt-1 shadow-lg bg-gray-50 dark:bg-gray-700 dark:text-gray-200 top-100 z-40 w-full lef-0 rounded overflow-y-auto"
+                                className="absolute mt-1 shadow-lg bg-gray-50 dark:bg-slate-900 dark:text-gray-400 top-100 z-40 w-full lef-0 rounded overflow-y-auto"
                                 style={{ maxHeight: '300px', top: '100%' }}
                             >
                                 <div className="flex flex-col w-full">
@@ -228,9 +264,12 @@ export default function SelectionInput(props) {
                                                     <div className="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-neutral-content hover:bg-gray-400 bg-opacity-10 dark:hover:bg-gray-200 dark:hover:bg-opacity-10 dark:hover:text-gray-100">
                                                         <div className="w-full items-center flex">
                                                             <div className="mx-2">
-                                                                <span>
-                                                                    {item.name}
-                                                                </span>
+                                                                {display_name.map((dn, i) => (
+                                                                    <span key={dn} index={i}>
+                                                                        {i == 0 ? '' : `${separator}`}
+                                                                        {item[`${dn}`]}
+                                                                    </span>
+                                                                ))}
                                                             </div>
                                                         </div>
                                                     </div>

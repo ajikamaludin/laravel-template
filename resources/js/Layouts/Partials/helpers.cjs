@@ -1,4 +1,4 @@
-export const filterOpenMenu = (user, item) => {
+export const filterAllowedMenu = (user, item) => {
     const isAdmin = user.role === null
     if ('items' in item) {
         let items = []

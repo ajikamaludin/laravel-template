@@ -5,10 +5,7 @@ import { HiFire } from 'react-icons/hi';
 
 export default function Maintance(props) {
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            flash={props.flash}
+        <AuthenticatedLayout 
             page={"Page"}
             action={"Development Mode"}
         >

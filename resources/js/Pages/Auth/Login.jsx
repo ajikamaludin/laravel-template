@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
-import InputError from '@/Components/Defaults/InputError'
-import { Head, Link, useForm } from '@inertiajs/react'
-import { Button, TextInput, Label, Checkbox, Spinner } from 'flowbite-react'
+import { Head, useForm } from '@inertiajs/react'
+import TextInput from '@/Components/Preline/TextInput'
+import Checkbox from '@/Components/Preline/Checkbox'
+import Button from '@/Components/Preline/Button'
 
 export default function Login({ status }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -50,52 +51,46 @@ export default function Login({ status }) {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label value="Email" />
-
-                    <TextInput
+                    <TextInput 
                         type="text"
+                        label="Email"
                         name="email"
+                        placeholder="you@site.com"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="email"
                         autoFocus={true}
                         onChange={onHandleChange}
+                        error={errors.email}
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <Label value="Password" />
-
-                    <TextInput
+                    <TextInput 
                         type="password"
+                        label="Password"
                         name="password"
+                        placeholder="password"
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="current-password"
                         onChange={onHandleChange}
-                        onKeyDownCapture={(e) => handleKeyDown(e)}
+                        error={errors.password}
+                        onKeyDownCapture={handleKeyDown}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="block mt-4">
-                    <label className="flex items-center space-x-2">
-                        <Checkbox
-                            id="remember"
-                            value={data.remember}
-                            onChange={onHandleChange}
-                        />
-                        <Label htmlFor="remember">Remember me</Label>
-                    </label>
+                    <Checkbox
+                        label="Remember me"
+                        name="remember"
+                        value={data.remember}
+                        onChange={onHandleChange}
+                        error={errors.remember}
+                    />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button onClick={submit} disabled={processing}>
-                        {processing ? <Spinner /> : 'Log in'}
-                    </Button>
+                    <Button onClick={submit} processing={processing}>Log in</Button>
                 </div>
             </form>
         </GuestLayout>

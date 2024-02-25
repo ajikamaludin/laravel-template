@@ -97,7 +97,7 @@ export default ({ links = [], params = null }) => {
     if (links.length === 3) return null
     return (
         <nav>
-            <ul className="inline-flex items-center -space-x-px">
+            <ul className="inline-flex items-center">
                 {links.map(({ active, label, url }, index) => {
                     return url === null ? (
                         <PageInactive key={`${label}-${index}`} label={label} />
