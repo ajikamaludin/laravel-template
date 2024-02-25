@@ -8,7 +8,7 @@ const Breadcrumb = (props) => {
     )
 }
 
-const BreadcrumbItem = (props) => {
+Breadcrumb.Item = (props) => {
     return (
         <li className="inline-flex items-center">
             <p 
@@ -25,7 +25,4 @@ const BreadcrumbItem = (props) => {
     )
 }
 
-export {
-    Breadcrumb,
-    BreadcrumbItem
-}
+export default Breadcrumb

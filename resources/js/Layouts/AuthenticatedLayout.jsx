@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import { router, usePage } from '@inertiajs/react'
 import { HiMenu } from 'react-icons/hi'
-import { Breadcrumb, BreadcrumbItem } from '@/Components/Preline/Breadcrumb'
+import { isArray, isEmpty } from 'lodash'
+
 import Dropdown from '@/Components/Defaults/Dropdown'
 import SidebarNav from './Partials/SidebarNav'
 import DarkSwitch from '@/Components/DarkSwitch'
-import { isArray, isEmpty } from 'lodash'
-
+import Breadcrumb from '@/Components/Preline/Breadcrumb'
 
 export default function Authenticated({
     children,
@@ -79,19 +79,19 @@ export default function Authenticated({
                 </nav>
                 {page !== '' && (
                     <Breadcrumb>
-                        <BreadcrumbItem onClick={() => router.visit(route('dashboard'))}>
+                        <Breadcrumb.Item onClick={() => router.visit(route('dashboard'))}>
                             {page}
-                        </BreadcrumbItem>
+                        </Breadcrumb.Item>
                         {!isEmpty(action) && (
                             <>
                                 {isArray(action) ? 
                                     action.map((a, i) => (
-                                        <BreadcrumbItem key={i}>{a}</BreadcrumbItem>
+                                        <Breadcrumb.Item key={i}>{a}</Breadcrumb.Item>
                                     )
                                     ) : (
-                                    <BreadcrumbItem>
+                                    <Breadcrumb.Item>
                                         {action}
-                                    </BreadcrumbItem>
+                                    </Breadcrumb.Item>
                                 )}
                             </>
                         )}

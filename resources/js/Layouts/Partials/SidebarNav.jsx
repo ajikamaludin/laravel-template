@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
+import { HiLogout } from 'react-icons/hi'
 import { filterAllowedMenu } from './helpers.cjs'
 import routes from './routes.cjs'
 
@@ -94,6 +95,12 @@ export default function SidebarNav({ user, show }) {
                                     )}
                                 </div>
                             ))}
+                            <li>
+                            <div onClick={() => router.post(route('logout'))} className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 `}>
+                                    <HiLogout className="h-5 w-5" aria-hidden="true" />
+                                    Logout
+                                </div>
+                            </li>
                         </ul>
                         
                     </nav>
