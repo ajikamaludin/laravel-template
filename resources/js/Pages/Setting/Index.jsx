@@ -1,10 +1,10 @@
 import React from 'react'
 import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout'
-import TextInput from '@/Components/Preline/TextInput'
-import Button from '@/Components/Preline/Button'
+import TextInput from '@/Components/TailAdmin/TextInput'
+import Button from '@/Components/TailAdmin/Button'
 import { Head, useForm } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
-import Card from '@/Components/Preline/Card'
+import Card from '@/Components/TailAdmin/Card'
 
 const extractValue = (set, key) => {
     const find = set.find((s) => s.key === key)
@@ -45,29 +45,25 @@ export default function Setting(props) {
             action={['Index']}
         >
             <Head title="Setting" />
-
-            <div>
-                <div className="mx-auto sm:px-6 lg:px-8 overflow-hidden">
-                    <Card>
-                        <div className="text-xl font-bold mb-4 dark:text-white">Setting</div>
-                        <TextInput
-                            name="app_name"
-                            value={data.app_name}
-                            onChange={handleOnChange}
-                            label="App Name"
-                            error={errors.app_name}
-                        />
-                        <div className="mt-4">
-                            <Button
-                                onClick={handleSubmit}
-                                processing={processing}
-                            >
-                                Simpan
-                            </Button>
-                        </div>
-                    </Card>
+            
+            <Card>
+                <div className="text-xl font-bold mb-4 dark:text-white">Setting</div>
+                <TextInput
+                    name="app_name"
+                    value={data.app_name}
+                    onChange={handleOnChange}
+                    label="App Name"
+                    error={errors.app_name}
+                />
+                <div className="mt-4">
+                    <Button
+                        onClick={handleSubmit}
+                        processing={processing}
+                    >
+                        Simpan
+                    </Button>
                 </div>
-            </div>
+            </Card>
         </AuthenticatedLayout>
     )
 }

@@ -23,7 +23,7 @@ const BottomTextHelper = ({ error }) => {
 const TextInput = forwardRef((props, ref) => {
     const { label, error, ...inputProps } = props;
 
-    const defaultClassName = `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary`;
+    const defaultClassName = `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:text-white dark:focus:border-primary`;
 
     const errorClassName = `w-full rounded-lg border-danger bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-danger dark:border-form-danger dark:bg-form-input dark:text-white dark:focus:border-danger`;
 

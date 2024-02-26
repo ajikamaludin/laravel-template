@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import Card from '@/Components/Preline/Card';
+import Card from '@/Components/TailAdmin/Card';
 
 export default function Edit({ mustVerifyEmail, status }) {
     return (

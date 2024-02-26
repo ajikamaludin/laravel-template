@@ -240,8 +240,8 @@ export default function Login({ status }) {
                                     />
                                 </div>
 
-                                <div className="mb-5">
-                                    <Button onClick={submit} processing={processing}>Log in</Button>
+                                <div className="mb-5 w-full">
+                                    <Button onClick={submit} processing={processing} className="w-full">Log in</Button>
                                 </div>
                             </form>
                         </div>

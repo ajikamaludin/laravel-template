@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import { isEmpty } from "lodash";
 
-import Modal from "@/Components/Preline/Modal";
-import Button from "@/Components/Preline/Button";
-import TextInput from "@/Components/Preline/TextInput";
-import RoleSelectionInput from "@/Components/Common/SelectionInput";
+import Modal from "@/Components/TailAdmin/Modal";
+import Button from "@/Components/TailAdmin/Button";
+import TextInput from "@/Components/TailAdmin/TextInput";
+import RoleSelectionInput from "@/Components/TailAdmin/SelectionInput";
 
 export default function FormModal(props) {
     const { modalState } = props

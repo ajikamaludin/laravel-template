@@ -100,6 +100,11 @@ class RoleController extends Controller
 
     public function destroy(Role $role): RedirectResponse
     {
+        if (auth()->user()->role_id == $role->id) {
+            return redirect()->route('roles.index')
+                ->with('message', ['type' => 'error', 'message' => 'Item in use can\'t deleted']);
+        }
+
         $deleted = $role->delete();
 
         if ($deleted) {

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useForm } from '@inertiajs/react';
 
-import TextInput from '@/Components/Preline/TextInput';
-import Button from '@/Components/Preline/Button';
+import TextInput from '@/Components/TailAdmin/TextInput';
+import Button from '@/Components/TailAdmin/Button';
 
 export default function UpdatePasswordForm({ className }) {
     const passwordInput = useRef();

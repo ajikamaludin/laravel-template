@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 
-import TextInput from '@/Components/Preline/TextInput';
-import Button from '@/Components/Preline/Button';
+import TextInput from '@/Components/TailAdmin/TextInput';
+import Button from '@/Components/TailAdmin/Button';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;

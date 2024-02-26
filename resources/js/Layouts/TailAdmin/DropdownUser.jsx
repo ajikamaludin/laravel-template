@@ -4,7 +4,7 @@ import UserOne from '@/Components/TailAdmin/images/user/user-01.png';
 import { Link, router } from '@inertiajs/react';
 import LogoutIcon from '@/Components/TailAdmin/Icons/Logout';
 
-const DropdownUser = () => {
+const DropdownUser = ({ name, role }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -46,9 +46,9 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            {name}
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">{role || 'System'}</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">

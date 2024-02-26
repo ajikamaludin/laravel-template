@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -53,13 +54,12 @@ class User extends Authenticatable
 
     public function allow($permission, $abort = false)
     {
+        
         if ($this->role_id == null) {
             return true;
         }
 
-        $permit = $this->role()->whereHas('permissions', function ($query) use ($permission) {
-            return $query->where('name', $permission);
-        })->first();
+        $permit = $this->role->permissions()->where('name', $permission)->first();
 
         if ($permit != null) {
             return true;

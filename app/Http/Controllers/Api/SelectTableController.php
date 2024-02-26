@@ -19,7 +19,7 @@ class SelectTableController extends Controller
             'orderby' => 'nullable|string',
         ]);
         
-        $query = DB::table($table);
+        $query = DB::table($table)->where('deleted_at', null);
 
         $select_fields = ['id'];
         if ($request->exists('display_name')) {
@@ -39,9 +39,11 @@ class SelectTableController extends Controller
         }
 
         if ($request->exists('q')) {
-            foreach($search_field as $sq) {
-                $query->orWhere($sq, 'like', '%'.$request->q.'%');
-            }
+            $query->where(function ($q) use ($search_field, $request) {
+                foreach($search_field as $sq) {
+                    $q->orWhere($sq, 'like', '%'.$request->q.'%');
+                }
+            });
         }
 
         if ($request->exists('orderby')) {

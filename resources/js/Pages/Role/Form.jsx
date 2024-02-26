@@ -3,9 +3,10 @@ import { router, Head, Link, usePage } from '@inertiajs/react';
 import { isEmpty } from 'lodash';
 
 import AuthenticatedLayout from '@/Layouts/TailAdmin/AuthenticatedLayout';
-import TextInput from '@/Components/Preline/TextInput';
-import Button from '@/Components/Preline/Button';
+import TextInput from '@/Components/TailAdmin/TextInput';
+import Button from '@/Components/TailAdmin/Button';
 import Checkbox from '@/Components/Preline/Checkbox';
+import Card from '@/Components/TailAdmin/Card';
 
 export default function Role(props) {
     const { props: { errors } } = usePage()
@@ -88,56 +89,54 @@ export default function Role(props) {
         >
             <Head title="Role" />
 
-            <div>
-                <div className="mx-auto sm:px-6 lg:px-8 ">
-                    <div className="p-6 shadow-sm sm:rounded-lg bg-white dark:bg-gray-800 space-y-4">
-                        <TextInput
-                            name="name"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            label="Name"
-                            error={errors.name}
-                        />
-                        <Checkbox
-                            label={"Check All"}
-                            onChange={handleCheckAll}
-                        />
-                        <div 
-                            className={`grid grid-cols-1 md:grid-cols-4 border border-rounded border-gray-400 rounded-lg p-2 gap-2 ${errors.permissions ? 'border-red-600' : 'border-gray-400'}`}
-                        >
-                            {permins.map(item => (
-                                <Checkbox
-                                    key={item.id}
-                                    label={item.label}
-                                    value={item.checked}
-                                    name={item.name}
-                                    onChange={handleCheckPermission}
-                                />
-                            ))}
-                        </div>
-                        {errors.permissions && (
-                            <p className="mb-2 text-sm text-red-600 dark:text-red-500">{errors.permissions}</p>
-                        )}
-                        <div className="flex items-center">
-                        <div className='flex space-x-2'>
-                        <Button
-                            onClick={handleSubmit}
-                            processing={processing} 
-                        >
-                            Simpan
-                        </Button>
-                        <Link href={route('roles.index')}>
-                            <Button
-                                type="secondary"
-                            >
-                                Kembali
-                            </Button>
-                        </Link>
-                        </div>
+            <Card>
+                <div className='flex flex-col space-y-4'>
+                    <TextInput
+                        name="name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        label="Name"
+                        error={errors.name}
+                    />
+                    <Checkbox
+                        label={"Check All"}
+                        onChange={handleCheckAll}
+                    />
+                    <div 
+                        className={`grid grid-cols-1 md:grid-cols-4 border border-rounded rounded-lg p-4 gap-2 ${errors.permissions ? 'border-red-600' : ''}`}
+                    >
+                        {permins.map(item => (
+                            <Checkbox
+                                key={item.id}
+                                label={item.label}
+                                value={item.checked}
+                                name={item.name}
+                                onChange={handleCheckPermission}
+                            />
+                        ))}
                     </div>
+                    {errors.permissions && (
+                        <p className="mb-2 text-sm text-red-600 dark:text-red-500">{errors.permissions}</p>
+                    )}
+                    <div className="flex items-center">
+                        <div className='flex space-x-2'>
+                            <Button
+                                onClick={handleSubmit}
+                                processing={processing} 
+                            >
+                                Simpan
+                            </Button>
+                            <Link href={route('roles.index')}>
+                                <Button
+                                    type="secondary"
+                                >
+                                    Kembali
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Card>
         </AuthenticatedLayout>
     );
 }

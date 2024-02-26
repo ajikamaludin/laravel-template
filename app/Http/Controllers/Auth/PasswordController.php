@@ -24,6 +24,7 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back();
+        return redirect()->route('profile.edit')
+            ->with('message', ['type' => 'success', 'message' => 'New password saved']);
     }
 }
