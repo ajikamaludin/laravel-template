@@ -44,7 +44,7 @@ export default function DummyDashbord() {
                     height="200px"
                 />
             </Card>
-            <div className="w-full flex flex-col md:flex-row gap-2">
+            <div className="w-full flex flex-col md:flex-row gap-2 h-[350px]">
                 <div className="w-full md:w-2/5">
                     <Card>
                         <div className="font-bold text-2xl">Top Sales</div>
@@ -75,7 +75,7 @@ export default function DummyDashbord() {
                             }}
                             series={[20, 30, 10, 5, 5]}
                             type="pie"
-                            width="100%"
+                            width="380px"
                             height="380px"
                         />
                     </Card>
@@ -88,7 +88,6 @@ export default function DummyDashbord() {
                         <Chart
                             options={{
                                 chart: {
-                                    height: 350,
                                     type: 'area',
                                 },
                                 dataLabels: {
@@ -130,7 +129,7 @@ export default function DummyDashbord() {
                             ]}
                             type="area"
                             width="100%"
-                            height="310px"
+                            height="235px"
                         />
                     </Card>
                 </div>
