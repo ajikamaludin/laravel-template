@@ -9,6 +9,9 @@ use App\Http\Controllers\Default\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    // define module as main route
+    // Route::get('/', [App\Http\Controllers\Shortlink\HomeController::class, 'index'])->name('home');
+
     return redirect('/login');
 });
 

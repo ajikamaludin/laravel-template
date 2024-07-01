@@ -95,10 +95,9 @@ export default function Index(props) {
                                 <tr>
                                     <th>Name</th>
                                     <th>Link</th>
+                                    <th>Owner</th>
                                     <th>Visited</th>
                                     <th>Last Visited At</th>
-                                    <th>Owner</th>
-                                    <th>Created At</th>
                                     <th className="min-w-[150px]" />
                                 </tr>
                             </thead>
@@ -120,17 +119,14 @@ export default function Index(props) {
                                                 <HiClipboardCopy className="h-5 w-5" />
                                             </div>
                                         </td>
+                                        <td>
+                                            {link.user ? link.user.name : ''}
+                                        </td>
                                         <td>{link.visit_count}</td>
                                         <td>
                                             {formatDateTime(
                                                 link.last_visited_at
                                             )}
-                                        </td>
-                                        <td>
-                                            {link.user ? link.user.name : ''}
-                                        </td>
-                                        <td>
-                                            {formatDateTime(link.created_at)}
                                         </td>
                                         <td className="text-end">
                                             <div className="flex flex-row gap-1">

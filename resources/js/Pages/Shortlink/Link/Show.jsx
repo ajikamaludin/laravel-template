@@ -67,6 +67,8 @@ export default function Index(props) {
         navigator.clipboard.writeText(route('shortlink.redirect', link))
     }
 
+    const params = { ...dates }
+
     useEffect(() => {
         if (isEmpty(dates.endDate)) {
             return
@@ -124,21 +126,23 @@ export default function Index(props) {
                         </div>
                     </div>
                 </div>
-                <div className="w-full h-[270px] bg-base-100">
-                    <div className="p-1">
-                        <FormInputDateRanger
-                            value={dates}
-                            onChange={setDates}
+                <Card>
+                    <div className="w-full h-[270px]">
+                        <div className="p-1">
+                            <FormInputDateRanger
+                                value={dates}
+                                onChange={setDates}
+                            />
+                        </div>
+                        <Chart
+                            options={options}
+                            series={series}
+                            type="bar"
+                            width="100%"
+                            height="200px"
                         />
                     </div>
-                    <Chart
-                        options={options}
-                        series={series}
-                        type="bar"
-                        width="100%"
-                        height="200px"
-                    />
-                </div>
+                </Card>
                 <Card>
                     <div className="overflow-x-auto">
                         <table className="table mb-4">
@@ -187,7 +191,7 @@ export default function Index(props) {
                         </table>
                     </div>
                     <div className="w-full overflow-x-auto flex lg:justify-center">
-                        <Pagination links={links} />
+                        <Pagination links={links} params={params} />
                     </div>
                 </Card>
             </div>

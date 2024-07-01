@@ -23,7 +23,7 @@ export default function CustomLayout({ children }) {
     return (
         <div className="min-h-screen flex flex-col justify-center">
             {/* card */}
-            <div className="w-1/2 flex flex-col mx-auto">
+            <div className="w-full flex flex-col mx-auto">
                 <div>{children}</div>
             </div>
             <Toaster

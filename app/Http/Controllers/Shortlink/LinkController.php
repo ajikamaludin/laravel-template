@@ -53,19 +53,18 @@ class LinkController extends Controller
     {
         $query = LinkVisitor::where('link_id', $link->id)->orderBy('created_at', 'desc');
 
-        $startDate = now()->startOfMonth();
-        $endDate = now()->endOfMonth();
+        $startDate = now()->subDays(30);
+        $endDate = now()->addDay(1);
 
         if ($request->startDate != '' && $request->endDate != '') {
             $startDate = Carbon::parse($request->startDate);
             $endDate = Carbon::parse($request->endDate);
         }
 
-        $query->whereBetween(DB::raw('DATE(created_at)'), [$startDate, $endDate]);
+        $query->whereBetween(DB::raw('DATE(created_at)'), [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')]);
 
         $charts = [];
-        $visitors = LinkVisitor::where('link_id', $link->id)
-            ->whereBetween(DB::raw('DATE(created_at)'), [$startDate, $endDate])
+        $visitors = $query->clone()
             ->groupBy('date')
             ->get([
                 DB::raw('DATE(created_at) as date'),
