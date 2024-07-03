@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
 use App\Models\Default\User;
 use App\Services\UserJwtServices;
-use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,11 +38,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $guest = Role::where('name', Role::GUEST)->first();
-
-        if ($guest == null) {
-            return redirect()->back()->with('message', ['message' => 'guest role not defined, register aborted', 'type' => 'error']);
-        }
+        $guest = Role::firstOrCreate(['name' => Role::GUEST]);
 
         $user = User::create([
             'name' => $request->name,
