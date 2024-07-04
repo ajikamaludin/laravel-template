@@ -8,7 +8,6 @@ export const Select = ({
     label = '',
     value,
     onChange = () => {},
-    defaultValue = '',
     error,
     name,
     children,

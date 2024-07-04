@@ -8,6 +8,11 @@ import qs from 'qs'
 import { useDebounce } from '@/hooks'
 import Spinner from '@/Components/DaisyUI/Spinner'
 
+/**
+ * This selection input is old fasion will be replace with SelectModalInput
+ * @param {*} props
+ * @returns
+ */
 export default function SelectionInput(props) {
     const ref = useRef()
     const {

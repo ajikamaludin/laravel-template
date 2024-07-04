@@ -39,10 +39,10 @@ class _SelectTableController extends Controller
             $search_field = array_merge(explode('.', $request->searchable_field), $search_field);
         }
 
-        if ($request->exists('q')) {
+        if ($request->q != '') {
             $query->where(function ($query) use ($search_field, $request) {
                 foreach ($search_field as $sq) {
-                    $query->orWhere($sq, 'like', '%'.$request->q.'%');
+                    $query->orWhere($sq, 'like', '%' . $request->q . '%');
                 }
             });
         }
