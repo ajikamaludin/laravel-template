@@ -3,6 +3,8 @@
 namespace App\Models\Default;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Traits\UserTrackable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasUlids, Notifiable;
+    use HasFactory, HasUlids, Notifiable, UserTrackable;
 
     /**
      * The attributes that are mass assignable.
