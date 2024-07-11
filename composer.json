@@ -28,7 +28,7 @@
         "laravel/sail": "^1.30.2",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.1.1",
-        "pestphp/pest": "^2.34.8",
+        "pestphp/pest": "^2.34.9",
         "pestphp/pest-plugin-laravel": "^2.4"
     },
     "autoload": {
