@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class PermissionGenerator
 {
-    protected $permissionFile = 'Constants/PermissionConstant.php';
+    protected $permissionFile = 'Internal/Constants/PermissionConstant.php';
 
     public static function new()
     {
