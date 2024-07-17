@@ -6,7 +6,7 @@ use Exception;
 use RuntimeException;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
-use App\Internal\Services\ZipServices;
+use App\Internal\Services\ZipService;
 
 use function Laravel\Prompts\confirm;
 
@@ -31,7 +31,7 @@ class BuildArchiveCommand extends Command
      */
     protected function configure()
     {
-        $this->setAliases(['compress', 'build', 'b']);
+        $this->setAliases(['compress', 'build', 'b', 'zip']);
 
         parent::configure();
     }
@@ -60,17 +60,17 @@ class BuildArchiveCommand extends Command
             $this->runShellCommands(['npm run build']);
         }
 
-        $r = new ZipServices;
+        $zipService = new ZipService();
 
         $withRawJs = confirm('Includes resources/js ?', false);
         if (!$withRawJs) {
-            $r->addExcludedContains('resources/js');
+            $zipService->addExcludedContains('resources/js');
         }
 
         try {
             $startTime = microtime(true);
 
-            $r->create(base_path(), $zipName);
+            $zipService->create(base_path(), $zipName);
 
             $endTime = microtime(true);
             $timeTaken = number_format($endTime - $startTime, 2);

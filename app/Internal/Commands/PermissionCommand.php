@@ -2,10 +2,10 @@
 
 namespace App\Internal\Commands;
 
-use App\Internal\Services\PermissionServices;
+use App\Internal\Services\PermissionService;
 use Illuminate\Console\Command;
 
-class SyncPermission extends Command
+class PermissionCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -36,7 +36,7 @@ class SyncPermission extends Command
      */
     public function handle()
     {
-        [$to_add, $to_delete] = PermissionServices::new()->sync();
+        [$to_add, $to_delete] = PermissionService::new()->sync();
         $this->info('Permission synced : ' . count($to_add) . ' added, ' . count($to_delete) . ' deleted');
     }
 }

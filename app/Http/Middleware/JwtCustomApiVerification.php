@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Internal\Services\UserJwtServices;
+use App\Internal\Services\UserJwtService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class JwtCustomApiVerification
      */
     public function handle(Request $request, Closure $next): Response
     {
-        UserJwtServices::validateToken($request->header('Authorization'));
+        UserJwtService::validateToken($request->header('Authorization'));
 
         return $next($request);
     }

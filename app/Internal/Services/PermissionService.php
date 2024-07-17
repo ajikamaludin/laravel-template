@@ -7,11 +7,11 @@ use App\Models\Default\Permission;
 use App\Models\Default\Role;
 use Illuminate\Support\Str;
 
-class PermissionServices
+class PermissionService
 {
     public static function new()
     {
-        return new PermissionServices;
+        return new PermissionService;
     }
 
     public function sync()

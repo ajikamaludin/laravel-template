@@ -9,7 +9,7 @@ use Spatie\Async\Pool;
 use Throwable;
 use ZipArchive;
 
-class ZipServices
+class ZipService
 {
     protected $zip;
 
@@ -19,25 +19,31 @@ class ZipServices
 
     protected $excludedContains = [
         '.git/',
+        'storage/app/public',
         '.vscode',
         '.zip',
         '.gif',
         'node_modules',
+        'tests',
+        'stubs',
     ];
 
     protected $excludedPaths = [
         'ROADMAP.md',
+        'DEPLOY.md',
+        'docker-compose.yml',
+        'Dockerfile',
         'storage/logs/laravel.log',
-        'storage/app/public',
     ];
 
     protected $files = [];
 
     protected $hashMap = [];
 
-    public function __construct()
+    public function __construct($numThreads = 4)
     {
         $this->zip = new ZipArchive;
+        $this->$numThreads = $numThreads;
     }
 
     public function addExcludedPaths(array $path)
@@ -105,6 +111,7 @@ class ZipServices
                 $relativePath = substr($filePath, strlen($source) + 1);
 
                 if ($this->isExcluded($relativePath)) {
+                    info(self::class, [$relativePath]);
                     continue;
                 }
 

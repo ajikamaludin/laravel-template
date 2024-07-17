@@ -2,7 +2,7 @@
 
 namespace App\Internal\Generator;
 
-use App\Internal\Services\PermissionServices;
+use App\Internal\Services\PermissionService;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -181,7 +181,7 @@ class ScaffoldGenerator
 
             // Permission
             PermissionGenerator::new()->addPermission('view-' . $this->model, 'View ' . $this->Model);
-            PermissionServices::new()->sync();
+            PermissionService::new()->sync();
         } catch (\Exception $e) {
             $this->removeDefaultDestinations();
             info(self::class, ['message' => $e->getMessage()]);
@@ -215,6 +215,6 @@ class ScaffoldGenerator
                 ['delete-' . $this->model, 'Delete ' . $this->Model],
             ]);
 
-        PermissionServices::new()->sync();
+        PermissionService::new()->sync();
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Shortlink;
+namespace App\Modules\Shortlink\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
-use App\Models\Shortlink\Link;
-use App\Models\Shortlink\LinkVisitor;
+use App\Modules\Shortlink\Models\Link;
+use App\Modules\Shortlink\Models\LinkVisitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

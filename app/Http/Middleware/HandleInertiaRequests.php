@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Default\Setting;
-use App\Internal\Services\UserJwtServices;
+use App\Internal\Services\UserJwtService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,8 +35,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user() ? $request->user()->load(['role.permissions']) : $request->user(),
                 'login_at' => session(null)->get('user_login_at', ''),
-                'jwt_token' => UserJwtServices::getActiveToken(),
-                'jwt_prefix' => UserJwtServices::KEYPREFIX,
+                'jwt_token' => UserJwtService::getActiveToken(),
+                'jwt_prefix' => UserJwtService::KEYPREFIX,
             ],
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),

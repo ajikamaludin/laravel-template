@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Internal\Services\UserJwtServices;
+use App\Internal\Services\UserJwtService;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +62,7 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        UserJwtServices::generateJwtToken();
+        UserJwtService::generateJwtToken();
 
         RateLimiter::clear($this->throttleKey());
     }

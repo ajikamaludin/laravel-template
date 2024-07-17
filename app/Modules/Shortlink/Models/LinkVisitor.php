@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Shortlink;
+namespace App\Modules\Shortlink\Models;
 
 use App\Models\Default\Model;
 

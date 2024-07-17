@@ -8,7 +8,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Illuminate\Support\Facades\Cache;
 
-class UserJwtServices
+class UserJwtService
 {
     const ALGO = 'HS256';
 

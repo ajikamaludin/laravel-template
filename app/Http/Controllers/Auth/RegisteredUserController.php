@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
 use App\Models\Default\User;
-use App\Internal\Services\UserJwtServices;
+use App\Internal\Services\UserJwtService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        UserJwtServices::generateJwtToken();
+        UserJwtService::generateJwtToken();
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

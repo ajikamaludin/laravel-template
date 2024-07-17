@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Shortlink;
+namespace App\Modules\Shortlink\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Shortlink\Link;
+use App\Modules\Shortlink\Models\Link;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
