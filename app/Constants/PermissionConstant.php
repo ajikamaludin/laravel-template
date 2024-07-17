@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Internal\Constants;
+namespace App\Constants;
 
 class PermissionConstant
 {

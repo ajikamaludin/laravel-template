@@ -2,22 +2,25 @@
 
 namespace App\Models\Default;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 class Role extends Model
 {
     const GUEST = 'guest';
 
-    public $cascadeDeletes = ['rolePermissions'];
+    public $cascadeDeletes = ['rolePermissions', 'users'];
 
     protected $fillable = [
         'name',
     ];
 
-    public function rolePermissions()
+    public function rolePermissions(): HasMany
     {
         return $this->hasMany(RolePermission::class);
     }
 
-    public function permissions()
+    public function permissions(): HasManyThrough
     {
         return $this->hasManyThrough(
             Permission::class,
@@ -27,5 +30,10 @@ class Role extends Model
             'id',
             'permission_id',
         );
+    }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 }

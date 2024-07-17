@@ -2,7 +2,7 @@
 
 namespace App\Internal\Commands;
 
-use App\Internal\Generator\ScaffoldGenerator;
+use App\Internal\Generators\ScaffoldGenerator;
 use App\Internal\Rules\PascalCase;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;

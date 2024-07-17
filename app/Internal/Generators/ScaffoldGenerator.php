@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Internal\Generator;
+namespace App\Internal\Generators;
 
 use App\Internal\Services\PermissionService;
 use Illuminate\Support\Facades\File;

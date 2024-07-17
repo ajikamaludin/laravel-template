@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Internal\Generator;
+namespace App\Internal\Generators;
 
 use Exception;
 use Illuminate\Support\Facades\File;
 
 class PermissionGenerator
 {
-    protected $permissionFile = 'Internal/Constants/PermissionConstant.php';
+    protected $permissionFile = 'Constants/PermissionConstant.php';
 
     public static function new()
     {
