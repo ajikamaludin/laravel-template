@@ -59,7 +59,7 @@ export default function FormModal(props) {
     }, [modalState])
 
     return (
-        <Modal isOpen={modalState.isOpen} onClose={handleClose} title={'{{ model }}'}>
+        <Modal isOpen={modalState.isOpen} onClose={handleClose} title={'{{ Model }}'}>
             <div className="form-control space-y-2.5">
                 <TextInput
                     name="name"

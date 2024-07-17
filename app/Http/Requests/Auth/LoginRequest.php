@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Internal\Services\UserJwtService;
+use App\Services\UserJwtService;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;

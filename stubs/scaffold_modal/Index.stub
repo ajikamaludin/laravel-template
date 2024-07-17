@@ -57,7 +57,7 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
-            <Head title=" {{ model }}" />
+            <Head title=" {{ Model }}" />
 
             <div>
                 <Card>

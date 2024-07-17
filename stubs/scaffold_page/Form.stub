@@ -54,13 +54,7 @@ export default function Form(props) {
     }, [{{ model }}])
 
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            flash={props.flash}
-            page={'System'}
-            action={'{{ Model }}'}
-        >
+        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
             <Head title="{{ Model }}" />
 
             <div>

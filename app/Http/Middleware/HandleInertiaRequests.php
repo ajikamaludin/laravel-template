@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Default\Setting;
-use App\Internal\Services\UserJwtService;
+use App\Services\UserJwtService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
