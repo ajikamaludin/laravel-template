@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Constants;
+namespace App\Internal\Constants;
 
 class PermissionConstant
 {
@@ -19,7 +19,6 @@ class PermissionConstant
 
         ['label' => 'View Setting', 'name' => 'view-setting'],
         ['label' => 'View Shortlink', 'name' => 'view-shortlink'],
-
 
         // #Add New Permission Below!
 

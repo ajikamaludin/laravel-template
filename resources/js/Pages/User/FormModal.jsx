@@ -105,7 +105,7 @@ export default function FormModal(props) {
                             placeholder="role"
                             data={{
                                 table: 'roles',
-                                display_name: 'name',
+                                display_name: 'id|name',
                                 orderby: 'created_at.asc',
                             }}
                         />

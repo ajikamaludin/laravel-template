@@ -37,3 +37,53 @@ export const Select = ({
         </>
     )
 }
+
+export const SelectOptionArray = ({
+    label = '',
+    value,
+    onChange = () => {},
+    error,
+    name,
+    options = [],
+}) => {
+    return (
+        <Select
+            label={label}
+            value={value}
+            onChange={onChange}
+            error={error}
+            name={name}
+        >
+            {options.map((option) => (
+                <Option value={option} key={option}>
+                    {option}
+                </Option>
+            ))}
+        </Select>
+    )
+}
+
+export const SelectOptionObject = ({
+    label = '',
+    value,
+    onChange = () => {},
+    error,
+    name,
+    options = {},
+}) => {
+    return (
+        <Select
+            label={label}
+            value={value}
+            onChange={onChange}
+            error={error}
+            name={name}
+        >
+            {Object.keys(options).map((option) => (
+                <Option value={option} key={option}>
+                    {options[option]}
+                </Option>
+            ))}
+        </Select>
+    )
+}

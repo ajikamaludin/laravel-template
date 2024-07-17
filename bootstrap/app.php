@@ -7,11 +7,11 @@ use Illuminate\Foundation\Configuration\Middleware;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: [
-            __DIR__.'/../routes/web.php',
-            __DIR__.'/../routes/auth.php',
-            __DIR__.'/../routes/shortlink.php',
+            __DIR__ . '/../routes/web.php',
+            __DIR__ . '/../routes/auth.php',
+            __DIR__ . '/../routes/shortlink.php',
         ],
-        api: __DIR__.'/../routes/api.php',
+        api: __DIR__ . '/../routes/api.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -24,5 +24,5 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })
-    ->withCommands([__DIR__.'/../app/Generator/Commands'])
+    ->withCommands([__DIR__ . '/../app/Internal/Commands'])
     ->create();

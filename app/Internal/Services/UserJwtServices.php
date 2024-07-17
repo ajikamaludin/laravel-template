@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Internal\Services;
 
 use Exception;
 use Firebase\JWT\ExpiredException;
@@ -19,9 +19,9 @@ class UserJwtServices
     // generate token in login
     public static function generateJwtToken()
     {
-        session()->put('user_login_at', $created_at = now()->format('Y_m_d_H_i_s'));
+        session(null)->put('user_login_at', $created_at = now()->format('Y_m_d_H_i_s'));
 
-        $key = self::KEYPREFIX.auth()->id().$created_at;
+        $key = self::KEYPREFIX . auth()->id() . $created_at;
 
         $value = JWT::encode(
             [
@@ -58,8 +58,8 @@ class UserJwtServices
     // only call from inertia middleware that accessable to session
     public static function getActiveToken()
     {
-        $login_at = session()->get('user_login_at');
-        $key = self::KEYPREFIX.auth()->id().$login_at;
+        $login_at = session(null)->get('user_login_at');
+        $key = self::KEYPREFIX . auth()->id() . $login_at;
 
         $existToken = Cache::get($key, '');
 

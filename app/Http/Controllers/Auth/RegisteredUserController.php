@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
 use App\Models\Default\User;
-use App\Services\UserJwtServices;
+use App\Internal\Services\UserJwtServices;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

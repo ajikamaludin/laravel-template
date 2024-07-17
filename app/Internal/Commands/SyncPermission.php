@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Internal\Commands;
 
-use App\Services\PermissionServices;
+use App\Internal\Services\PermissionServices;
 use Illuminate\Console\Command;
 
 class SyncPermission extends Command
@@ -37,6 +37,6 @@ class SyncPermission extends Command
     public function handle()
     {
         [$to_add, $to_delete] = PermissionServices::new()->sync();
-        $this->info('Permission synced : '.count($to_add).' added, '.count($to_delete).' deleted');
+        $this->info('Permission synced : ' . count($to_add) . ' added, ' . count($to_delete) . ' deleted');
     }
 }

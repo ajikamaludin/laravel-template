@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Internal\Services;
 
-use App\Constants\PermissionConstant;
+use App\Internal\Constants\PermissionConstant;
 use App\Models\Default\Permission;
 use App\Models\Default\Role;
 use Illuminate\Support\Str;

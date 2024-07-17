@@ -30,13 +30,11 @@ export default function SelectionInput(props) {
         placeholder = '',
         error = '',
         limit = 100,
-        offset = 0,
         data = {
             table: '',
             display_name: '',
-            separator: ' - ',
             orderby: '',
-            qk: '',
+            separator: ' - ',
         },
     } = props
 
@@ -57,6 +55,9 @@ export default function SelectionInput(props) {
     }
 
     const onInputMouseDown = () => {
+        if (isOpen === true) {
+            return
+        }
         setIsSelected(false)
         setQuery('')
         setIsOpen(!isOpen)
@@ -64,14 +65,12 @@ export default function SelectionInput(props) {
 
     const handleSelectItem = (item) => {
         setIsSelected(true)
-        onItemSelected(item)
-        setSelected(item.name)
         setIsOpen(false)
+        onItemSelected(item)
     }
 
     const removeItem = () => {
         setIsSelected(false)
-        setSelected('')
         onItemSelected(false)
     }
 
@@ -105,10 +104,8 @@ export default function SelectionInput(props) {
                 ${route('api.select.table', data.table)}?${qs.stringify({
                     q,
                     limit,
-                    offset,
                     display_name: data.display_name,
                     orderby: data.orderby,
-                    searchable_field: data.qk,
                 })}
                 `,
                 {
@@ -142,7 +139,7 @@ export default function SelectionInput(props) {
     // once page load
     useEffect(() => {
         // init
-        setDisplayName(data.display_name.split('.'))
+        setDisplayName(data.display_name.split('|'))
         setSeparator(data.separator ?? ' - ')
         setPlaceholder(isEmpty(placeholder) ? '' : placeholder)
 

@@ -32,7 +32,7 @@ class HomeController extends Controller
             ]);
     }
 
-    public function redirect(Link $link)
+    public function redirect(Request $request, Link $link)
     {
         $link->update([
             'visit_count' => $link->visit_count + 1,
@@ -41,14 +41,14 @@ class HomeController extends Controller
 
         $link->visitor()->create([
             'user_id' => auth()->id(),
-            'request' => json_encode(request()->input()),
-            'header' => json_encode(request()->header()),
-            'device' => request()->header('sec-ch-ua-mobile'),
-            'platform' => request()->header('sec-ch-ua-platform', 'bot'),
-            'browser' => request()->header('sec-ch-ua'),
-            'languages' => json_encode(request()->header('accept-language')),
-            'ip' => request()->ip(),
-            'useragent' => request()->header('user-agent'),
+            'request' => json_encode($request->input()),
+            'header' => json_encode($request->header()),
+            'device' => $request->header('sec-ch-ua-mobile'),
+            'platform' => $request->header('sec-ch-ua-platform', 'bot'),
+            'browser' => $request->header('sec-ch-ua'),
+            'languages' => json_encode($request->header('accept-language')),
+            'ip' => $request->ip(),
+            'useragent' => $request->header('user-agent'),
         ]);
 
         return redirect($link->real_link, 302);

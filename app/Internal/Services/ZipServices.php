@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Internal\Services;
 
 use Exception;
 use RecursiveDirectoryIterator;
@@ -52,7 +52,7 @@ class ZipServices
 
     public function create($source, $destination)
     {
-        if (! file_exists($source)) {
+        if (!file_exists($source)) {
             throw new Exception("file exists $destination");
         }
 
@@ -100,7 +100,7 @@ class ZipServices
         $reads = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::LEAVES_ONLY);
 
         foreach ($reads as $name => $file) {
-            if (! $file->isDir()) {
+            if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($source) + 1);
 

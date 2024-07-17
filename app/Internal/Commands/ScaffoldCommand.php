@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Generator\Commands;
+namespace App\Internal\Commands;
 
-use App\Generator\ScaffoldGenerator;
-use App\Rules\PascalCase;
+use App\Internal\Generator\ScaffoldGenerator;
+use App\Internal\Rules\PascalCase;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +62,7 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
         );
 
         if ($validator->fails()) {
-            $this->error('Validation failed: '.$validator->errors()->first('model'));
+            $this->error('Validation failed: ' . $validator->errors()->first('model'));
 
             return 1;
         }
@@ -75,10 +75,10 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
             return 1;
         }
 
-        if (! $scaffold->isModelExists()) {
+        if (!$scaffold->isModelExists()) {
             $_ = $scaffold->withCreateModelClass(
                 $this,
-                $_ = confirm("App\Models\\".$scaffold->Model.' does not exist, create it ?')
+                $_ = confirm("App\Models\\" . $scaffold->Model . ' does not exist, create it ?')
             );
         }
 

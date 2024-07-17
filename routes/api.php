@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Default\Api\_SelectTableController;
+use App\Http\Controllers\Default\Api\SelectTableController;
 use App\Http\Controllers\Default\FileController;
 use App\Http\Middleware\JwtCustomApiVerification;
 use Illuminate\Http\Request;
@@ -21,7 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(JwtCustomApiVerification::class)->group(function () {
-    Route::get('/_select/{table}', _SelectTableController::class)->name('api.select.table');
-    Route::post('files', [FileController::class, 'store'])->name('api.file.store');
-});
+Route::middleware([JwtCustomApiVerification::class])
+    ->prefix('_default')
+    ->group(function () {
+        Route::get('/select/{table}', SelectTableController::class)->name('api.select.table');
+        Route::post('files', [FileController::class, 'store'])->name('api.file.store');
+    });

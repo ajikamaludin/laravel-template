@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\UserJwtServices;
+use App\Internal\Services\UserJwtServices;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;

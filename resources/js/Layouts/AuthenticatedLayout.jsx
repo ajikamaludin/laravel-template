@@ -7,7 +7,7 @@ import { HiMenu } from 'react-icons/hi'
 
 import SidebarNav from './Partials/SidebarNav'
 import Breadcrumb from '@/Components/DaisyUI/Breadcrumb'
-import ThemeSwitch from '@/Components/DaisyUI/ThemeSwitch'
+import { ThemeSwitch, DarkSwitch } from '@/Components/DaisyUI/ThemeSwitch'
 import { showToast } from '@/utils'
 
 export default function AuthenticatedLayout({
@@ -56,7 +56,10 @@ export default function AuthenticatedLayout({
                                 </button>
                             </div>
 
-                            <div className="flex items-center sm:ml-6">
+                            <div className="flex flex-row items-center sm:ml-6">
+                                <div className="ml-3 relative">
+                                    <DarkSwitch />
+                                </div>
                                 <div className="ml-3 relative">
                                     <ThemeSwitch />
                                 </div>

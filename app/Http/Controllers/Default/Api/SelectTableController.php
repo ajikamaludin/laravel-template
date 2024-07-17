@@ -4,17 +4,24 @@ namespace App\Http\Controllers\Default\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use InvalidArgumentException;
+use RuntimeException;
 
-class _SelectTableController extends Controller
+class SelectTableController extends Controller
 {
+    /**
+     * made this simple only select from master data table 
+     * 
+     * @param Request $request 
+     * @param string $table 
+     */
     public function __invoke(Request $request, string $table)
     {
         $request->validate([
             'display_name' => 'nullable|string',
             'limit' => 'nullable|integer',
-            'offset' => 'nullable|integer',
-            'searchable_field' => 'nullable|string',
             'q' => 'nullable|string',
             'orderby' => 'nullable|string',
         ]);
@@ -22,32 +29,23 @@ class _SelectTableController extends Controller
         $query = DB::table($table);
 
         $select_fields = ['id'];
-        if ($request->exists('display_name')) {
-            $select_fields = array_merge(explode('.', $request->display_name), $select_fields);
+        if ($request->display_name != '') {
+            $select_fields = array_merge(explode('|', $request->display_name), $select_fields);
         }
 
         $query->select($select_fields)
             ->limit($request->limit ?? 100)
             ->where('deleted_at', null);
 
-        if ($request->exists('offset')) {
-            $query->offset($request->offset);
-        }
-
-        $search_field = array_unique(array_merge(['id'], $select_fields));
-        if ($request->exists('searchable_field')) {
-            $search_field = array_merge(explode('.', $request->searchable_field), $search_field);
-        }
-
         if ($request->q != '') {
-            $query->where(function ($query) use ($search_field, $request) {
-                foreach ($search_field as $sq) {
+            $query->where(function ($query) use ($select_fields, $request) {
+                foreach ($select_fields as $sq) {
                     $query->orWhere($sq, 'like', '%' . $request->q . '%');
                 }
             });
         }
 
-        if ($request->exists('orderby')) {
+        if ($request->orderby != '') {
             $orderby = explode('.', $request->orderby);
             $query->orderBy($orderby[0], $orderby[1] ?? 'desc');
         } else {
