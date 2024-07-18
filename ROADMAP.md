@@ -5,7 +5,7 @@
         [ ] need to close \_select general controller only for master data, if need something with more complex query its need to be sparate from that
         [ ] the common compoenent select is old fasion please use select modal like android mode
 -   [ ] create easy deploy command
--   [ ] create init command to re-initialize project (removing all modules)
+-   [ ] custom form module (add export, add public form show, add filter field show records)
 
 ## NICE TO CREATE
 
