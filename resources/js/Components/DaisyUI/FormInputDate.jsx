@@ -15,8 +15,8 @@ export default function FormInputDate({
                 inputClassName={'input input-bordered w-full text-base-content'}
                 useRange={false}
                 asSingle={true}
-                value={value}
-                onChange={(date) => onChange(date)}
+                value={{ startDate: value, endDate: value }}
+                onChange={({ startDate }) => onChange(startDate)}
                 displayFormat={'DD/MM/YYYY'}
                 placeholder={placeholder || ''}
             />

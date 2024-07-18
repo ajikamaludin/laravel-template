@@ -11,6 +11,7 @@ import TextareaInput from '@/Components/DaisyUI/TextareaInput'
 import { showToast } from '@/utils'
 import { SelectOptionArray } from '@/Components/DaisyUI/SelectInput'
 import { InputTypes, RequiredOptions } from '../constants'
+import FormInputDate from '@/Components/DaisyUI/FormInputDate'
 
 const RenderFormInput = ({ input, onChange }) => {
     if (input.type === InputTypes.multiple) {
@@ -59,6 +60,16 @@ const RenderFormInput = ({ input, onChange }) => {
         )
     }
 
+    if (input.type === InputTypes.date) {
+        return (
+            <FormInputDate
+                value={input.value}
+                label={input.name}
+                onChange={(date) => onChange(input, date)}
+            />
+        )
+    }
+
     if (input.type === InputTypes.textarea) {
         return (
             <TextareaInput
@@ -87,8 +98,6 @@ export default function Form(props) {
 
     const [inputs, setInputs] = useState(JSON.parse(field.fields))
     const [processing, setProcessing] = useState(false)
-
-    console.log(inputs)
 
     const handleOnChange = (input, value) => {
         setInputs(
