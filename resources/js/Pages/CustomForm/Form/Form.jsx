@@ -133,7 +133,7 @@ export default function Form(props) {
                                                             index
                                                         )
                                                     }
-                                                    label="Nama"
+                                                    label="Label"
                                                 />
                                             </div>
                                             <div className="w-full">

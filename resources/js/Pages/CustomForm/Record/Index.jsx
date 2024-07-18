@@ -13,11 +13,12 @@ import Button from '@/Components/DaisyUI/Button'
 import Dropdown from '@/Components/DaisyUI/Dropdown'
 import Card from '@/Components/DaisyUI/Card'
 
-const RecordTd = ({ f, headers }) => {
-    const exists = headers.find((h) => h.id === f.id)
-    if (exists) {
+const RecordTd = ({ fields, h }) => {
+    const f = JSON.parse(fields).find((f) => h.id === f.id)
+    if (f) {
         return <td>{f.value}</td>
     }
+    return <td></td>
 }
 
 export default function Index(props) {
@@ -103,11 +104,11 @@ export default function Index(props) {
                             <tbody>
                                 {data.map((item, index) => (
                                     <tr key={`${index}.${item.id}`}>
-                                        {JSON.parse(item.fields).map((f) => (
+                                        {headers.map((h, i) => (
                                             <RecordTd
-                                                key={`sub.${index}.${f.id}`}
-                                                f={f}
-                                                headers={headers}
+                                                key={`sub.${h.id}.${item.id}.${i}`}
+                                                fields={item.fields}
+                                                h={h}
                                             />
                                         ))}
                                         <td className="text-end">
