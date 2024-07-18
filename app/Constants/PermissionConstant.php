@@ -18,7 +18,19 @@ class PermissionConstant
         ['label' => 'Delete Role', 'name' => 'delete-role'],
 
         ['label' => 'View Setting', 'name' => 'view-setting'],
+
+        // Modules Permissions
         ['label' => 'View Shortlink', 'name' => 'view-shortlink'],
+
+        ['label' => 'Create Custom Form', 'name' => 'create-custom-form'],
+        ['label' => 'Update Custom Form', 'name' => 'update-custom-form'],
+        ['label' => 'View Custom Form', 'name' => 'view-custom-form'],
+        ['label' => 'Delete Custom Form', 'name' => 'delete-custom-form'],
+
+        ['label' => 'Create Custom Form Record', 'name' => 'create-custom-form-record'],
+        ['label' => 'Update Custom Form Record', 'name' => 'update-custom-form-record'],
+        ['label' => 'View Custom Form Record', 'name' => 'view-custom-form-record'],
+        ['label' => 'Delete Custom Form Record', 'name' => 'delete-custom-form-record'],
 
         // #Add New Permission Below!
 

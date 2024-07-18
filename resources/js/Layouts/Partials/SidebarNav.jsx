@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
-import { HiLogout, HiOutlineX } from 'react-icons/hi'
+import { HiChartPie, HiLogout, HiOutlineX } from 'react-icons/hi'
 import { filterAllowedMenu } from './helpers.cjs'
 import routes from './routes.cjs'
 
@@ -100,6 +100,16 @@ export default function SidebarNav({ user, show, setShow }) {
                     </div>
                     <nav className="w-full">
                         <ul className="menu rounded-box">
+                            <SidebarItem
+                                item={{
+                                    name: 'Dashboard',
+                                    show: true,
+                                    icon: HiChartPie,
+                                    route: route('dashboard'),
+                                    active: 'dashboard',
+                                    permission: 'view-dashboard',
+                                }}
+                            />
                             {menus.map((item) => (
                                 <div key={`item-${item.name}`}>
                                     {item.items === undefined ? (

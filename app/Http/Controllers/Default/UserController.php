@@ -12,6 +12,8 @@ class UserController extends Controller
 {
     public function index(Request $request): Response
     {
+        $request->user()->allow('view-user', true);
+
         $query = User::query()->with(['role']);
 
         if ($request->q) {
@@ -42,14 +44,14 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('user.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed saved']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
     }
 
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|string|max:255',
         ]);
 

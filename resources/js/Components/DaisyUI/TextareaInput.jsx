@@ -3,11 +3,7 @@ import React, { forwardRef } from 'react'
 const Label = ({ label }) => {
     if (!label) return null
 
-    return (
-        <div className="label">
-            <label className="label-text">{label}</label>
-        </div>
-    )
+    return <label className="label-text">{label}</label>
 }
 
 const BottomTextHelper = ({ error }) => {
@@ -16,19 +12,19 @@ const BottomTextHelper = ({ error }) => {
     return <p className="label-text text-red-600">{error}</p>
 }
 
-const TextInput = forwardRef((props, ref) => {
+const TextareaInput = forwardRef((props, ref) => {
     const { label, error, ...inputProps } = props
 
-    const defaultClassName = `input input-bordered w-full`
+    const defaultClassName = `textarea textarea-bordered w-full`
 
-    const errorClassName = `input input-bordered input-error w-full`
+    const errorClassName = `textarea textarea-bordered textarea-error w-full`
 
     const className = error ? errorClassName : defaultClassName
 
     return (
-        <div className="form-control">
+        <div>
             <Label label={label} />
-            <input
+            <textarea
                 ref={ref}
                 {...inputProps}
                 className={`${className} ${
@@ -40,4 +36,4 @@ const TextInput = forwardRef((props, ref) => {
     )
 })
 
-export default TextInput
+export default TextareaInput

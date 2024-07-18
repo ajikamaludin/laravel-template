@@ -35,7 +35,7 @@ class {{ Model }}Controller extends Controller
         ]);
 
         return redirect()->route('{{ models }}.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed saved']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
     }
 
     public function update(Request $request, {{ Model }} ${{ model }}): RedirectResponse

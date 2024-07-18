@@ -41,6 +41,6 @@ class SettingController extends Controller
         DB::commit();
 
         return redirect()->route('setting.index')
-            ->with('message', ['type' => 'success', 'message' => 'Setting saved']);
+            ->with('message', ['type' => 'success', 'message' => 'Setting created']);
     }
 }

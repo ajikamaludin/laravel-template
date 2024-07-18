@@ -5,9 +5,9 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
 // check modules exists
-$additionalWebRoute = [];
-if (file_exists(__DIR__ . '/../app/Modules/app.php')) {
-    $additionalWebRoute = (require_once __DIR__ . '/../app/Modules/app.php');
+$additionalWebRoutes = [];
+if (file_exists(__DIR__ . '/../app/Modules/routes.php')) {
+    $additionalWebRoutes = (require_once __DIR__ . '/../app/Modules/routes.php');
 }
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         web: [
             __DIR__ . '/../routes/web.php',
             __DIR__ . '/../routes/auth.php',
-            ...$additionalWebRoute,
+            ...$additionalWebRoutes,
         ],
         api: __DIR__ . '/../routes/api.php',
         health: '/up',

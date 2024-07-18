@@ -56,7 +56,7 @@ class RoleController extends Controller
         DB::commit();
 
         return redirect()->route('roles.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed saved']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
     }
 
     public function edit(Role $role): Response

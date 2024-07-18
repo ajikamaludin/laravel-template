@@ -13,7 +13,7 @@ export const Select = ({
     children,
 }) => {
     return (
-        <>
+        <div className="form-control">
             {label !== '' && (
                 <div className="label">
                     <span className="label-text">{label}</span>
@@ -34,7 +34,7 @@ export const Select = ({
                     {error}
                 </p>
             )}
-        </>
+        </div>
     )
 }
 
@@ -54,6 +54,7 @@ export const SelectOptionArray = ({
             error={error}
             name={name}
         >
+            <Option value={''}></Option>
             {options.map((option) => (
                 <Option value={option} key={option}>
                     {option}
@@ -79,8 +80,9 @@ export const SelectOptionObject = ({
             error={error}
             name={name}
         >
+            <Option value={''}></Option>
             {Object.keys(options).map((option) => (
-                <Option value={option} key={option}>
+                <Option value={options[option]} key={option}>
                     {options[option]}
                 </Option>
             ))}

@@ -1,14 +1,6 @@
-import { HiChartPie, HiUser, HiCog, HiGlobeAlt } from 'react-icons/hi'
+import { HiUser, HiCog, HiGlobeAlt, HiInformationCircle } from 'react-icons/hi'
 
 export default [
-    {
-        name: 'Dashboard',
-        show: true,
-        icon: HiChartPie,
-        route: route('dashboard'),
-        active: 'dashboard',
-        permission: 'view-dashboard',
-    },
     {
         name: 'User',
         show: true,
@@ -45,5 +37,13 @@ export default [
         route: route('shortlink.link.index'),
         active: 'shortlink.link.*',
         permission: 'view-shortlink',
+    },
+    {
+        name: 'Custom Form',
+        show: true,
+        icon: HiInformationCircle,
+        route: route('custom-form.forms.index'),
+        active: 'custom-form.forms.*',
+        permission: 'view-custom-form',
     },
 ]

@@ -54,7 +54,7 @@ class BuildArchiveCommand extends Command
 
         $this->runShellCommands(['php artisan optimize:clear']);
 
-        $runNpmBuild = confirm('build new assets ?', true);
+        $runNpmBuild = confirm('Build new assets ?', true);
         if ($runNpmBuild) {
             $this->info('Building new assets files');
             $this->runShellCommands(['npm run build']);
@@ -65,6 +65,11 @@ class BuildArchiveCommand extends Command
         $withRawJs = confirm('Includes resources/js ?', false);
         if (!$withRawJs) {
             $zipService->addExcludedContains('resources/js');
+        }
+
+        $withModules = confirm('Includes app/Modules ?', true);
+        if (!$withModules) {
+            $zipService->addExcludedContains('app/Modules');
         }
 
         try {

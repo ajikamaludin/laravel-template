@@ -20,6 +20,7 @@ class ZipService
     protected $excludedContains = [
         '.git/',
         'storage/app/public',
+        'app/Internal',
         '.vscode',
         '.zip',
         '.gif',
