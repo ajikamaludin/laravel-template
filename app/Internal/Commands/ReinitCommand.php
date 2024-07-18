@@ -45,7 +45,8 @@ class ReinitCommand extends Command
             'git commit -m "reinit project $(basename $(pwd))"',
             'cp .env.example .env',
             'php artisan key:gen',
-            'touch ' . database_path('database.sqlite')
+            'touch ' . database_path('database.sqlite'),
+            'php artisan migrate --seed'
         ]);
 
         $this->info('Projects Re-initilize');
