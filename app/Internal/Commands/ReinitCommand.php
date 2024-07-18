@@ -37,8 +37,16 @@ class ReinitCommand extends Command
      */
     public function handle()
     {
-        $this->runShellCommands(['php artisan app:remove-modules all']);
-        $this->runShellCommands(['rm -rf ' . base_path('.git')]);
+        $this->runShellCommands([
+            'php artisan app:remove-modules all',
+            'rm -rf ' . base_path('.git'),
+            'git init',
+            'git add .',
+            'git commit -m "reinit project $(basename$(pwd))"',
+            'cp .env.example .env',
+            'php artisan key:gen',
+            'touch ' . database_path('database.sqlite')
+        ]);
 
         $this->info('Projects Re-initilize');
     }
