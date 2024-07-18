@@ -42,7 +42,7 @@ class ReinitCommand extends Command
             'rm -rf ' . base_path('.git'),
             'git init',
             'git add .',
-            'git commit -m "reinit project $(basename$(pwd))"',
+            'git commit -m "reinit project $(basename $(pwd))"',
             'cp .env.example .env',
             'php artisan key:gen',
             'touch ' . database_path('database.sqlite')
