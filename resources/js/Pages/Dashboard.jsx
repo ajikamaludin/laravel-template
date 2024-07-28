@@ -1,7 +1,7 @@
 import React from 'react'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head } from '@inertiajs/react'
-import Card from '@/Components/DaisyUI/Card'
+
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import DummyDashbord from '@/Components/Dummy/Dashboard'
 
 export default function Dashboard(props) {
