@@ -39,13 +39,15 @@ class ReinitCommand extends Command
     {
         $this->runShellCommands([
             'php artisan app:remove-modules all',
-            'rm -rf '.base_path('.git'),
+            'rm -rf ' . base_path('.git'),
             'git init',
             'git add .',
             'git commit -m "reinit project $(basename $(pwd))"',
+            'rm .env',
             'cp .env.example .env',
             'php artisan key:gen',
-            'touch '.database_path('database.sqlite'),
+            'rm ' . database_path('database.sqlite'),
+            'touch ' . database_path('database.sqlite'),
             'php artisan migrate --seed',
         ]);
 
@@ -66,12 +68,12 @@ class ReinitCommand extends Command
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->output->write('    '.$line);
+            $this->output->write('    ' . $line);
         });
     }
 }
