@@ -19,6 +19,8 @@ class Link extends Model
         'visit_count',
         'last_visited_at',
         'user_id',
+        'bot_protection',
+        'bot_link',
     ];
 
     public function user()

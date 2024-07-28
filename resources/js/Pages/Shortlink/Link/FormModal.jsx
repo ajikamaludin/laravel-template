@@ -5,6 +5,7 @@ import { isEmpty } from 'lodash'
 import Modal from '@/Components/DaisyUI/Modal'
 import Button from '@/Components/DaisyUI/Button'
 import TextInput from '@/Components/DaisyUI/TextInput'
+import Checkbox from '@/Components/DaisyUI/Checkbox'
 
 export default function FormModal(props) {
     const { modalState } = props
@@ -13,6 +14,7 @@ export default function FormModal(props) {
             name: '',
             link: '',
             code: '',
+            bot_protection: '',
         })
 
     const handleOnChange = (event) => {
@@ -57,6 +59,7 @@ export default function FormModal(props) {
                 name: link.name,
                 link: link.real_link,
                 code: link.code,
+                bot_protection: link.bot_protection,
             })
             return
         }
@@ -84,7 +87,7 @@ export default function FormModal(props) {
                     label="URL"
                     error={errors.link}
                 />
-                {!isEmpty(data.code) && (
+                {!isEmpty(modalState.data) && (
                     <TextInput
                         name="code"
                         value={data.code}
@@ -93,6 +96,13 @@ export default function FormModal(props) {
                         error={errors.code}
                     />
                 )}
+                <Checkbox
+                    name="bot_protection"
+                    value={+data.bot_protection === 1}
+                    onChange={handleOnChange}
+                    label="Bot Protection"
+                    error={errors.bot_protection}
+                />
             </div>
             <div className="flex items-center space-x-2 mt-4">
                 <Button

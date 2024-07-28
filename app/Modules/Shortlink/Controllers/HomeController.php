@@ -51,6 +51,13 @@ class HomeController extends Controller
             'useragent' => $request->header('user-agent'),
         ]);
 
+        if ($request->header('sec-ch-ua-platform', 'bot') == 'bot' && $link->bot_protection == 1) {
+            if ($link->bot_link != null) {
+                return redirect($link->bot_link, 302);
+            }
+            return redirect()->route('shortlink.home');
+        }
+
         return redirect($link->real_link, 302);
     }
 }

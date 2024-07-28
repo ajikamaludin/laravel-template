@@ -43,6 +43,7 @@ class LinkController extends Controller
             'code' => $request->code ?? Link::generateCode(),
             'real_link' => $request->input('link'),
             'user_id' => auth()->id(),
+            'bot_protection' => $request->input('bot_protection', 0),
         ]);
 
         return redirect()->route('shortlink.link.index')
@@ -102,6 +103,7 @@ class LinkController extends Controller
             'code' => $request->input('code'),
             'real_link' => $request->input('link'),
             'user_id' => auth()->id(),
+            'bot_protection' => $request->input('bot_protection', 0),
         ]);
 
         return redirect()->route('shortlink.link.index')
