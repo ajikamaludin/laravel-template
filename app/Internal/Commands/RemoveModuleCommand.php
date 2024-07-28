@@ -3,7 +3,6 @@
 namespace App\Internal\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 
@@ -40,8 +39,8 @@ class RemoveModuleCommand extends Command
     {
         $module = $this->argument('module');
         if ($module != 'all') {
-            $this->runShellCommands(['rm -rf ' . app_path('Modules/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/Pages/' . $module)]);
+            $this->runShellCommands(['rm -rf '.app_path('Modules/'.$module)]);
+            $this->runShellCommands(['rm -rf '.resource_path('js/Pages/'.$module)]);
 
             $this->info('Removed Module');
 
@@ -50,12 +49,12 @@ class RemoveModuleCommand extends Command
 
         $modules = [
             'CustomForm',
-            'Shortlink'
+            'Shortlink',
         ];
 
-        $this->runShellCommands(['rm -rf ' . app_path('Modules')]);
+        $this->runShellCommands(['rm -rf '.app_path('Modules')]);
         foreach ($modules as $module) {
-            $this->runShellCommands(['rm -rf ' . resource_path('js/Pages/' . $module)]);
+            $this->runShellCommands(['rm -rf '.resource_path('js/Pages/'.$module)]);
         }
 
         $this->info('Removed Modules');
@@ -75,12 +74,12 @@ class RemoveModuleCommand extends Command
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->output->write('    ' . $line);
+            $this->output->write('    '.$line);
         });
     }
 }

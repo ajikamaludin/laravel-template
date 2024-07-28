@@ -6,12 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Modules\CustomForm\Models\Form;
 use App\Modules\CustomForm\Models\FormRecord;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class FormRecordController extends Controller
 {
-    public function index(Form $form)
+    public function index(Request $request, Form $form)
     {
         $query = FormRecord::query()->where('form_id', $form->id);
+
+        if ($request->q != '') {
+            $query->where('fields', 'like', '%' . $request->q . '%');
+        }
 
         $query->orderBy('created_at', 'desc');
 
@@ -24,7 +29,7 @@ class FormRecordController extends Controller
     public function create(Form $form)
     {
         return inertia('CustomForm/Record/Form', [
-            'field' => $form
+            'field' => $form,
         ]);
     }
 
@@ -38,8 +43,13 @@ class FormRecordController extends Controller
             'fields' => $request->fields,
         ]);
 
-        return redirect()->route('custom-form.form-records.index', $form)
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+        if (auth()->check()) {
+            return redirect()->route('custom-form.form-records.index', $form)
+                ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+        }
+
+        return redirect()->back()
+            ->with('message', ['type' => 'success', 'message' => 'Form has been saved']);
     }
 
     public function edit(Form $form, FormRecord $formRecord)
@@ -70,5 +80,40 @@ class FormRecordController extends Controller
 
         return redirect()->route('custom-form.form-records.index', $form)
             ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
+    }
+
+    public function open(Form $form)
+    {
+        return inertia('CustomForm/Record/PublicForm', [
+            'field' => $form,
+        ]);
+    }
+
+    public function export(Form $form)
+    {
+        $collections = collect();
+
+        // active headers of fields
+        $fields = json_decode($form->fields);
+        $headers = [];
+        foreach ($fields as $field) {
+            $headers[] = $field->name;
+        }
+
+        $records = $form->records()->orderBy('updated_at', 'desc')->get();
+        foreach ($records as $record) {
+            $d = [];
+            $r = json_decode($record->fields);
+            foreach ($r as $rd) {
+                if (in_array($rd->name, $headers)) {
+                    $d[$rd->name] = $rd->value ?? '';
+                }
+            }
+            $collections->add($d);
+        }
+
+        $name = $form->name . '_' . now()->format('d-m-Y_H-i') . '.xlsx';
+
+        return (new FastExcel($collections))->download($name);
     }
 }

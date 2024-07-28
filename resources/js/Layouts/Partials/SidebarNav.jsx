@@ -12,7 +12,7 @@ const SidebarItem = ({ item }) => {
                 className={`${route().current(item.active) ? 'active' : ''}`}
             >
                 {item.icon && (
-                    <item.icon className="h-4 w-4" aria-hidden="true" />
+                    <item.icon className="h-5 w-5" aria-hidden="true" />
                 )}
                 {item.name}
             </Link>
@@ -34,7 +34,7 @@ const SidebarItemGroup = ({ item }) => {
             <details open={open}>
                 <summary>
                     {item.icon && (
-                        <item.icon className="h-4 w-4" aria-hidden="true" />
+                        <item.icon className="h-5 w-5" aria-hidden="true" />
                     )}
                     {item.name}
                 </summary>
@@ -100,7 +100,7 @@ export default function SidebarNav({ user, show, setShow }) {
                     </div>
                     <nav className="w-full">
                         <ul className="menu rounded-box">
-                            <SidebarItem
+                            {/* <SidebarItem
                                 item={{
                                     name: 'Dashboard',
                                     show: true,
@@ -109,7 +109,7 @@ export default function SidebarNav({ user, show, setShow }) {
                                     active: 'dashboard',
                                     permission: 'view-dashboard',
                                 }}
-                            />
+                            /> */}
                             {menus.map((item) => (
                                 <div key={`item-${item.name}`}>
                                     {item.items === undefined ? (
@@ -124,7 +124,7 @@ export default function SidebarNav({ user, show, setShow }) {
                                     onClick={() => router.post(route('logout'))}
                                 >
                                     <HiLogout
-                                        className="h-4 w-4"
+                                        className="h-5 w-5"
                                         aria-hidden="true"
                                     />
                                     Logout

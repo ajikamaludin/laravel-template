@@ -1,6 +1,20 @@
-import { HiUser, HiCog, HiGlobeAlt, HiInformationCircle } from 'react-icons/hi'
+import {
+    HiChartPie,
+    HiUser,
+    HiCog,
+    HiGlobeAlt,
+    HiInformationCircle,
+} from 'react-icons/hi2'
 
 export default [
+    {
+        name: 'Dashboard',
+        show: true,
+        icon: HiChartPie,
+        route: route('dashboard'),
+        active: 'dashboard',
+        permission: 'view-dashboard',
+    },
     {
         name: 'User',
         show: true,

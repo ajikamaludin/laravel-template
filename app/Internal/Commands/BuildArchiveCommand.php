@@ -2,11 +2,11 @@
 
 namespace App\Internal\Commands;
 
-use Exception;
-use RuntimeException;
-use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 use App\Internal\Services\ZipService;
+use Exception;
+use Illuminate\Console\Command;
+use RuntimeException;
+use Symfony\Component\Process\Process;
 
 use function Laravel\Prompts\confirm;
 
@@ -41,7 +41,7 @@ class BuildArchiveCommand extends Command
      */
     public function handle()
     {
-        $zipName = str_replace(' ', '', basename(base_path())) . '_' . now()->format('dm_His') . '.zip';
+        $zipName = str_replace(' ', '', basename(base_path())).'_'.now()->format('dm_His').'.zip';
         if ($this->option('remove') != 'n') {
             try {
                 unlink(base_path($zipName));
@@ -52,28 +52,29 @@ class BuildArchiveCommand extends Command
             }
         }
 
-        $this->runShellCommands(['php artisan optimize:clear']);
-
         $runNpmBuild = confirm('Build new assets ?', true);
-        if ($runNpmBuild) {
-            $this->info('Building new assets files');
-            $this->runShellCommands(['npm run build']);
-        }
 
-        $zipService = new ZipService();
+        $zipService = new ZipService;
 
         $withRawJs = confirm('Includes resources/js ?', false);
-        if (!$withRawJs) {
+        if (! $withRawJs) {
             $zipService->addExcludedContains('resources/js');
         }
 
         $withModules = confirm('Includes app/Modules ?', true);
-        if (!$withModules) {
+        if (! $withModules) {
             $zipService->addExcludedContains('app/Modules');
         }
 
         try {
             $startTime = microtime(true);
+
+            if ($runNpmBuild) {
+                $this->info('Building new assets files');
+                $this->runShellCommands(['npm run build']);
+            }
+
+            $this->runShellCommands(['php artisan optimize:clear']);
 
             $zipService->create(base_path(), $zipName);
 
@@ -82,7 +83,7 @@ class BuildArchiveCommand extends Command
 
             $this->info("Successfuly create compressed zip file: $timeTaken second");
         } catch (Exception $e) {
-            $this->error('Error : ' . $e->getMessage());
+            $this->error('Error : '.$e->getMessage());
         }
     }
 
@@ -100,12 +101,12 @@ class BuildArchiveCommand extends Command
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->output->write('    ' . $line);
+            $this->output->write('    '.$line);
         });
     }
 }

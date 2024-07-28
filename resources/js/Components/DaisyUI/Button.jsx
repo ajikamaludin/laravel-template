@@ -8,6 +8,7 @@ export default function Button(props) {
         default: 'btn-primary',
         primary: 'btn-primary',
         secondary: 'btn-secondary',
+        info: 'btn-info',
         error: 'btn-error',
     }
 

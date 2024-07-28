@@ -21,7 +21,7 @@ class UserJwtService
     {
         session(null)->put('user_login_at', $created_at = now()->format('Y_m_d_H_i_s'));
 
-        $key = self::KEYPREFIX . auth()->id() . $created_at;
+        $key = self::KEYPREFIX.auth()->id().$created_at;
 
         $value = JWT::encode(
             [
@@ -59,7 +59,7 @@ class UserJwtService
     public static function getActiveToken()
     {
         $login_at = session(null)->get('user_login_at');
-        $key = self::KEYPREFIX . auth()->id() . $login_at;
+        $key = self::KEYPREFIX.auth()->id().$login_at;
 
         $existToken = Cache::get($key, '');
 

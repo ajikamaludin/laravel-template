@@ -4,18 +4,12 @@ namespace App\Http\Controllers\Default\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use InvalidArgumentException;
-use RuntimeException;
 
 class SelectTableController extends Controller
 {
     /**
-     * made this simple only select from master data table 
-     * 
-     * @param Request $request 
-     * @param string $table 
+     * made this simple only select from master data table
      */
     public function __invoke(Request $request, string $table)
     {
@@ -40,7 +34,7 @@ class SelectTableController extends Controller
         if ($request->q != '') {
             $query->where(function ($query) use ($select_fields, $request) {
                 foreach ($select_fields as $sq) {
-                    $query->orWhere($sq, 'like', '%' . $request->q . '%');
+                    $query->orWhere($sq, 'like', '%'.$request->q.'%');
                 }
             });
         }

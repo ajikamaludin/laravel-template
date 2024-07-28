@@ -3,7 +3,6 @@
 namespace App\Internal\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 
@@ -32,6 +31,7 @@ class ReinitCommand extends Command
 
         parent::configure();
     }
+
     /**
      * Execute the console command.
      */
@@ -39,14 +39,14 @@ class ReinitCommand extends Command
     {
         $this->runShellCommands([
             'php artisan app:remove-modules all',
-            'rm -rf ' . base_path('.git'),
+            'rm -rf '.base_path('.git'),
             'git init',
             'git add .',
             'git commit -m "reinit project $(basename $(pwd))"',
             'cp .env.example .env',
             'php artisan key:gen',
-            'touch ' . database_path('database.sqlite'),
-            'php artisan migrate --seed'
+            'touch '.database_path('database.sqlite'),
+            'php artisan migrate --seed',
         ]);
 
         $this->info('Projects Re-initilize');
@@ -66,12 +66,12 @@ class ReinitCommand extends Command
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->output->write('    ' . $line);
+            $this->output->write('    '.$line);
         });
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('splitPascalCase')) {
+if (! function_exists('splitPascalCase')) {
     function splitPascalCase($string)
     {
         $word = '';
@@ -12,7 +12,7 @@ if (!function_exists('splitPascalCase')) {
 
                 continue;
             }
-            $word .= '-' . $s;
+            $word .= '-'.$s;
         }
 
         return $word;

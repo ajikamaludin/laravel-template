@@ -68,7 +68,7 @@ class LinkController extends Controller
             ->groupBy('date')
             ->get([
                 DB::raw('DATE(created_at) as date'),
-                DB::raw('COUNT(id) as visitor')
+                DB::raw('COUNT(id) as visitor'),
             ])
             ->mapWithKeys(fn ($item) => [$item['date'] => $item['visitor']]);
 
@@ -76,7 +76,7 @@ class LinkController extends Controller
         while ($std <= $endDate) {
             $charts[] = [
                 'date' => $std->format('d-m-Y'),
-                'visitor' => $visitors[$std->format('Y-m-d')] ?? 0
+                'visitor' => $visitors[$std->format('Y-m-d')] ?? 0,
             ];
             $std = $std->addDay();
         }

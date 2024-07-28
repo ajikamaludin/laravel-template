@@ -16,7 +16,7 @@ class PermissionGenerator
 
     public function addPermission($name, $label)
     {
-        $permission = "\t\t['label' => '" . $label . "', 'name' => '" . $name . "'],\n";
+        $permission = "\t\t['label' => '".$label."', 'name' => '".$name."'],\n";
 
         // Open the file in read mode to read its contents
         $file = File::get(app_path($this->permissionFile));
@@ -24,7 +24,7 @@ class PermissionGenerator
         $marker = "// #Add New Permission Below!\n";
         $position = strpos($file, $marker) + strlen($marker);
 
-        if (!$position) {
+        if (! $position) {
             throw new Exception('PermissionConst marker is not set');
         }
 

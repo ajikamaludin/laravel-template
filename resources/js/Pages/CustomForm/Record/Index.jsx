@@ -54,7 +54,7 @@ export default function Index(props) {
         if (preValue) {
             router.get(
                 route(route().current(), {
-                    form: confirmModal.data.id,
+                    form: field,
                 }),
                 { q: search },
                 {
@@ -72,18 +72,39 @@ export default function Index(props) {
             <div>
                 <Card>
                     <div className="flex justify-between mb-4">
-                        <HasPermission p="create-custom-form-record">
-                            <Link
+                        <div className="flex flex-row gap-2">
+                            <HasPermission p="create-custom-form-record">
+                                <Link
+                                    href={route(
+                                        'custom-form.form-records.create',
+                                        field
+                                    )}
+                                >
+                                    <Button size="sm" type="primary">
+                                        Tambah
+                                    </Button>
+                                </Link>
+                            </HasPermission>
+                            <a
+                                href={route('custom-form.public', field)}
+                                target="_blank"
+                            >
+                                <Button size="sm" type="secondary">
+                                    Public Form
+                                </Button>
+                            </a>
+                            <a
                                 href={route(
-                                    'custom-form.form-records.create',
+                                    'custom-form.form-records.export',
                                     field
                                 )}
+                                target="_blank"
                             >
-                                <Button size="sm" type="primary">
-                                    Tambah
+                                <Button size="sm" type="info">
+                                    Export
                                 </Button>
-                            </Link>
-                        </HasPermission>
+                            </a>
+                        </div>
                         <div className="flex items-center">
                             <SearchInput
                                 onChange={(e) => setSearch(e.target.value)}

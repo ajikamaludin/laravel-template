@@ -13,8 +13,8 @@ class RouteGenerator
 
     public function addWebUse($model)
     {
-        $contoller = $model . 'Controller';
-        $use = "\n" . 'use App\Http\Controllers' . '\\' . $contoller . ';';
+        $contoller = $model.'Controller';
+        $use = "\n".'use App\Http\Controllers'.'\\'.$contoller.';';
 
         $file = File::get(base_path('routes/web.php'));
 
@@ -28,7 +28,7 @@ class RouteGenerator
 
     public function addWebRoute($method, $uri, $model, $func = null, $name = null, $positionName = null)
     {
-        $contoller = $model . 'Controller';
+        $contoller = $model.'Controller';
 
         $route = "\nRoute::$method('$uri'";
 

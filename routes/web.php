@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Default\FileController;
 use App\Http\Controllers\Default\GeneralController;
+use App\Http\Controllers\Default\PermissionController;
 use App\Http\Controllers\Default\ProfileController;
 use App\Http\Controllers\Default\RoleController;
 use App\Http\Controllers\Default\SettingController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // define module as main route
+    // Route::get('/{link:code}', [App\Http\Controllers\Shortlink\HomeController::class, 'redirect'])->name('redirect');
     // Route::get('/', [App\Http\Controllers\Shortlink\HomeController::class, 'index'])->name('home');
 
     return redirect('/login');
@@ -26,6 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('user.store');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    // Permission
+    Route::delete('_permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+    Route::put('_permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::post('_permissions', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::get('_permissions', [PermissionController::class, 'index'])->name('permissions.index');
 
     // Role
     Route::resource('/roles', RoleController::class);

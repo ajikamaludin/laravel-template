@@ -19,7 +19,7 @@ class PermissionCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Sync any changes LIST PermissionConst and attach to `admin` role is exists';
+    protected $description = 'Sync any changes LIST in PermissionConstant and attach to `admin` role is exists';
 
     /**
      * Configure the command.
@@ -37,6 +37,6 @@ class PermissionCommand extends Command
     public function handle()
     {
         [$to_add, $to_delete] = PermissionService::new()->sync();
-        $this->info('Permission synced : ' . count($to_add) . ' added, ' . count($to_delete) . ' deleted');
+        $this->info('Permission synced : '.count($to_add).' added, '.count($to_delete).' deleted');
     }
 }

@@ -5,8 +5,6 @@
         [ ] need to close \_select general controller only for master data, if need something with more complex query its need to be sparate from that
         [ ] the common compoenent select is old fasion please use select modal like android mode
 -   [ ] create easy deploy command
--   [ ] custom form module (add export, add public form show, add filter field show records)
--   [ ] generate permission masih belum pass (SettingEmail -> ['label' => 'View SettingEmail', 'name' => 'view-settingEmail'])
 -   [ ] permission editor / other table editor
 
 ## NICE TO CREATE

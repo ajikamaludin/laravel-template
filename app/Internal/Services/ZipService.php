@@ -59,7 +59,7 @@ class ZipService
 
     public function create($source, $destination)
     {
-        if (!file_exists($source)) {
+        if (! file_exists($source)) {
             throw new Exception("file exists $destination");
         }
 
@@ -107,12 +107,13 @@ class ZipService
         $reads = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::LEAVES_ONLY);
 
         foreach ($reads as $name => $file) {
-            if (!$file->isDir()) {
+            if (! $file->isDir()) {
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($source) + 1);
 
                 if ($this->isExcluded($relativePath)) {
                     info(self::class, [$relativePath]);
+
                     continue;
                 }
 
