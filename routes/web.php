@@ -9,11 +9,9 @@ use App\Http\Controllers\Default\SettingController;
 use App\Http\Controllers\Default\UserController;
 use Illuminate\Support\Facades\Route;
 
+// define module as main route
+// Route::get('/', [App\Modules\Shortlink\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', function () {
-    // define module as main route
-    // Route::get('/{link:code}', [App\Http\Controllers\Shortlink\HomeController::class, 'redirect'])->name('redirect');
-    // Route::get('/', [App\Http\Controllers\Shortlink\HomeController::class, 'index'])->name('home');
-
     return redirect('/login');
 });
 
@@ -51,3 +49,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // #Guest
+
+
+// Route::get('/{link:code}', [App\Modules\Shortlink\Controllers\HomeController::class, 'redirect'])->name('redirect');
