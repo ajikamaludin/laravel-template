@@ -24,17 +24,15 @@ class SelectTableController extends Controller
 
         $select_fields = ['id'];
         if ($request->display_name != '') {
-            $select_fields = array_merge(explode('|', $request->display_name), $select_fields);
+            $select_fields = array_unique(array_merge(explode('|', $request->display_name), $select_fields));
         }
 
-        $query->select($select_fields)
-            ->limit($request->limit ?? 100)
-            ->where('deleted_at', null);
+        $query->select($select_fields)->where('deleted_at', null);
 
         if ($request->q != '') {
             $query->where(function ($query) use ($select_fields, $request) {
                 foreach ($select_fields as $sq) {
-                    $query->orWhere($sq, 'like', '%'.$request->q.'%');
+                    $query->orWhere($sq, 'like', '%' . $request->q . '%');
                 }
             });
         }
@@ -46,6 +44,10 @@ class SelectTableController extends Controller
             $query->orderBy('updated_at', 'desc');
         }
 
-        return $query->get();
+        if ($request->pagination != '') {
+            return $query->paginate($request->limit ?? 20);
+        }
+
+        return $query->limit($request->limit ?? 100)->get();
     }
 }

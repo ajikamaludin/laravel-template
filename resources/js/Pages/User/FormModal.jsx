@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import Modal from '@/Components/DaisyUI/Modal'
 import Button from '@/Components/DaisyUI/Button'
 import TextInput from '@/Components/DaisyUI/TextInput'
-import RoleSelectionInput from '@/Components/DaisyUI/SelectionInput'
+import SelectModalInput from '@/Components/DaisyUI/SelectModalInput'
 
 export default function FormModal(props) {
     const { modalState } = props
@@ -95,17 +95,20 @@ export default function FormModal(props) {
                 />
                 {data.role !== null && (
                     <>
-                        <RoleSelectionInput
+                        <SelectModalInput
                             label="Role"
-                            itemSelected={data.role_id}
-                            onItemSelected={(item) =>
-                                setData('role_id', item ? item.id : null)
+                            value={data.role}
+                            onChange={(item) =>
+                                setData({
+                                    ...data,
+                                    role: item,
+                                    role_id: item ? item.id : null,
+                                })
                             }
                             error={errors.role_id}
-                            placeholder="role"
-                            data={{
+                            params={{
                                 table: 'roles',
-                                display_name: 'id|name',
+                                columns: 'id|name',
                                 orderby: 'created_at.asc',
                             }}
                         />

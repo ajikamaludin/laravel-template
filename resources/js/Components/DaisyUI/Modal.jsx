@@ -9,7 +9,7 @@ export default function Modal({ children, title = '', isOpen, onClose }) {
             }`}
         >
             <div className="modal-box">
-                <h3 className="font-bold text-lg">{title}</h3>
+                {title && <h3 className="font-bold text-lg">{title}</h3>}
                 <form method="dialog">
                     <button
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

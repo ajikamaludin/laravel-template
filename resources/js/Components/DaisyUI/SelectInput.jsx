@@ -4,6 +4,26 @@ export const Option = ({ value, children }) => {
     return <option value={value}>{children}</option>
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example :
+ * <Select
+ *     label={label}
+ *     value={value}
+ *     onChange={onChange}
+ *     error={error}
+ *     name={name}>
+ *     <Option value={''}></Option>
+ *     {options.map((option) => (
+ *         <Option value={option} key={option}>
+ *             {option}
+ *         </Option>
+ *     ))}
+ * </Select>
+ */
 export const Select = ({
     label = '',
     value,
@@ -38,6 +58,20 @@ export const Select = ({
     )
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example :
+ * <SelectOptionArray
+ *   name={input.name}
+ *   value={input.value}
+ *   label={input.name}
+ *   options={['a', 'b']}
+ *   onChange={(e) => onChange(input, e.target.value)}
+ * />
+ */
 export const SelectOptionArray = ({
     label = '',
     value,
@@ -64,6 +98,20 @@ export const SelectOptionArray = ({
     )
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example :
+ * <SelectOptionObject
+ *   name={input.name}
+ *   value={input.value}
+ *   label={input.name}
+ *   options={{a: 'value1', b: 'value2'}}
+ *   onChange={(e) => onChange(input, e.target.value)}
+ * />
+ */
 export const SelectOptionObject = ({
     label = '',
     value,

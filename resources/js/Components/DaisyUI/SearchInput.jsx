@@ -1,6 +1,17 @@
 import { HiSearch } from 'react-icons/hi'
 import TextInput from './TextInput'
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example:
+ * <SearchInput
+ *   onChange={(e) => setSearch(e.target.value)}
+ *   value={search}
+ * />
+ */
 export default function SearchInput({ onChange, value }) {
     return (
         <div className="relative w-full">

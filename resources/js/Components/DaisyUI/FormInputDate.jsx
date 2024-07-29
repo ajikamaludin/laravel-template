@@ -1,6 +1,18 @@
 import React from 'react'
 import Datepicker from 'react-tailwindcss-datepicker'
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example :
+ * <FormInputDate
+ *     value={data.date}
+ *     label={'Date'}
+ *     onChange={(date) => onChange(input, date)}
+ * />
+ */
 export default function FormInputDate({
     value,
     onChange,

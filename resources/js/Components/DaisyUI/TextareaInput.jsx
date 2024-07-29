@@ -12,6 +12,15 @@ const BottomTextHelper = ({ error }) => {
     return <p className="label-text text-red-600">{error}</p>
 }
 
+/**
+ * Example :
+ * <TextareaInput
+ *     name={input.name}
+ *     value={input.value}
+ *     label={input.name}
+ *     onChange={(e) => onChange(input, e.target.value)}
+ * />
+ */
 const TextareaInput = forwardRef((props, ref) => {
     const { label, error, ...inputProps } = props
 

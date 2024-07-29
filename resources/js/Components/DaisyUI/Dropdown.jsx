@@ -1,7 +1,30 @@
-const Dropdown = ({ children, label, last }) => {
+import { useEffect, useRef, useState } from 'react'
+
+const Dropdown = ({ children, label }) => {
+    const ref = useRef()
+    const [isOpen, setOpen] = useState(false)
+
+    useEffect(() => {
+        if (isOpen === true) {
+            const checkIfClickedOutside = (e) => {
+                if (ref.current && !ref.current.contains(e.target)) {
+                    ref.current.open = false
+                }
+            }
+            document.addEventListener('mousedown', checkIfClickedOutside)
+            return () => {
+                document.removeEventListener('mousedown', checkIfClickedOutside)
+            }
+        }
+    }, [isOpen])
+
     return (
-        <details className={`dropdown dropdown-left dropdown-end`}>
-            <summary role="button" className="btn m-1">
+        <details
+            className={`dropdown dropdown-left dropdown-end`}
+            ref={ref}
+            onClick={() => setOpen(true)}
+        >
+            <summary role="button" className="btn px-2.5">
                 <div>{label}</div>
                 <div>
                     <svg

@@ -6,6 +6,20 @@ const BottomTextHelper = ({ error }) => {
     return <p className="text-sm text-red-600 mt-2">{error}</p>
 }
 
+/**
+ *
+ * @param {*} props
+ * @returns
+ *
+ * Example :
+ * <Checkbox
+ *    label="Remember me"
+ *    name="remember"
+ *    value={+data.remember === 1}
+ *    onChange={onHandleChange}
+ *    error={errors.remember}
+ * />
+ */
 export default function Checkbox(props) {
     return (
         <div className="flex">

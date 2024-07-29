@@ -12,6 +12,22 @@ import Spinner from '@/Components/DaisyUI/Spinner'
  * This selection input is old fasion will be replace with SelectModalInput
  * @param {*} props
  * @returns
+ *
+ * Example usage
+ * <SelectionInput
+ *     label="Role"
+ *     itemSelected={data.role_id}
+ *     onItemSelected={(item) =>
+ *         setData('role_id', item ? item.id : null)
+ *     }
+ *     error={errors.role_id}
+ *     placeholder="role"
+ *     data={{
+ *         table: 'roles',
+ *         display_name: 'id|name',
+ *         orderby: 'created_at.asc',
+ *     }}
+ * />
  */
 export default function SelectionInput(props) {
     const ref = useRef()
