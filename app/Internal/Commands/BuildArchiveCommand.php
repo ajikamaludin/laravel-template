@@ -4,9 +4,6 @@ namespace App\Internal\Commands;
 
 use App\Internal\Services\ZipService;
 use Exception;
-use Illuminate\Console\Command;
-use RuntimeException;
-use Symfony\Component\Process\Process;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\spin;
@@ -86,28 +83,5 @@ class BuildArchiveCommand extends Command
         } catch (Exception $e) {
             $this->error('Error : ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Run the given commands.
-     *
-     * @param  array  $commands
-     * @return void
-     */
-    protected function runShellCommands($commands)
-    {
-        $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
-
-        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
-            try {
-                $process->setTty(true);
-            } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
-            }
-        }
-
-        $process->run(function ($type, $line) {
-            $this->output->write('    ' . $line);
-        });
     }
 }

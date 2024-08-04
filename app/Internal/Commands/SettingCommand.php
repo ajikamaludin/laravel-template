@@ -2,9 +2,7 @@
 
 namespace App\Internal\Commands;
 
-use App\Internal\Services\PermissionService;
 use App\Internal\Services\SettingService;
-use Illuminate\Console\Command;
 
 class SettingCommand extends Command
 {
