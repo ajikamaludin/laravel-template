@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Default\Setting;
 use App\Services\UserJwtService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -34,12 +35,12 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user() ? $request->user()->load(['role.permissions']) : $request->user(),
-                'login_at' => session(null)->get('user_login_at', ''),
+                'login_at' => Session::get('user_login_at', ''),
                 'jwt_token' => UserJwtService::getActiveToken(),
                 'jwt_prefix' => UserJwtService::KEYPREFIX,
             ],
             'flash' => [
-                'message' => fn () => $request->session()->get('message'),
+                'message' => fn () => Session::get('message'),
             ],
             'app' => Setting::getByKeys(['app_name', 'app_logo']),
         ]);

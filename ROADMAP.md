@@ -1,5 +1,6 @@
 ## TODO
 
+-   [ ] move menu to database
 -   [ ] upgrade files controller to add models as madia manager
 -   [ ] create easy deploy command
 -   [ ] generic table editor
