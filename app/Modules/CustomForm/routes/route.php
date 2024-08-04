@@ -11,6 +11,7 @@ Route::prefix('custom-form')
         Route::post('/public/{form}', [FormRecordController::class, 'store']);
 
         Route::middleware(['auth'])->group(function () {
+            Route::get('{form}/form-records/print', [FormRecordController::class, 'print'])->name('form-records.print');
             Route::get('{form}/form-records/export', [FormRecordController::class, 'export'])->name('form-records.export');
             Route::resource('{form}/form-records', FormRecordController::class)->parameters(['form-records' => 'formRecord']);
             Route::resource('forms', FormController::class);

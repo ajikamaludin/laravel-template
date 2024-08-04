@@ -69,6 +69,7 @@ export default function AuthenticatedLayout({
                                             <span className="inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-500 text-sm font-semibold text-white leading-none">
                                                 {auth.user.name
                                                     .split(' ')
+                                                    .slice(0, 2)
                                                     .map((n) => n[0])
                                                     .join('')
                                                     .toUpperCase()}

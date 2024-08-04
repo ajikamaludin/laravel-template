@@ -1,6 +1,8 @@
 <?php
 
-if (! function_exists('splitPascalCase')) {
+use Illuminate\Support\Number;
+
+if (!function_exists('splitPascalCase')) {
     function splitPascalCase($string)
     {
         $word = '';
@@ -12,9 +14,23 @@ if (! function_exists('splitPascalCase')) {
 
                 continue;
             }
-            $word .= '-'.$s;
+            $word .= '-' . $s;
         }
 
         return $word;
+    }
+}
+
+if (!function_exists('formatIDR')) {
+    function formatIDR($number)
+    {
+        return Number::currency($number, 'IDR');
+    }
+}
+
+if (!function_exists('formatDate')) {
+    function formatDate($date)
+    {
+        return \Illuminate\Support\Carbon::parse($date)->format('d-m-Y');
     }
 }

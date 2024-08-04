@@ -1,14 +1,27 @@
 import React from 'react'
 import { HiX } from 'react-icons/hi'
 
-export default function Modal({ children, title = '', isOpen, onClose }) {
+export default function Modal({
+    children,
+    title = '',
+    isOpen,
+    onClose,
+    size = 'md',
+}) {
+    const sizes = {
+        sm: 'md:max-w-sm',
+        md: 'md:max-w-md',
+        lg: 'md:max-w-xl',
+        xl: 'md:max-w-5xl',
+    }
+
     return (
         <dialog
-            className={`modal modal-bottom md:modal-middle ${
+            className={`w-full modal modal-bottom md:modal-middle ${
                 isOpen ? 'modal-open' : ''
             }`}
         >
-            <div className="modal-box">
+            <div className={`modal-box md:w-11/12 ${sizes[size]}`}>
                 {title && <h3 className="font-bold text-lg">{title}</h3>}
                 <form method="dialog">
                     <button
@@ -18,7 +31,7 @@ export default function Modal({ children, title = '', isOpen, onClose }) {
                         <HiX className="h-4 w-4" />
                     </button>
                 </form>
-                <div>{children}</div>
+                <div className="w-full">{children}</div>
             </div>
         </dialog>
     )

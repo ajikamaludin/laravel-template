@@ -3,7 +3,11 @@ import React, { forwardRef } from 'react'
 const Label = ({ label }) => {
     if (!label) return null
 
-    return <label className="label-text">{label}</label>
+    return (
+        <div className="label">
+            <span className="label-text">{label}</span>
+        </div>
+    )
 }
 
 const BottomTextHelper = ({ error }) => {
@@ -31,7 +35,7 @@ const TextareaInput = forwardRef((props, ref) => {
     const className = error ? errorClassName : defaultClassName
 
     return (
-        <div>
+        <div className="form-control">
             <Label label={label} />
             <textarea
                 ref={ref}

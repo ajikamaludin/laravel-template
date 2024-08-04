@@ -21,18 +21,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // for optimize in development log every query
-        // if (app()->isProduction() == false) {
-        // DB::listen(function ($query) {
-        //     Log::info(
-        //         $query->sql,
-        //         [
-        //             'bindings' => $query->bindings,
-        //             'time' => $query->time,
-        //             'connectionName' => $query->connectionName,
-        //         ]
-        //     );
-        // });
-        // }
+        if (env('LOG_SQL_ENABLE', false)) {
+            DB::listen(function ($query) {
+                Log::info(
+                    $query->sql,
+                    [
+                        'bindings' => $query->bindings,
+                        'time' => $query->time,
+                        'connectionName' => $query->connectionName,
+                    ]
+                );
+            });
+        }
     }
 }

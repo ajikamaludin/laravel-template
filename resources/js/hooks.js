@@ -38,7 +38,7 @@ export function usePagination(auth, r) {
         from: 0,
         to: 0,
         total: 0,
-        page: 1,
+        current_page: 1,
     })
 
     const fetch = (page = 1, params = {}) => {
@@ -69,7 +69,7 @@ export function useSelectApiPagination(auth, params) {
         from: 0,
         to: 0,
         total: 0,
-        page: 1,
+        current_page: 1,
     })
 
     const fetch = (page = 1, additionalParams) => {

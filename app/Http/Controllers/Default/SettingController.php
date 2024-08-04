@@ -26,13 +26,13 @@ class SettingController extends Controller
         DB::beginTransaction();
 
         foreach ($request->input() as $key => $value) {
-            if ($value === null) {
+            if ($value == '' && $key == 'app_logo') {
                 continue;
             }
             Setting::updateOrCreate(
                 ['key' => $key],
                 [
-                    'value' => $value,
+                    'value' => $value ?? '',
                     'type' => 'text',
                 ]
             );

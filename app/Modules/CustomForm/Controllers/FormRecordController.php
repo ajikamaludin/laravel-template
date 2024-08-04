@@ -5,6 +5,7 @@ namespace App\Modules\CustomForm\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\CustomForm\Models\Form;
 use App\Modules\CustomForm\Models\FormRecord;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -115,5 +116,36 @@ class FormRecordController extends Controller
         $name = $form->name . '_' . now()->format('d-m-Y_H-i') . '.xlsx';
 
         return (new FastExcel($collections))->download($name);
+    }
+
+    public function print(Form $form)
+    {
+        $collections = collect();
+
+        $fields = json_decode($form->fields);
+        $headers = [];
+        foreach ($fields as $field) {
+            $headers[] = $field->name;
+        }
+
+        $records = $form->records()->orderBy('updated_at', 'desc')->get();
+        foreach ($records as $record) {
+            $d = [];
+            $r = json_decode($record->fields);
+            foreach ($r as $rd) {
+                if (in_array($rd->name, $headers)) {
+                    $d[$rd->name] = $rd->value ?? '';
+                }
+            }
+            $collections->add($d);
+        }
+
+        $pdf = Pdf::loadView('prints.custom-form.print', [
+            'collections' => $collections,
+            'form' => $form,
+            'headers' => $headers,
+        ])->setPaper('a4', 'landscape');
+
+        return $pdf->stream();
     }
 }

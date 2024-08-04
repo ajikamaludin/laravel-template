@@ -104,6 +104,15 @@ export default function Index(props) {
                                     Export
                                 </Button>
                             </a>
+                            <a
+                                href={route(
+                                    'custom-form.form-records.print',
+                                    field
+                                )}
+                                target="_blank"
+                            >
+                                <Button size="sm">Print</Button>
+                            </a>
                         </div>
                         <div className="flex items-center">
                             <SearchInput

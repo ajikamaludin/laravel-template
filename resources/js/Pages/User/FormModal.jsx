@@ -105,6 +105,9 @@ export default function FormModal(props) {
                                     role_id: item ? item.id : null,
                                 })
                             }
+                            onRemove={() =>
+                                setData({ ...data, role: '', role_id: null })
+                            }
                             error={errors.role_id}
                             params={{
                                 table: 'roles',

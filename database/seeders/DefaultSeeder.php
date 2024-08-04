@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Constants\PermissionConstant;
+use App\Constants\SettingConstant;
 use App\Models\Default\Permission;
 use App\Models\Default\Role;
 use App\Models\Default\Setting;
@@ -17,12 +18,9 @@ class DefaultSeeder extends Seeder
      */
     public function run(): void
     {
-        $settings = [
-            ['id' => Str::ulid(), 'key' => 'app_name', 'value' => 'Daisy UI App', 'type' => 'text'],
-            ['id' => Str::ulid(), 'key' => 'app_logo', 'value' => '', 'type' => 'image'],
-        ];
-
-        Setting::insert($settings);
+        foreach (SettingConstant::SYSTEM as $setting) {
+            Setting::insert(['id' => Str::ulid(), ...$setting]);
+        }
 
         foreach (PermissionConstant::LIST as $permission) {
             Permission::insert(['id' => Str::ulid(), ...$permission]);

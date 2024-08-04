@@ -5,7 +5,7 @@ export default function Button(props) {
     const { type } = props
 
     const types = {
-        default: 'btn-primary',
+        default: '',
         primary: 'btn-primary',
         secondary: 'btn-secondary',
         info: 'btn-info',
