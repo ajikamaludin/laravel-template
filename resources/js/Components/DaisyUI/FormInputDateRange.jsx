@@ -8,9 +8,9 @@ import Datepicker from 'react-tailwindcss-datepicker'
  *
  * Example :
  * <FormInputDateRanger
- *     value={data.value}
+ *     value={dates} // {startDate: '', endDate: ''}
  *     label={'Date Range'}
- *     onChange={(date) => handle(input, date)}
+ *     onChange={(dates) => handle(input, date)}
  * />
  */
 export default function FormInputDateRanger({

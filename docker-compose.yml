@@ -1,21 +1,30 @@
 services:
   app:
-      image: dunglas/frankenphp
+      image: ajikamaludin/php83user:latest
       container_name: template-app
+      working_dir: /var/www/
       volumes:
-        - ./:/app
+        - ./:/var/www
         - /etc/timezone:/etc/timezone:ro
         - /etc/localtime:/etc/localtime:ro
       mem_limit: 512m
       mem_reservation: 128M
       cpus: 0.5
-      ports:
-        - 8000:8000
-      tty: true
-      environment:
-        - SERVER_NAME=:8000
       networks:
         - template
+  nginx:
+    image: nginx:1.17-alpine
+    container_name: template-nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      - template
   mariadb:
     image: mariadb:latest
     container_name: template-mariadb

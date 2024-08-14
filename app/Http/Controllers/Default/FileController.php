@@ -24,7 +24,7 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-        $rule = ['required', 'file'];
+        $rule = ['required', 'file', 'max:4192'];
         if ($request->filemimes != '') {
             $rule[] = FileRule::types($request->filemimes);
         }

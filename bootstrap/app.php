@@ -6,17 +6,17 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 // check modules exists
 $additionalWebRoutes = [];
+
 if (file_exists(__DIR__ . '/../app/Modules/routes.php')) {
     $additionalWebRoutes = (require_once __DIR__ . '/../app/Modules/routes.php');
 }
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: [
-            ...$additionalWebRoutes,
+        web: array_merge([
             __DIR__ . '/../routes/auth.php',
             __DIR__ . '/../routes/web.php',
-        ],
+        ], is_array($additionalWebRoutes) ? $additionalWebRoutes : []),
         api: __DIR__ . '/../routes/api.php',
         health: '/up',
     )

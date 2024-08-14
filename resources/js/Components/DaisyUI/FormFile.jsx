@@ -4,6 +4,21 @@ import { usePage } from '@inertiajs/react'
 import Spinner from './Spinner'
 import { isEmpty } from 'lodash'
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ *
+ * Example :
+ * <FormFile
+ *    label={'App Logo'}
+ *    onChange={(file_path) => setData('app_logo', file_path)}
+ *    error={errors.app_logo}
+ *    url={app_logo_url}
+ *    filemimes="image/jpg,image/jpeg,image/png"
+ * />
+ *
+ */
 export default function FormFile({
     label,
     onChange,

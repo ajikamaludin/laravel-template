@@ -39,27 +39,27 @@ class BuildArchiveCommand extends Command
      */
     public function handle()
     {
-        $zipName = str_replace(' ', '', basename(base_path())) . '_' . now()->format('dm_His') . '.zip';
+        $zipName = str_replace(' ', '', basename(base_path())) . '.zip';
         if ($this->option('remove') != 'n') {
             try {
                 unlink(base_path($zipName));
             } finally {
-                $this->info('Compressed file removed');
+                $this->info('old compressed file removed');
 
                 return;
             }
         }
 
-        $runNpmBuild = confirm('Build new assets ?', true);
+        $runNpmBuild = confirm('build new assets ?', true);
 
         $zipService = new ZipService;
 
-        $withRawJs = confirm('Includes resources/js ?', false);
+        $withRawJs = confirm('includes resources/js ?', false);
         if (!$withRawJs) {
             $zipService->addExcludedContains('resources/js');
         }
 
-        $withModules = confirm('Includes app/Modules ?', true);
+        $withModules = confirm('includes app/Modules ?', true);
         if (!$withModules) {
             $zipService->addExcludedContains('app/Modules');
         }
@@ -68,13 +68,13 @@ class BuildArchiveCommand extends Command
             $startTime = microtime(true);
 
             if ($runNpmBuild) {
-                $this->info('Building new assets files');
+                $this->info('building new assets files');
                 $this->runShellCommands(['npm run build']);
             }
 
             $this->runShellCommands(['php artisan optimize:clear']);
 
-            spin(fn () => $zipService->create(base_path(), $zipName), 'Zipping files . . . .');
+            spin(fn() => $zipService->create(base_path(), $zipName), 'Zipping files . . . .');
 
             $endTime = microtime(true);
             $timeTaken = number_format($endTime - $startTime, 2);
