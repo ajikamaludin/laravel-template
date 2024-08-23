@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiX } from 'react-icons/hi'
+import { HiXMark } from 'react-icons/hi2'
 
 export default function Modal({
     children,
@@ -28,7 +28,7 @@ export default function Modal({
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                         onClick={onClose}
                     >
-                        <HiX className="h-4 w-4" />
+                        <HiXMark className="h-5 w-5" />
                     </button>
                 </form>
                 <div className="w-full">{children}</div>

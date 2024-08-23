@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
@@ -91,7 +91,7 @@ export default function Index(props) {
                                         <td>{permission.label}</td>
                                         <td>{permission.name}</td>
                                         <td className="text-end">
-                                            <Dropdown label={'Opsi'}>
+                                            <Dropdown>
                                                 <Dropdown.Item
                                                     onClick={() =>
                                                         toggleFormModal(

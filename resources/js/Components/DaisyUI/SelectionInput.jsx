@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { usePage } from '@inertiajs/react'
-import { HiChevronDown, HiChevronUp, HiX } from 'react-icons/hi'
+import { HiChevronDown, HiChevronUp, HiXMark } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
 import axios from 'axios'
 import qs from 'qs'
@@ -241,7 +241,7 @@ export default function SelectionInput(props) {
                                         }
                                     >
                                         <button className="cursor-pointer w-6 h-6 text-red-300 outline-none focus:outline-none">
-                                            <HiX />
+                                            <HiXMark />
                                         </button>
                                     </div>
                                 )}

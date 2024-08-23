@@ -3,6 +3,7 @@
 namespace App\Modules\CustomForm\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Default\Role;
 use App\Modules\CustomForm\Models\Form;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,10 @@ class FormController extends Controller
     public function index(Request $request)
     {
         $query = Form::query();
+
+        if (auth()->user()->role && auth()->user()->role->name == Role::GUEST) {
+            $query->where('user_id', auth()->id());
+        }
 
         if ($request->q) {
             $query->where('name', 'like', "%{$request->q}%");

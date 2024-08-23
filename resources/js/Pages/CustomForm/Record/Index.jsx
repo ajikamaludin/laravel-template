@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head, Link } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import HasPermission from '@/Components/Common/HasPermission'
@@ -142,12 +142,7 @@ export default function Index(props) {
                                             />
                                         ))}
                                         <td className="text-end">
-                                            <Dropdown
-                                                label={'Opsi'}
-                                                last={
-                                                    index + 1 === +data.length
-                                                }
-                                            >
+                                            <Dropdown>
                                                 <HasPermission p="update-custom-form-record">
                                                     <Dropdown.Item>
                                                         <Link

@@ -6,10 +6,17 @@ export default function Button(props) {
 
     const types = {
         default: '',
+        neutral: 'btn-neutral',
         primary: 'btn-primary',
         secondary: 'btn-secondary',
+        accent: 'btn-accent',
+        ghost: 'btn-ghost',
+        link: 'btn-link',
+        //
         info: 'btn-info',
         error: 'btn-error',
+        success: 'btn-success',
+        warning: 'btn-warning',
     }
 
     return (

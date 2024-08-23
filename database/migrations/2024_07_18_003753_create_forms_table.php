@@ -16,6 +16,7 @@ return new class extends Migration
             //
             $table->string('name');
             $table->jsonb('fields');
+            $table->ulid('user_id')->nullable();
             //
             $table->timestamps();
             $table->softDeletes();

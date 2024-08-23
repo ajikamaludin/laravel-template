@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiClipboardCopy, HiEye, HiPencil, HiTrash } from 'react-icons/hi'
+import { HiClipboardDocument, HiEye, HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
@@ -116,7 +116,7 @@ export default function Index(props) {
                                                     'shortlink.redirect',
                                                     link
                                                 )}
-                                                <HiClipboardCopy className="h-5 w-5" />
+                                                <HiClipboardDocument className="h-5 w-5" />
                                             </div>
                                         </td>
                                         <td>

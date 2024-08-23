@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import HasPermission from '@/Components/Common/HasPermission'
@@ -97,12 +97,7 @@ export default function Index(props) {
                                                 : user.role?.name}
                                         </td>
                                         <td className="text-end">
-                                            <Dropdown
-                                                label={'Opsi'}
-                                                last={
-                                                    index + 1 === +data.length
-                                                }
-                                            >
+                                            <Dropdown>
                                                 <HasPermission p="update-user">
                                                     <Dropdown.Item
                                                         onClick={() =>

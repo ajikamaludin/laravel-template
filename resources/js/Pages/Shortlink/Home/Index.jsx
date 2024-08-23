@@ -4,7 +4,7 @@ import { Head, useForm } from '@inertiajs/react'
 import CustomLayout from '@/Layouts/CustomLayout'
 import TextInput from '@/Components/DaisyUI/TextInput'
 import Button from '@/Components/DaisyUI/Button'
-import { HiClipboardCopy } from 'react-icons/hi'
+import { HiClipboardDocument } from 'react-icons/hi2'
 import { showToast } from '@/utils'
 
 export default function Index(props) {
@@ -85,7 +85,7 @@ export default function Index(props) {
                             <div className="p-4  flex flex-row justify-between bg-opacity-10 bg-green-500 text-green-500">
                                 <p className="">{message.link}</p>
 
-                                <HiClipboardCopy
+                                <HiClipboardDocument
                                     className="text-base-content h-5 w-5"
                                     title="click to copy"
                                     onClick={handleCopyToClipboard}

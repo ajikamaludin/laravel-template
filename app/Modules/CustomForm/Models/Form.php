@@ -10,6 +10,7 @@ class Form extends Model
     protected $fillable = [
         'name',
         'fields',
+        'user_id',
     ];
 
     public function records(): HasMany

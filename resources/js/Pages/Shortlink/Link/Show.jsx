@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Head, router } from '@inertiajs/react'
-import { HiClipboardCopy, HiEye } from 'react-icons/hi'
+import { HiClipboardDocument, HiEye } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
 import { usePrevious } from 'react-use'
 import Chart from 'react-apexcharts'
@@ -112,7 +112,7 @@ export default function Index(props) {
                                         <div>
                                             {route('shortlink.redirect', link)}
                                         </div>
-                                        <HiClipboardCopy className="h-5 w-5" />
+                                        <HiClipboardDocument className="h-5 w-5" />
                                     </div>
                                 </div>
                             </div>

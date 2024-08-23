@@ -45,6 +45,6 @@ class Setting extends Model
 
     public function url(): Attribute
     {
-        return Attribute::make(get: fn () => $this->type == 'image' && $this->value != '' ? route('file.show', ['file' => $this->value]) : null);
+        return Attribute::make(get: fn() => $this->type == 'image' && $this->value != '' ? route('file.show', ['file' => $this->value]) : null);
     }
 }

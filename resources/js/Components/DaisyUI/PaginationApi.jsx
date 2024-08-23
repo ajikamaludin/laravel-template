@@ -1,4 +1,4 @@
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi'
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
 
 const PageLink = ({ active, label, page, onPageChange }) => {
     const className = active ? 'join-item btn btn-active' : 'join-item btn'

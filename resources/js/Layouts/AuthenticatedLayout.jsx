@@ -3,7 +3,7 @@ import { Link, router, usePage } from '@inertiajs/react'
 import { Toaster } from 'sonner'
 import { isArray, isEmpty } from 'lodash'
 import { themeChange } from 'theme-change'
-import { HiMenu } from 'react-icons/hi'
+import { HiBars3 } from 'react-icons/hi2'
 
 import SidebarNav from './Partials/SidebarNav'
 import Breadcrumb from '@/Components/DaisyUI/Breadcrumb'
@@ -52,7 +52,7 @@ export default function AuthenticatedLayout({
                                     }
                                     className="inline-flex items-center justify-center p-2 rounded-md text-base-content focus:outline-none  transition duration-150 ease-in-out"
                                 >
-                                    <HiMenu />
+                                    <HiBars3 className="h-5 w-5" />
                                 </button>
                             </div>
 

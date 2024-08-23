@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { router } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
 import { Head, Link } from '@inertiajs/react'
-import { HiPencil, HiTrash } from 'react-icons/hi'
+import { HiPencil, HiTrash, HiEllipsisVertical, HiPlus } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
@@ -59,7 +59,7 @@ export default function Index(props) {
                         <HasPermission p="create-role">
                             <Link href={route('roles.create')}>
                                 <Button size="sm" type="primary">
-                                    Tambah
+                                    <HiPlus className="h-5 w-5" />
                                 </Button>
                             </Link>
                         </HasPermission>
@@ -84,7 +84,11 @@ export default function Index(props) {
                                     <tr key={role.id}>
                                         <td>{role.name}</td>
                                         <td className="text-right">
-                                            <Dropdown label={'Opsi'}>
+                                            <Dropdown
+                                                label={
+                                                    <HiEllipsisVertical className="h-5 w-5" />
+                                                }
+                                            >
                                                 <HasPermission p="update-role">
                                                     <Dropdown.Item
                                                         onClick={() =>

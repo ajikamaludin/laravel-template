@@ -23,7 +23,7 @@ class UserController extends Controller
         $query->orderBy('created_at', 'desc');
 
         return inertia('User/Index', [
-            'data' => $query->paginate(10),
+            'data' => $query->paginate(),
         ]);
     }
 
@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|string|max:255',
         ]);
 

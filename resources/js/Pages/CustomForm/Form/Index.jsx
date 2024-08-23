@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head, Link } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 import { HiEye } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
@@ -85,12 +85,7 @@ export default function Index(props) {
                                     <tr key={item.id}>
                                         <td>{item.name}</td>
                                         <td className="text-end">
-                                            <Dropdown
-                                                label={'Opsi'}
-                                                last={
-                                                    index + 1 === +data.length
-                                                }
-                                            >
+                                            <Dropdown>
                                                 <Dropdown.Item>
                                                     <Link
                                                         href={route(

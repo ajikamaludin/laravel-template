@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
-import { HiChartPie, HiLogout, HiOutlineX } from 'react-icons/hi'
+import { HiXMark, HiArrowRightOnRectangle } from 'react-icons/hi2'
+
 import { filterAllowedMenu } from './helpers.cjs'
 import routes from './routes.cjs'
 
@@ -95,7 +96,7 @@ export default function SidebarNav({ user, show, setShow }) {
                             className="block md:hidden"
                             onClick={() => setShow(false)}
                         >
-                            <HiOutlineX className="w-5 h-5" />
+                            <HiXMark className="w-5 h-5" />
                         </div>
                     </div>
                     <nav className="w-full">
@@ -123,7 +124,7 @@ export default function SidebarNav({ user, show, setShow }) {
                                 <div
                                     onClick={() => router.post(route('logout'))}
                                 >
-                                    <HiLogout
+                                    <HiArrowRightOnRectangle
                                         className="h-5 w-5"
                                         aria-hidden="true"
                                     />

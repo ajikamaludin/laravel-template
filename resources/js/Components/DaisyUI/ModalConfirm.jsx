@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from './Modal'
 import Button from './Button'
 
-import { HiOutlineExclamationCircle } from 'react-icons/hi'
+import { HiOutlineExclamationCircle } from 'react-icons/hi2'
 
 export default function ModalConfirm({ onConfirm, modalState }) {
     const onClickConfirm = () => {
@@ -24,7 +24,7 @@ export default function ModalConfirm({ onConfirm, modalState }) {
                     <Button type="error" onClick={onClickConfirm}>
                         Yes
                     </Button>
-                    <Button type="" onClick={onCancel}>
+                    <Button type="info" onClick={onCancel}>
                         Cancel
                     </Button>
                 </div>

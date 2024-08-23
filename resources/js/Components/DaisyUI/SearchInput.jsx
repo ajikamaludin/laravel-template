@@ -1,4 +1,4 @@
-import { HiSearch } from 'react-icons/hi'
+import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import TextInput from './TextInput'
 
 /**
@@ -16,7 +16,7 @@ export default function SearchInput({ onChange, value }) {
     return (
         <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <HiSearch className="text-base" />
+                <HiOutlineMagnifyingGlass className="text-base" />
             </div>
             <TextInput
                 placeholder="Search"

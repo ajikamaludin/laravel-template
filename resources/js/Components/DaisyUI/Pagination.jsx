@@ -1,5 +1,5 @@
 import { router } from '@inertiajs/react'
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi'
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
 import qs from 'qs'
 
 const PageLink = ({ active, label, url, params }) => {
