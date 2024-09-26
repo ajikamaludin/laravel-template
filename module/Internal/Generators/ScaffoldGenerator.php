@@ -219,6 +219,7 @@ class ScaffoldGenerator
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
+                ->addMenu($this->Model, $this->models . '.index', 'view-' . $this->model)
                 ->addWebRoutes([
                     ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
                     ['post', $this->models, $this->Model, 'store', $this->models . '.store', $positionName],
@@ -254,7 +255,8 @@ class ScaffoldGenerator
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
-                ->addWebRoute('resource', $this->models, $this->Model, positionName: $positionName);
+                ->addMenu($this->Model, $this->models . '.index', 'view-' . $this->model)
+                ->addWebRoute('resource', $this->models, $this->Model, name: $this->models . '.index', positionName: $positionName);
 
             // Permission
             $this->createResourcePermissions();
@@ -284,6 +286,7 @@ class ScaffoldGenerator
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
+                ->addMenu($this->Model, $this->models . '.index', 'view-' . $this->model)
                 ->addWebRoutes([
                     ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
                     ['post', $this->models, $this->Model, 'update', $this->models . '.update', $positionName],

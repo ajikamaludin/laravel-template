@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Constants\MenuConstant;
 use App\Models\Default\Setting;
 use App\Services\UserJwtService;
 use Illuminate\Http\Request;
@@ -40,9 +41,10 @@ class HandleInertiaRequests extends Middleware
                 'jwt_prefix' => UserJwtService::KEYPREFIX,
             ],
             'flash' => [
-                'message' => fn () => Session::get('message'),
+                'message' => fn() => Session::get('message'),
             ],
             'app' => Setting::getByKeys(['app_name', 'app_logo']),
+            'navigation' => MenuConstant::all()
         ]);
     }
 }

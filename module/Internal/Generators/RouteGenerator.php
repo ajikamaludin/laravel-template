@@ -2,10 +2,13 @@
 
 namespace Module\Internal\Generators;
 
+use Exception;
 use Illuminate\Support\Facades\File;
 
 class RouteGenerator
 {
+    protected $menuFile = '';
+
     public static function new()
     {
         return new RouteGenerator;
@@ -58,6 +61,38 @@ class RouteGenerator
         }
 
         return $position;
+    }
+
+    public function addMenu($name,  $routeName, $permissionName, $icon = 'HiDocumentCheck')
+    {
+        $this->menuFile = app_path('Constants/MenuConstant.php');
+        $menu = "
+            [
+                'name' => '$name',
+                'show' => true,
+                'icon' => '$icon',
+                'route' => route('$routeName.index'),
+                'active' => '$routeName',
+                'permission' => '$permissionName',
+            ],
+        ";
+
+        // Open the file in read mode to read its contents
+        $file = File::get(app_path($this->menuFile));
+
+        $marker = "// # Add Generated Menu Here!\n";
+        $position = strpos($file, $marker) + strlen($marker);
+
+        if (! $position) {
+            throw new Exception('MenuConstants marker is not set');
+        }
+
+        $file = substr_replace($file, $menu, $position, 0);
+
+        // Open the file in write mode to overwrite its contents
+        File::put(app_path($this->menuFile), $file);
+
+        return $this;
     }
 
     public function addWebRoutes(array $routes)

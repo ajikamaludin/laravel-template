@@ -1,9 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
-import { HiXMark, HiArrowRightOnRectangle } from 'react-icons/hi2'
+import {
+    HiXMark,
+    HiArrowRightOnRectangle,
+    HiChartPie,
+    HiUser,
+    HiCog,
+    HiGlobeAlt,
+    HiInformationCircle,
+    HiDocumentCheck,
+} from 'react-icons/hi2'
 
 import { filterAllowedMenu } from './helpers.cjs'
-import routes from './routes.cjs'
+
+const Icons = {
+    HiXMark: HiXMark,
+    HiArrowRightOnRectangle: HiArrowRightOnRectangle,
+    HiChartPie: HiChartPie,
+    HiUser: HiUser,
+    HiCog: HiCog,
+    HiGlobeAlt: HiGlobeAlt,
+    HiInformationCircle: HiInformationCircle,
+    HiDocumentCheck: HiDocumentCheck,
+}
+
+const ItemIcon = ({ icon, ...rest }) => {
+    const Component = Icons[icon]
+
+    return <Component {...rest} />
+}
 
 const SidebarItem = ({ item }) => {
     return (
@@ -13,7 +38,11 @@ const SidebarItem = ({ item }) => {
                 className={`${route().current(item.active) ? 'active' : ''}`}
             >
                 {item.icon && (
-                    <item.icon className="h-5 w-5" aria-hidden="true" />
+                    <ItemIcon
+                        icon={item.icon}
+                        className="h-5 w-5"
+                        aria-hidden="true"
+                    />
                 )}
                 {item.name}
             </Link>
@@ -35,7 +64,11 @@ const SidebarItemGroup = ({ item }) => {
             <details open={open}>
                 <summary>
                     {item.icon && (
-                        <item.icon className="h-5 w-5" aria-hidden="true" />
+                        <ItemIcon
+                            icon={item.icon}
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                        />
                     )}
                     {item.name}
                 </summary>
@@ -55,9 +88,11 @@ export default function SidebarNav({ user, show, setShow }) {
     const {
         props: {
             app: { app_name },
+            navigation,
         },
     } = usePage()
-    const menus = routes.filter((item) => {
+
+    const menus = navigation.filter((item) => {
         item.open = false
 
         if (!item.show) {
