@@ -65,7 +65,7 @@ class RouteGenerator
 
     public function addMenu($name,  $routeName, $permissionName, $icon = 'HiDocumentCheck')
     {
-        $this->menuFile = app_path('Constants/MenuConstant.php');
+        $this->menuFile = 'Constants/MenuConstant.php';
         $menu = "
             [
                 'name' => '$name',
