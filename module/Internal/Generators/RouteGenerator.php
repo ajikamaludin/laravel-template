@@ -83,7 +83,7 @@ class RouteGenerator
         $position = strpos($file, $marker) + strlen($marker);
 
         if (! $position) {
-            throw new Exception('MenuConstants marker is not set');
+            throw new Exception('MenuConstant marker is not set');
         }
 
         $file = substr_replace($file, $menu, $position, 0);
