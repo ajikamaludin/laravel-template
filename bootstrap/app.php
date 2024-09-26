@@ -7,8 +7,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 // check modules exists
 $additionalWebRoutes = [];
 
-if (file_exists(__DIR__ . '/../app/Modules/routes.php')) {
-    $additionalWebRoutes = (require_once __DIR__ . '/../app/Modules/routes.php');
+if (file_exists(__DIR__ . '/../module/routes.php')) {
+    $additionalWebRoutes = (require_once __DIR__ . '/../module/routes.php');
 }
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -22,7 +22,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
-            \App\Http\Middleware\HttpSecureAware::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
@@ -30,5 +29,4 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })
-    ->withCommands(file_exists(__DIR__ . '/../app/Internal/Commands') ? [__DIR__ . '/../app/Internal/Commands'] : [])
     ->create();
