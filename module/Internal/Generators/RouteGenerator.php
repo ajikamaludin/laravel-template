@@ -74,8 +74,7 @@ class RouteGenerator
                 'route' => route('$routeName.index'),
                 'active' => '$routeName.*',
                 'permission' => '$permissionName',
-            ],
-        ";
+            ],";
 
         // Open the file in read mode to read its contents
         $file = File::get(app_path($this->menuFile));
