@@ -85,8 +85,4 @@ it can generate 3 type of crud : form modal, form page, and single form, run com
 php artisan scaffold
 ```
 
-will ask you few options
-
 ![](screenshot_generator.gif?raw=true)
-
-in above example you will can see the result by access [http://localhost/customers](http://localhost/customers) or add menu to sidebar with
