@@ -63,7 +63,7 @@ class RouteGenerator
         return $position;
     }
 
-    public function addMenu($name,  $routeName, $permissionName, $icon = 'HiDocumentCheck')
+    public function addMenu($name,  $routeName, $permissionName, $icon = 'HiClipboardDocumentList')
     {
         $this->menuFile = 'Constants/MenuConstant.php';
         $menu = "

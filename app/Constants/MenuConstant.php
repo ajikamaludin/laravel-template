@@ -2,7 +2,6 @@
 
 namespace App\Constants;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 class MenuConstant

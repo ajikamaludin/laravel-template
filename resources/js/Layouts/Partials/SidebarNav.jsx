@@ -9,6 +9,7 @@ import {
     HiGlobeAlt,
     HiInformationCircle,
     HiDocumentCheck,
+    HiClipboardDocumentList,
 } from 'react-icons/hi2'
 
 import { filterAllowedMenu } from './helpers.cjs'
@@ -21,7 +22,7 @@ const Icons = {
     HiCog: HiCog,
     HiGlobeAlt: HiGlobeAlt,
     HiInformationCircle: HiInformationCircle,
-    HiDocumentCheck: HiDocumentCheck,
+    HiClipboardDocumentList: HiClipboardDocumentList,
 }
 
 const ItemIcon = ({ icon, ...rest }) => {
