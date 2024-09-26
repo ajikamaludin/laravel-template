@@ -90,15 +90,3 @@ will ask you few options
 ![](screenshot_generator.gif?raw=true)
 
 in above example you will can see the result by access [http://localhost/customers](http://localhost/customers) or add menu to sidebar with
-
-```js
-// resources/js/Layouts/routes.cjs
-{
-    name: 'Customer',
-    show: true,
-    icon: HiCog,
-    route: route('customers.index'),
-    active: 'customers.index',
-    permission: 'view-setting-customers',
-},
-```
