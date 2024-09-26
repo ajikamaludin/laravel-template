@@ -72,7 +72,7 @@ class RouteGenerator
                 'show' => true,
                 'icon' => '$icon',
                 'route' => route('$routeName.index'),
-                'active' => '$routeName',
+                'active' => '$routeName.*',
                 'permission' => '$permissionName',
             ],
         ";
