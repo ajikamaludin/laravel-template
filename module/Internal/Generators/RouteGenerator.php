@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class RouteGenerator
 {
-    protected $menuFile = '';
+    protected $menuFile = 'Constants/MenuConstant.php';
 
     public static function new()
     {
@@ -60,12 +60,11 @@ class RouteGenerator
             File::put($routePath, $file);
         }
 
-        return $position;
+        return $this;
     }
 
     public function addMenu($name,  $routeName, $permissionName, $icon = 'HiClipboardDocumentList')
     {
-        $this->menuFile = 'Constants/MenuConstant.php';
         $menu = "
             [
                 'name' => '$name',
