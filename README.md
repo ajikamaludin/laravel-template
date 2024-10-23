@@ -69,7 +69,7 @@ php artisan build
 
 this command will generate `app_name.zip` in your root folder and its file ready with build assets and optimize files
 
-## Screen Capture
+## The UI
 
 ![](screenshot_v3.gif?raw=true)
 
