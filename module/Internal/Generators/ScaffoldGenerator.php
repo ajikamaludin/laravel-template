@@ -256,7 +256,7 @@ class ScaffoldGenerator
             RouteGenerator::new()
                 ->addWebUse($this->Model)
                 ->addMenu($this->Model, $this->models, 'view-' . $this->model)
-                ->addWebRoute('resource', $this->models, $this->Model, name: $this->models . '.index', positionName: $positionName);
+                ->addWebRoute('resource', $this->models, $this->Model, positionName: $positionName);
 
             // Permission
             $this->createResourcePermissions();
