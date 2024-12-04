@@ -2,6 +2,8 @@
 
 namespace Module\Internal\Commands;
 
+use Illuminate\Support\Facades\Artisan;
+
 class ReinitCommand extends Command
 {
     /**
@@ -33,20 +35,18 @@ class ReinitCommand extends Command
      */
     public function handle()
     {
-        $this->runShellCommands([
-            'php artisan app:remove-modules all',
-            'rm -rf ' . base_path('.git'),
-            'git init',
-            'git add .',
-            'git commit -m "reinit project $(basename $(pwd))"',
-            'rm -rf .env',
-            'cp .env.example .env',
-            'rm -rf ' . database_path('database.sqlite'),
-            'touch ' . database_path('database.sqlite'),
-            'php artisan key:gen',
-            'php artisan migrate --seed',
-        ]);
+        $this->runShellCommand('php artisan app:remove-modules all');
+        $this->runShellCommand('rm -rf ' . base_path('.git'));
+        $this->runShellCommand('git init');
+        $this->runShellCommand('git add .');
+        $this->runShellCommand('git commit -m "reinit project $(basename $(pwd))"');
+        $this->runShellCommand('rm -rf .env');
+        $this->runShellCommand('cp .env.example .env');
+        $this->runShellCommand('rm -rf ' . database_path('database.sqlite'));
+        $this->runShellCommand('touch ' . database_path('database.sqlite'));
+        $this->runShellCommand('php artisan migrate --seed');
 
         $this->info('Projects Re-initilize');
+        $this->info('Please run : php artisan key:gen');
     }
 }

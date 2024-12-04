@@ -10,15 +10,9 @@ class Command extends BaseCommand
 {
     protected $name = 'base_command';
 
-    /**
-     * Run the given commands.
-     *
-     * @param  array  $commands
-     * @return void
-     */
-    protected function runShellCommands($commands)
+    protected function runShellCommand($command)
     {
-        $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
+        $process = Process::fromShellCommandline($command, base_path(), null, null, null);
 
         if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
             try {
@@ -31,5 +25,10 @@ class Command extends BaseCommand
         $process->run(function ($type, $line) {
             $this->output->write('    ' . $line);
         });
+    }
+
+    protected function runShellCommands($commands)
+    {
+        $this->runShellCommand(implode(' && ', $commands));
     }
 }
