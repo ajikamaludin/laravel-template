@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { toast } from 'sonner'
 import { isEmpty } from 'lodash'
 
@@ -6,18 +6,18 @@ export const formatDate = (date) => {
     if (isEmpty(date)) {
         return ''
     }
-    return moment(date).format('DD/MM/yyyy')
+    return dayjs(date).format('DD/MM/yyyy')
 }
 
 export const formatDateTime = (date) => {
     if (isEmpty(date)) {
         return ''
     }
-    return moment(date).format('DD/MM/yyyy HH:mm:ss')
+    return dayjs(date).format('DD/MM/yyyy HH:mm:ss')
 }
 
 export const dateToString = (date) => {
-    return moment(date).format('MM/DD/yyyy')
+    return dayjs(date).format('MM/DD/yyyy')
 }
 
 export const converToDate = (date) => {

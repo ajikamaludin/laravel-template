@@ -15,18 +15,18 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     lodash: ['lodash'],
-                    moment: ['moment'],
                     daisyui: ['daisyui'],
+                    dayjs: ['dayjs'],
                     sonner: ['sonner'],
-                    apexcharts: ['apexcharts'],
                     reactapexcharts: ['react-apexcharts'],
-                    reacttailwindcssdatepicker: [
+                    'react-tailwindcss-datepicker': [
                         'react-tailwindcss-datepicker',
                     ],
-                    reactjsonpretty: ['react-json-pretty'],
+                    'react-json-pretty': ['react-json-pretty'],
                 },
             },
         },
+        chunkSizeWarningLimit: '571kB',
     },
     server: {
         hmr: { host: 'localhost' },
