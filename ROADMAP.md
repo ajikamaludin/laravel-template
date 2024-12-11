@@ -14,3 +14,4 @@
 -   [ ] crud generator with web interface and options to add fields and model
 -   [ ] change react\async to spatie\fork
         -> the problem is cant handle async function in webhosting, the main thread is to fast than async proccess
+-   [ ] dalam bundle/re-init app bisa hide menu role jadi normal user management tanpa rbac
