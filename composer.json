@@ -8,25 +8,24 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2.0",
+        "php": "^8.3.0",
         "dyrynda/laravel-cascade-soft-deletes": "^4.4.0",
         "firebase/php-jwt": "^6.10.2",
         "guzzlehttp/guzzle": "^7.9.2",
-        "inertiajs/inertia-laravel": "^1.x-dev",
-        "laravel/framework": "^11.34.2",
+        "inertiajs/inertia-laravel": "^2.0",
+        "laravel/framework": "^11.36.1",
         "laravel/prompts": "^0.1.25",
         "laravel/tinker": "^2.10.0",
         "rap2hpoutre/fast-excel": "^5.5",
         "react/async": "^4.3",
-        "spatie/async": "^1.6.1",
+        "spatie/async": "^1.6.2",
         "tightenco/ziggy": "^1.8.2",
         "barryvdh/laravel-dompdf": "^2.2"
     },
     "require-dev": {
-        "aaronfrancis/solo": "dev-main",
         "beyondcode/laravel-dump-server": "^2.0.0",
         "fakerphp/faker": "^1.24.1",
-        "laravel/breeze": "^2.2.6",
+        "laravel/breeze": "^2.3.0",
         "laravel/pint": "^1.18.3",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.5.0",
@@ -62,6 +61,10 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd\" \"php artisan serve\" \"npm run dev\" --names=server,vite"
         ]
     },
     "extra": {
