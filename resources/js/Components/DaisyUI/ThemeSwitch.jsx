@@ -52,7 +52,7 @@ export function DarkSwitch() {
         <label className="swap swap-rotate">
             <input
                 type="checkbox"
-                data-toggle-theme="dark,winter" // change here
+                data-toggle-theme="business,winter" // change here
                 data-act-class="ACTIVECLASS"
                 className="hidden"
             />
