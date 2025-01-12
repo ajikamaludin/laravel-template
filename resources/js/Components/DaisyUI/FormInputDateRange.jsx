@@ -22,7 +22,11 @@ export default function FormInputDateRanger({
 }) {
     return (
         <div>
-            {label !== '' && <label className="text-label">{label}</label>}
+            {label !== '' && (
+                <div className="label">
+                    <label className="label-text">{label}</label>
+                </div>
+            )}
             <Datepicker
                 inputClassName={'input input-bordered w-full text-base-content'}
                 value={value}
