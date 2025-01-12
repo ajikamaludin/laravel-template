@@ -64,7 +64,7 @@ export default function Form(props) {
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            label="Name"
+                            label="Nama"
                             error={errors.name}
                         />
                         <div className="flex items-center">

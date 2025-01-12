@@ -41,7 +41,7 @@ export default function Page(props) {
                         name="name"
                         value={data.name}
                         onChange={handleOnChange}
-                        label="Name"
+                        label="Nama"
                         error={errors.name}
                     />
                     <div className="mt-4">

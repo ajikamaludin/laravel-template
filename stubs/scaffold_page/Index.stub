@@ -75,7 +75,7 @@ export default function Index(props) {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th />
                                 </tr>
                             </thead>

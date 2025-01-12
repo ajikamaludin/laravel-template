@@ -59,7 +59,7 @@ export default function Index(props) {
                         <HasPermission p="create-role">
                             <Link href={route('roles.create')}>
                                 <Button size="sm" type="primary">
-                                    <HiPlus className="h-5 w-5" />
+                                    Tambah
                                 </Button>
                             </Link>
                         </HasPermission>

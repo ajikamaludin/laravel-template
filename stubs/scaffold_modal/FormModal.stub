@@ -65,7 +65,7 @@ export default function FormModal(props) {
                     name="name"
                     value={data.name}
                     onChange={handleOnChange}
-                    label="Name"
+                    label="Nama"
                     error={errors.name}
                 />
 
