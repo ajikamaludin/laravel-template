@@ -53,6 +53,7 @@ class RemoveModuleCommand extends Command
             $this->runShellCommands(['rm -rf ' . resource_path('js/Pages/' . $module)]);
         }
 
+        $this->runShellCommands(['rm -rf ' . base_path('module/routes.php')]);
         $this->info('Removed Modules');
     }
 }
