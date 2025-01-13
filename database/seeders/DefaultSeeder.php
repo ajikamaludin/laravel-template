@@ -48,6 +48,8 @@ class DefaultSeeder extends Seeder
 
         $guest = Role::create(['name' => Role::GUEST]);
         $permission = Permission::where('name', 'view-shortlink')->first();
-        $guest->rolePermissions()->create(['permission_id' => $permission->id]);
+        if ($permission) {
+            $guest->rolePermissions()->create(['permission_id' => $permission->id]);
+        }
     }
 }
