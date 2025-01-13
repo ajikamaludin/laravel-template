@@ -22,7 +22,7 @@ class DefaultSeeder extends Seeder
             Setting::insert(['id' => Str::ulid(), ...$setting]);
         }
 
-        foreach (PermissionConstant::LIST as $permission) {
+        foreach (PermissionConstant::all() as $permission) {
             Permission::insert(['id' => Str::ulid(), ...$permission]);
         }
 

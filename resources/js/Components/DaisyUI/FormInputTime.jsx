@@ -28,26 +28,25 @@ const generateTimeOptions = (prefix = '') => {
  *     onChange={(time) => setShipTime(time)}
  * />
  */
-export default function FormInputTime({ label, value, onChange }) {
-    const [inputValue, setInputValue] = useState('')
+export default function FormInputTime({ label, value, onChange, error }) {
     const [filteredOptions, setFilteredOptions] = useState([])
     const [showOptions, setShowOptions] = useState(false)
 
     const handleInputChange = (e) => {
-        let value = e.target.value
+        let inputValue = e.target.value
 
         // Validasi input hanya angka dan karakter ':'
-        const sanitizedValue = value.replace(/[^0-9:]/g, '')
+        const sanitizedValue = inputValue.replace(/[^0-9:]/g, '')
 
         // Jika user mengetik 2 karakter pertama tanpa ':' tambahkan ':'
         if (sanitizedValue.length === 2 && !sanitizedValue.includes(':')) {
-            value = `${sanitizedValue}:`
+            inputValue = `${sanitizedValue}:`
         } else {
-            value = sanitizedValue
+            inputValue = sanitizedValue
         }
 
         // Jika format jam salah (lebih dari 24 jam atau menit lebih dari 59), jangan update
-        const [hours, minutes] = value.split(':')
+        const [hours, minutes] = inputValue.split(':')
         if (
             (hours && parseInt(hours, 10) > 23) ||
             (minutes && parseInt(minutes, 10) > 59)
@@ -55,10 +54,10 @@ export default function FormInputTime({ label, value, onChange }) {
             return
         }
 
-        setInputValue(value)
+        onChange(inputValue)
 
         // Sembunyikan opsi jika user mengetik 4 karakter
-        if (value.length === 5) {
+        if (inputValue.length === 5) {
             setShowOptions(false)
         } else {
             // Filter opsi berdasarkan input
@@ -66,12 +65,10 @@ export default function FormInputTime({ label, value, onChange }) {
             setFilteredOptions(generateTimeOptions(prefix))
             setShowOptions(true)
         }
-
-        onChange(value)
     }
 
     const handleOptionClick = (option) => {
-        setInputValue(option)
+        onChange(option)
         setShowOptions(false)
     }
 
@@ -89,13 +86,14 @@ export default function FormInputTime({ label, value, onChange }) {
         <div className="relative">
             <TextInput
                 type="text"
-                value={inputValue}
+                value={value}
                 onChange={handleInputChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 placeholder="__:__"
                 maxLength={5}
                 label={label}
+                error={error}
             />
             {showOptions && (
                 <ul className="absolute z-10 mt-1 w-full bg-base-100 max-h-48 overflow-y-auto">

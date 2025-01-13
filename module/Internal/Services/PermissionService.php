@@ -16,7 +16,8 @@ class PermissionService
 
     public function sync()
     {
-        $lists = collect(PermissionConstant::LIST)->map(fn($permission) => $permission['name'])->toArray();
+        $defaultPermissions = PermissionConstant::all();
+        $lists = collect($defaultPermissions)->map(fn($permission) => $permission['name'])->toArray();
         $permissions = Permission::all()->pluck('name')->toArray();
 
         // remove existing permission in database
@@ -29,7 +30,7 @@ class PermissionService
         // add new permission to database
         $to_add = array_diff($lists, $permissions);
         foreach ($to_add as $index => $name) {
-            $np = Permission::create(['id' => Str::ulid(), ...PermissionConstant::LIST[$index]]);
+            $np = Permission::create(['id' => Str::ulid(), ...$defaultPermissions[$index]]);
             if ($adminRole != null) {
                 $adminRole->rolePermissions()->create(['permission_id' => $np->id]);
             }

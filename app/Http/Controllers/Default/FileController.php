@@ -13,13 +13,15 @@ class FileController extends Controller
 {
     public function show(string $name)
     {
-        $path = Storage::disk('local')->path('public/' . $name);
+        $path = Storage::disk('public')->path($name);
 
-        if (Storage::disk('local')->exists('default/' . $name)) {
-            $path = Storage::disk('local')->path('default/' . $name);
+        if (Storage::disk('public')->exists('default/' . $name)) {
+            $path = Storage::disk('public')->path('default/' . $name);
         }
 
-        return response()->download($path);
+        $file = File::where('hash_name', $name)->first();
+
+        return response()->download($path, $file->upload_name);
     }
 
     public function store(Request $request)
@@ -35,7 +37,8 @@ class FileController extends Controller
 
         $file = $request->file('file');
 
-        Storage::disk('local')->put('public', $file);
+        // the `/` its mean that in disk public it will store in root folder
+        Storage::disk('public')->put('/', $file);
 
         File::create([
             'upload_name' => $file->getClientOriginalName(),
