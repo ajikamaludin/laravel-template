@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { usePage } from '@inertiajs/react'
-import Spinner from './Spinner'
 import { isEmpty } from 'lodash'
+import { usePage } from '@inertiajs/react'
+
+import Spinner from './Spinner'
 
 /**
  *

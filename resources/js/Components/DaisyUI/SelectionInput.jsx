@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { usePage } from '@inertiajs/react'
 import { HiChevronDown, HiChevronUp, HiXMark } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
@@ -6,7 +6,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 import { useDebounce } from '@/hooks'
-import Spinner from '@/Components/DaisyUI/Spinner'
+import Spinner from './Spinner'
 
 /**
  * This selection input is old fasion will be replace with SelectModalInput

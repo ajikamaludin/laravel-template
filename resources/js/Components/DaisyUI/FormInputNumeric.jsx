@@ -1,16 +1,7 @@
-import React from 'react'
 import { NumericFormat } from 'react-number-format'
+
 import TextInput from './TextInput'
-
-const Label = ({ label }) => {
-    if (!label) return null
-
-    return (
-        <div className="label">
-            <label className="label-text">{label}</label>
-        </div>
-    )
-}
+import Label from './Label'
 
 export default function FormInputNumeric({
     name,

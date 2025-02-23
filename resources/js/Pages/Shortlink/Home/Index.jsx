@@ -2,8 +2,7 @@ import React from 'react'
 import { Head, useForm } from '@inertiajs/react'
 
 import CustomLayout from '@/Layouts/CustomLayout'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
+import { TextInput, Button } from '@/Components/Index'
 import { HiClipboardDocument } from 'react-icons/hi2'
 import { showToast } from '@/utils'
 

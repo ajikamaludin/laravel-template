@@ -7,12 +7,14 @@ import { useModalState } from '@/hooks'
 
 import HasPermission from '@/Components/Common/HasPermission'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Pagination from '@/Components/DaisyUI/Pagination'
-import ModalConfirm from '@/Components/DaisyUI/ModalConfirm'
-import SearchInput from '@/Components/DaisyUI/SearchInput'
-import Button from '@/Components/DaisyUI/Button'
-import Dropdown from '@/Components/DaisyUI/Dropdown'
-import Card from '@/Components/DaisyUI/Card'
+import {
+    Pagination,
+    ModalConfirm,
+    SearchInput,
+    Button,
+    Dropdown,
+    Card,
+} from '@/Components/Index'
 
 export default function Index(props) {
     const {

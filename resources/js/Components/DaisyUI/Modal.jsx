@@ -1,4 +1,3 @@
-import React from 'react'
 import { HiXMark } from 'react-icons/hi2'
 
 export default function Modal({

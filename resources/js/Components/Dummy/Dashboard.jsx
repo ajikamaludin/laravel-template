@@ -1,5 +1,5 @@
 import Chart from 'react-apexcharts'
-import Card from '../DaisyUI/Card'
+import { Card } from '@/Components/Index'
 
 export default function DummyDashbord() {
     return (

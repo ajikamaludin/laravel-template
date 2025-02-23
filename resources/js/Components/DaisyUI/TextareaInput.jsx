@@ -1,14 +1,5 @@
-import React, { forwardRef } from 'react'
-
-const Label = ({ label }) => {
-    if (!label) return null
-
-    return (
-        <div className="label">
-            <span className="label-text">{label}</span>
-        </div>
-    )
-}
+import { forwardRef } from 'react'
+import Label from './Label'
 
 const BottomTextHelper = ({ error }) => {
     if (!error) return null

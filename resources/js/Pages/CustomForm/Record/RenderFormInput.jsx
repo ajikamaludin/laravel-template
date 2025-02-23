@@ -1,9 +1,12 @@
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Checkbox from '@/Components/DaisyUI/Checkbox'
-import TextareaInput from '@/Components/DaisyUI/TextareaInput'
-import { SelectOptionArray } from '@/Components/DaisyUI/SelectInput'
+import {
+    SelectOptionArray,
+    TextInput,
+    Checkbox,
+    TextareaInput,
+    FormInputDate,
+} from '@/Components/Index'
+
 import { InputTypes } from '../constants'
-import FormInputDate from '@/Components/DaisyUI/FormInputDate'
 
 export const RenderFormInput = ({ input, onChange }) => {
     if (input.type === InputTypes.multiple) {

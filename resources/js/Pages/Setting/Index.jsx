@@ -3,10 +3,7 @@ import { Head, useForm } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Card from '@/Components/DaisyUI/Card'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
-import FormFile from '@/Components/DaisyUI/FormFile'
+import { Card, TextInput, Button, FormFile } from '@/Components/Index'
 
 const extractValue = (set, key) => {
     const find = set.find((s) => s.key === key)

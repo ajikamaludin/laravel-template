@@ -5,12 +5,14 @@ import { HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Pagination from '@/Components/DaisyUI/Pagination'
-import ModalConfirm from '@/Components/DaisyUI/ModalConfirm'
-import SearchInput from '@/Components/DaisyUI/SearchInput'
-import Button from '@/Components/DaisyUI/Button'
-import Dropdown from '@/Components/DaisyUI/Dropdown'
-import Card from '@/Components/DaisyUI/Card'
+import {
+    Pagination,
+    ModalConfirm,
+    SearchInput,
+    Button,
+    Dropdown,
+    Card,
+} from '@/Components/Index'
 import FormModal from './FormModal'
 
 export default function Index(props) {

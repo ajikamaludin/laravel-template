@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
 import { useForm } from '@inertiajs/react'
 
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
+import { TextInput, Button } from '@/Components/Index'
 
 export default function UpdatePasswordForm({ className }) {
     const passwordInput = useRef()

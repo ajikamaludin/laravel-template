@@ -4,11 +4,13 @@ import { HiPlus, HiTrash } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
-import Card from '@/Components/DaisyUI/Card'
-import TextareaInput from '@/Components/DaisyUI/TextareaInput'
-import { SelectOptionObject } from '@/Components/DaisyUI/SelectInput'
+import {
+    SelectOptionObject,
+    TextInput,
+    Button,
+    Card,
+    TextareaInput,
+} from '@/Components/Index'
 import { InputTypes, RequiredOptions } from '../constants'
 
 export default function Form(props) {

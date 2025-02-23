@@ -2,8 +2,7 @@ import React from 'react'
 import { Head, useForm } from '@inertiajs/react'
 
 import GuestLayout from '@/Layouts/GuestLayout'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
+import { TextInput, Button } from '@/Components/Index'
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({

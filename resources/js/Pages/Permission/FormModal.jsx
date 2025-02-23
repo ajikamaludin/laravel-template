@@ -3,8 +3,7 @@ import { useForm } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
 
 import Modal from '@/Components/DaisyUI/Modal'
-import Button from '@/Components/DaisyUI/Button'
-import TextInput from '@/Components/DaisyUI/TextInput'
+import { TextInput, Button } from '@/Components/Index'
 
 export default function FormModal(props) {
     const { modalState } = props

@@ -6,13 +6,15 @@ import { HiPencil, HiTrash, HiEllipsisVertical, HiPlus } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Pagination from '@/Components/DaisyUI/Pagination'
-import ModalConfirm from '@/Components/DaisyUI/ModalConfirm'
-import SearchInput from '@/Components/DaisyUI/SearchInput'
 import HasPermission from '@/Components/Common/HasPermission'
-import Dropdown from '@/Components/DaisyUI/Dropdown'
-import Button from '@/Components/DaisyUI/Button'
-import Card from '@/Components/DaisyUI/Card'
+import {
+    Pagination,
+    ModalConfirm,
+    SearchInput,
+    Dropdown,
+    Button,
+    Card,
+} from '@/Components/Index'
 
 export default function Index(props) {
     const {

@@ -2,9 +2,9 @@ import React from 'react'
 import { Head } from '@inertiajs/react'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import { Card } from '@/Components/Index'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm'
-import Card from '@/Components/DaisyUI/Card'
 
 export default function Edit({ mustVerifyEmail, status }) {
     return (

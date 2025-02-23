@@ -2,7 +2,7 @@ import React from 'react'
 import { Head, Link, useForm } from '@inertiajs/react'
 
 import GuestLayout from '@/Layouts/GuestLayout'
-import Button from '@/Components/DaisyUI/Button'
+import { Button } from '@/Components/Index'
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm()

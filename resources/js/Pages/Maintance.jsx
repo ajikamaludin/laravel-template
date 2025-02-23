@@ -1,7 +1,8 @@
 import React from 'react'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head } from '@inertiajs/react'
 import { HiFire } from 'react-icons/hi2'
+
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 
 export default function Maintance(props) {
     return (

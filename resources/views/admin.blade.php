@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="winter">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="business">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="aji19kamaludin@gmail.com">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
@@ -19,7 +20,7 @@
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased bg-base-300">
+<body class="font-sans antialiased bg-base-300" author="aji19kamaludin@gmail.com">
     @inertia
 </body>
 

@@ -1,4 +1,4 @@
-import Modal from '@/Components/DaisyUI/Modal'
+import { Modal } from '@/Components/Index'
 import JSONPretty from 'react-json-pretty'
 
 export default function JsonModal({ modalState }) {

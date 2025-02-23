@@ -3,10 +3,7 @@ import { router, Head, Link, usePage } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
-import Checkbox from '@/Components/DaisyUI/Checkbox'
-import Card from '@/Components/DaisyUI/Card'
+import { TextInput, Button, Checkbox, Card } from '@/Components/Index'
 
 export default function Role(props) {
     const {

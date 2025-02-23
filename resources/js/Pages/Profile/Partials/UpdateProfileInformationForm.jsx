@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link, useForm, usePage } from '@inertiajs/react'
 
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Button from '@/Components/DaisyUI/Button'
+import { TextInput, Button } from '@/Components/Index'
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,

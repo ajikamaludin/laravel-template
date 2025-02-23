@@ -1,5 +1,3 @@
-import React from 'react'
-
 const BottomTextHelper = ({ error }) => {
     if (!error) return null
 

@@ -4,14 +4,16 @@ import { usePrevious } from 'react-use'
 import { HiClipboardDocument, HiEye, HiPencil, HiTrash } from 'react-icons/hi2'
 import { useModalState } from '@/hooks'
 
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Pagination from '@/Components/DaisyUI/Pagination'
-import ModalConfirm from '@/Components/DaisyUI/ModalConfirm'
-import SearchInput from '@/Components/DaisyUI/SearchInput'
-import Button from '@/Components/DaisyUI/Button'
-import Card from '@/Components/DaisyUI/Card'
-import FormModal from './FormModal'
 import { formatDateTime, showToast } from '@/utils'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import {
+    Pagination,
+    ModalConfirm,
+    SearchInput,
+    Button,
+    Card,
+} from '@/Components/Index'
+import FormModal from './FormModal'
 
 export default function Index(props) {
     const {

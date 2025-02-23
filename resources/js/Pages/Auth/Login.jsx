@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Head, useForm } from '@inertiajs/react'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Checkbox from '@/Components/DaisyUI/Checkbox'
-import Button from '@/Components/DaisyUI/Button'
+
+import { TextInput, Checkbox, Button } from '@/Components/Index'
 
 export default function Login({ status }) {
     const { data, setData, post, processing, errors, reset } = useForm({

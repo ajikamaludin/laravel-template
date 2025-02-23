@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react'
-import ApplicationLogo from '@/Components/ApplicationLogo'
+import { useEffect } from 'react'
 import { Link, usePage } from '@inertiajs/react'
+import { isEmpty } from 'lodash'
 import { themeChange } from 'theme-change'
 import { Toaster } from 'sonner'
 import { showToast } from '@/utils'
 
 export default function Guest({ children }) {
     const {
-        props: { flash },
+        props: {
+            flash,
+            app: { app_name, app_logo },
+        },
     } = usePage()
 
     useEffect(() => {
@@ -28,7 +31,17 @@ export default function Guest({ children }) {
                 <div className="p-4 md:p-5">
                     <div className="flex justify-center py-4">
                         <Link href="/">
-                            <ApplicationLogo className="w-auto h-20 fill-current text-base-content text-5xl font-bold" />
+                            <>
+                                {isEmpty(app_logo) && (
+                                    <img
+                                        src={app_logo}
+                                        className="w-36 h-3w-36"
+                                    />
+                                )}
+                                <h1 className="w-auto h-20 fill-current text-base-content text-5xl font-bold">
+                                    {app_name}
+                                </h1>
+                            </>
                         </Link>
                     </div>
                     {children}

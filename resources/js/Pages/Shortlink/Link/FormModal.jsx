@@ -2,10 +2,7 @@ import React, { useEffect } from 'react'
 import { useForm } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
 
-import Modal from '@/Components/DaisyUI/Modal'
-import Button from '@/Components/DaisyUI/Button'
-import TextInput from '@/Components/DaisyUI/TextInput'
-import Checkbox from '@/Components/DaisyUI/Checkbox'
+import { Modal, Button, TextInput, Checkbox } from '@/Components/Index'
 
 export default function FormModal(props) {
     const { modalState } = props

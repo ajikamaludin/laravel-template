@@ -5,13 +5,15 @@ import { isEmpty } from 'lodash'
 import { usePrevious } from 'react-use'
 import Chart from 'react-apexcharts'
 
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import Pagination from '@/Components/DaisyUI/Pagination'
-import Card from '@/Components/DaisyUI/Card'
-import Button from '@/Components/DaisyUI/Button'
-import FormInputDateRanger from '@/Components/DaisyUI/FormInputDateRange'
 import { useModalState } from '@/hooks'
 import { formatDateTime, showToast } from '@/utils'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import {
+    Pagination,
+    Card,
+    Button,
+    FormInputDateRange,
+} from '@/Components/Index'
 import JsonModal from './JsonModal'
 
 export default function Index(props) {
@@ -129,7 +131,7 @@ export default function Index(props) {
                 <Card>
                     <div className="w-full h-[270px]">
                         <div className="p-1">
-                            <FormInputDateRanger
+                            <FormInputDateRange
                                 value={dates}
                                 onChange={setDates}
                             />
