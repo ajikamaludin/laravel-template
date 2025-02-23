@@ -1,4 +1,5 @@
 import Datepicker from 'react-tailwindcss-datepicker'
+import Label from './Label'
 
 /**
  *
@@ -19,15 +20,15 @@ export default function FormInputDate({
     error,
     placeholder,
 }) {
+    const inputClassName = `input w-full text-base-content ${
+        error ? 'input-error' : 'input-bordered'
+    }`
+
     return (
         <div>
-            {label !== '' && (
-                <div className="label">
-                    <label className="label-text">{label}</label>
-                </div>
-            )}
+            <Label label={label} />
             <Datepicker
-                inputClassName={'input input-bordered w-full text-base-content'}
+                inputClassName={inputClassName}
                 useRange={false}
                 asSingle={true}
                 value={{ startDate: value, endDate: value }}
