@@ -9,28 +9,28 @@
     "license": "MIT",
     "require": {
         "php": "^8.3.0",
-        "dyrynda/laravel-cascade-soft-deletes": "^4.4.1",
+        "dyrynda/laravel-cascade-soft-deletes": "^4.5.0",
         "firebase/php-jwt": "^6.11.0",
         "guzzlehttp/guzzle": "^7.9.2",
         "inertiajs/inertia-laravel": "^2.0.1",
-        "laravel/framework": "^11.43.2",
-        "laravel/prompts": "^0.1.25",
+        "laravel/framework": "^12.0.1",
+        "laravel/prompts": "^0.3.5",
         "laravel/tinker": "^2.10.1",
         "rap2hpoutre/fast-excel": "^5.6",
         "react/async": "^4.3",
         "spatie/async": "^1.7.0",
         "tightenco/ziggy": "^1.8.2",
-        "barryvdh/laravel-dompdf": "^2.2"
+        "barryvdh/laravel-dompdf": "^3.1.1"
     },
     "require-dev": {
-        "beyondcode/laravel-dump-server": "^2.0.0",
+        "beyondcode/laravel-dump-server": "^2.1.0",
         "fakerphp/faker": "^1.24.1",
-        "laravel/breeze": "^2.3.4",
+        "laravel/breeze": "^2.3.5",
         "laravel/pint": "^1.21.0",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.5.0",
-        "pestphp/pest": "^2.36.0",
-        "pestphp/pest-plugin-laravel": "^2.4"
+        "nunomaduro/collision": "^8.6.1",
+        "pestphp/pest": "^3.7.4",
+        "pestphp/pest-plugin-laravel": "^3.1.0"
     },
     "autoload": {
         "files": [
