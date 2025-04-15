@@ -43,6 +43,7 @@ class ZipService
 
     public function __construct($numThreads = 4)
     {
+        ini_set('memory_limit', '-1');
         $this->zip = new ZipArchive;
         $this->$numThreads = $numThreads;
     }
@@ -77,12 +78,14 @@ class ZipService
                     throw new Exception("Cannot create zip file: $zipFileName");
                 }
 
-                foreach ($chunk as $hash) {
+                foreach ($chunk as $index => $hash) {
                     $file = $this->hashMap[$hash];
                     if (is_dir($file[0])) {
                         $zip->addEmptyDir($file[1]);
                     } else {
                         $zip->addFile($file[0], $file[1]);
+                        $zip->setCompressionName($file[1], ZipArchive::CM_DEFLATE);
+                        $zip->setCompressionIndex($index, 9);
                     }
                 }
 
