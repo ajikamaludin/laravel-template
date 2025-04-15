@@ -44,13 +44,13 @@ class RemoveModuleCommand extends Command
         }
 
         $modules = [
-            'CustomForm',
-            'Shortlink',
+            'custom-form' => 'CustomForm',
+            'shortlink' => 'Shortlink',
         ];
 
-        foreach ($modules as $module) {
+        foreach ($modules as $key => $module) {
             $this->runShellCommands(['rm -rf ' . base_path('module/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $module)]);
+            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $key)]);
         }
 
         $this->runShellCommands(['rm -rf ' . base_path('module/routes.php')]);

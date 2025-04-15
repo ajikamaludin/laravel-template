@@ -2,17 +2,23 @@ import { NumericFormat } from 'react-number-format'
 
 import TextInput from './text-input'
 import Label from './label'
+import TextInputError from './text-input-error'
 
 export default function FormInputNumeric({
-    className = '',
     name,
     onChange,
     value,
     label,
     error,
 }) {
+    const defaultClassName = ``
+
+    const errorClassName = `input-error`
+
+    const className = error ? errorClassName : defaultClassName
+
     return (
-        <div className="form-control">
+        <div className="fieldset">
             <Label label={label} />
             <NumericFormat
                 className={className ?? ''}
@@ -31,12 +37,9 @@ export default function FormInputNumeric({
                         },
                     })
                 }}
+                autoComplete="off"
             />
-            {error && (
-                <p className="mb-2 text-sm text-red-600 dark:text-red-500">
-                    {error}
-                </p>
-            )}
+            <TextInputError error={error} />
         </div>
     )
 }
