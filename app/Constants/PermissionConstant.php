@@ -19,7 +19,11 @@ class PermissionConstant
         ['label' => 'View Role', 'name' => 'view-role'],
         ['label' => 'Delete Role', 'name' => 'delete-role'],
 
-        ['label' => 'View Setting', 'name' => 'view-setting'],
+	['label' => 'View Setting', 'name' => 'view-setting'],
+
+	// #Add New Permission Below!
+
+
     ];
 
     public static function all()
