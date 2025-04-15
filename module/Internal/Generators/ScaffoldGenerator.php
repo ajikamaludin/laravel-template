@@ -147,32 +147,57 @@ class ScaffoldGenerator
 
     public string $model;
 
+    public string $modelSplitPascalCase;
+
+    public string $ModelSplit;
+
     public string $models;
 
     public string $Model;
 
     public bool $adminAccess = false;
 
-    public array $defaultDestinations;
+    public array $defaultDestinations; //for revert purpose
 
     public array $fields; //not yet used
 
+    public array $replaces;
+
     public function __construct(
-        string $model,
+        string $model, //$model always CamelCase
         bool $adminAccess = false,
         array $fields = [],
         public $createModelClass = false,
     ) {
+        //Customer -> customer or CustomerCare -> customerCare
         $this->model = Str::camel($model);
+
+        // Customer -> Customer or CustomerCare -> Customer Care
+        $this->ModelSplit = implode(" ", explode("-", splitPascalCase($model)));
+
+        //Customer -> customer or CustomerCare -> customer-care
+        $this->modelSplitPascalCase = str(splitPascalCase($model))->lower();
+
+        //Customer -> customers or CustomerCare -> customer-cares
         $this->models = Str::plural(str(splitPascalCase($model))->lower());
-        $this->Model = $model;
+
+        $this->Model = $model; //Customer
 
         $this->adminAccess = $adminAccess;
+
         $this->fields = $fields;
 
         $this->defaultDestinations = [
-            'files' => [app_path('Http/Controllers/') . $this->Model . 'Controller.php'],
-            'dirs' => [resource_path('js/Pages/') . $this->Model],
+            'files' => [app_path("Http/Controllers/{$this->Model}Controller.php")],
+            'dirs' => [resource_path("js/pages/{$this->modelSplitPascalCase}")],
+        ];
+
+        $this->replaces = [
+            'model' => $this->model,
+            'models' => $this->models,
+            'Model' => $this->Model,
+            'modelSplitPascalCase' => $this->modelSplitPascalCase,
+            'ModelSplit' => $this->ModelSplit,
         ];
     }
 
@@ -205,21 +230,18 @@ class ScaffoldGenerator
 
     public function ScaffoldModal()
     {
-        $replaces = [
-            'model' => $this->model,
-            'models' => $this->models,
-            'Model' => $this->Model,
-        ];
-
         try {
             // File: ModelController.php, Index.jsx, FormModal.jsx
-            FileGenerator::new($this->Model, $replaces)->ScaffoldModal();
+            FileGenerator::new($this->Model)
+                ->withResoucePath($this->modelSplitPascalCase)
+                ->withReplaces($this->replaces)
+                ->ScaffoldModal();
 
             // Web Router
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
-                ->addMenu($this->Model, $this->models, 'view-' . $this->model)
+                ->addMenu($this->Model, $this->models, "view-{$this->modelSplitPascalCase}")
                 ->addWebRoutes([
                     ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
                     ['post', $this->models, $this->Model, 'store', $this->models . '.store', $positionName],
@@ -241,21 +263,18 @@ class ScaffoldGenerator
 
     public function ScaffoldPage()
     {
-        $replaces = [
-            'model' => $this->model,
-            'models' => $this->models,
-            'Model' => $this->Model,
-        ];
-
         try {
             // File: ModelController.php, Index.jsx, Form.jsx
-            FileGenerator::new($this->Model, $replaces)->ScaffoldPage();
+            FileGenerator::new($this->Model)
+                ->withResoucePath($this->modelSplitPascalCase)
+                ->withReplaces($this->replaces)
+                ->ScaffoldPage();
 
             // Web Router
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
-                ->addMenu($this->Model, $this->models, 'view-' . $this->model)
+                ->addMenu($this->Model, $this->models,  "view-{$this->modelSplitPascalCase}")
                 ->addWebRoute('resource', $this->models, $this->Model, positionName: $positionName);
 
             // Permission
@@ -272,21 +291,18 @@ class ScaffoldGenerator
 
     public function ScaffoldSinglePage()
     {
-        $replaces = [
-            'model' => $this->model,
-            'models' => $this->models,
-            'Model' => $this->Model,
-        ];
-
         try {
             // File: ModelController.php, Index.jsx
-            FileGenerator::new($this->Model, $replaces)->ScaffoldSinglePage();
+            FileGenerator::new($this->Model)
+                ->withResoucePath($this->modelSplitPascalCase)
+                ->withReplaces($this->replaces)
+                ->ScaffoldSinglePage();
 
             // Web Router
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
-                ->addMenu($this->Model, $this->models, 'view-' . $this->model)
+                ->addMenu($this->Model, $this->models, "view-{$this->modelSplitPascalCase}")
                 ->addWebRoutes([
                     ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
                     ['post', $this->models, $this->Model, 'update', $this->models . '.update', $positionName],
@@ -322,10 +338,10 @@ class ScaffoldGenerator
     {
         PermissionGenerator::new()
             ->addPermissions([
-                ['view-' . $this->model, 'View ' . $this->Model],
-                ['create-' . $this->model, 'Create ' . $this->Model],
-                ['update-' . $this->model, 'Update ' . $this->Model],
-                ['delete-' . $this->model, 'Delete ' . $this->Model],
+                ["view-{$this->modelSplitPascalCase}", "View {$this->ModelSplit}"],
+                ["create-{$this->modelSplitPascalCase}", "Create {$this->ModelSplit}"],
+                ["update-{$this->modelSplitPascalCase}", "Update {$this->ModelSplit}"],
+                ["delete-{$this->modelSplitPascalCase}", "Delete {$this->ModelSplit}"],
             ]);
 
         PermissionService::new()->sync();

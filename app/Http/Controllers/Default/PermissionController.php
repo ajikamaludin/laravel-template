@@ -20,7 +20,7 @@ class PermissionController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('Permission/Index', [
+        return inertia('permission/index', [
             'data' => $query->paginate(),
         ]);
     }

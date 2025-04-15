@@ -2,40 +2,67 @@
 
 namespace Module\Internal\Generators;
 
+use Illuminate\Support\Str;
+
 class FileGenerator
 {
-    public function __construct(
-        private string $Model,
-        private array $replaces = []
-    ) {}
+    protected $model;
+    protected $resourcePath;
+    protected $replaces;
+    protected $controllerPath;
+    protected $controllerName;
 
-    public static function new($Model, $replaces)
+    public function __construct(
+        private string $Model
+    ) {
+        $this->model = Str::lower($this->Model);
+        $this->resourcePath = resource_path("js/pages/{$this->model}/");
+
+        $this->controllerPath = app_path('Http/Controllers/');
+        $this->controllerName = $this->Model . 'Controller';
+    }
+
+    public static function new($Model)
     {
-        return new FileGenerator($Model, $replaces);
+        return new FileGenerator($Model);
+    }
+
+    public function withResoucePath($resourcePath)
+    {
+        $this->resourcePath = resource_path("js/pages/{$resourcePath}/");
+
+        return $this;
+    }
+
+    public function withReplaces(array $replaces)
+    {
+        $this->replaces = $replaces;
+
+        return $this;
     }
 
     public function ScaffoldModal()
     {
         // ModelController.php
         (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'ModelController.stub')
-            ->to(app_path('Http/Controllers/'))
-            ->name($this->Model . 'Controller')
+            ->to($this->controllerPath)
+            ->name($this->controllerName)
             ->ext('php')
             ->replaces($this->replaces)
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'Index.stub')
-            ->to(resource_path('js/Pages/') . $this->Model . '/')
-            ->name('Index')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'index.stub')
+            ->to($this->resourcePath)
+            ->name('index')
             ->ext('jsx')
             ->replaces($this->replaces)
             ->generate();
 
         // FormModal.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'FormModal.stub')
-            ->to(resource_path('js/Pages/') . $this->Model . '/')
-            ->name('FormModal')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'form-modal.stub')
+            ->to($this->resourcePath)
+            ->name('form-modal')
             ->ext('jsx')
             ->replaces($this->replaces)
             ->generate();
@@ -45,24 +72,24 @@ class FileGenerator
     {
         // ModelController.php
         (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'ModelController.stub')
-            ->to(app_path('Http/Controllers/'))
-            ->name($this->Model . 'Controller')
+            ->to($this->controllerPath)
+            ->name($this->controllerName)
             ->ext('php')
             ->replaces($this->replaces)
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'Index.stub')
-            ->to(resource_path('js/Pages/') . $this->Model . '/')
-            ->name('Index')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'index.stub')
+            ->to($this->resourcePath)
+            ->name('index')
             ->ext('jsx')
             ->replaces($this->replaces)
             ->generate();
 
-        // FormModal.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'Form.stub')
-            ->to(resource_path('js/Pages/') . $this->Model . '/')
-            ->name('Form')
+        // form.jsx
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'form.stub')
+            ->to($this->resourcePath)
+            ->name('form')
             ->ext('jsx')
             ->replaces($this->replaces)
             ->generate();
@@ -72,16 +99,16 @@ class FileGenerator
     {
         // ModelController.php
         (new StubFileGenerator)->from(base_path('stubs/single_page/') . 'ModelController.stub')
-            ->to(app_path('Http/Controllers/'))
-            ->name($this->Model . 'Controller')
+            ->to($this->controllerPath)
+            ->name($this->controllerName)
             ->ext('php')
             ->replaces($this->replaces)
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/single_page/') . 'Index.stub')
-            ->to(resource_path('js/Pages/') . $this->Model . '/')
-            ->name('Index')
+        (new StubFileGenerator)->from(base_path('stubs/single_page/') . 'index.stub')
+            ->to($this->resourcePath)
+            ->name('index')
             ->ext('jsx')
             ->replaces($this->replaces)
             ->generate();

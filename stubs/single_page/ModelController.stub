@@ -10,7 +10,7 @@ class {{ Model }}Controller extends Controller
 {
     public function index()
     {
-        return inertia('{{ Model }}/Index', [
+        return inertia('{{ modelSplitPascalCase }}/index', [
             '{{ model }}' => {{ Model }}::first(),
         ]);
     }

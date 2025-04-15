@@ -1,6 +1,6 @@
-# Laravel Template - DaisyUI
+# Laravel DJ Management
 
-This is a laravel template with breeze react, user role based access crud with setuped admin template that you can use <a href="https://daisyui.com?ref=github.com/ajikamaludin" target="_blank">daisyui style</a> or xxx style.
+[placeholder of description]
 
 ## Support me
 
@@ -86,3 +86,8 @@ php artisan scaffold
 ```
 
 ![](screenshot_generator.gif?raw=true)
+
+### the calender id ,
+
+to add event to every calender every dj must set with calender id and every event for dj must with the calender id
+share with manage and modifi the calender with email : gcalender@mycloud-217610.iam.gserviceaccount.com

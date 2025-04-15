@@ -25,14 +25,14 @@ class RoleController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('Role/Index', [
+        return inertia('role/index', [
             'data' => $query->paginate(),
         ]);
     }
 
     public function create(): Response
     {
-        return inertia('Role/Form', [
+        return inertia('role/form', [
             'permissions' => Permission::all(),
         ]);
     }
@@ -61,7 +61,7 @@ class RoleController extends Controller
 
     public function edit(Role $role): Response
     {
-        return inertia('Role/Form', [
+        return inertia('role/form', [
             'role' => $role->load(['permissions']),
             'permissions' => Permission::all(),
         ]);

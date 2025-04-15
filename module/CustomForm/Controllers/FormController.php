@@ -23,14 +23,14 @@ class FormController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('CustomForm/Form/Index', [
+        return inertia('custom-form/form/index', [
             'data' => $query->paginate(),
         ]);
     }
 
     public function create()
     {
-        return inertia('CustomForm/Form/Form');
+        return inertia('custom-form/form/form');
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class FormController extends Controller
 
     public function edit(Request $request, Form $form)
     {
-        return inertia('CustomForm/Form/Form', [
+        return inertia('custom-form/form/form', [
             'item' => $form,
         ]);
     }

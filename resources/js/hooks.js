@@ -61,7 +61,7 @@ export function usePagination(auth, r) {
     return [data, fetch, loading]
 }
 
-export function useSelectApiPagination(auth, params) {
+export function useSelectApiPagination(auth, params, url = 'api.select.table') {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
         data: [],
@@ -76,7 +76,7 @@ export function useSelectApiPagination(auth, params) {
         setLoading(true)
         axios
             .get(
-                route(`api.select.table`, {
+                route(url, {
                     page: page,
                     ...params,
                     ...additionalParams,

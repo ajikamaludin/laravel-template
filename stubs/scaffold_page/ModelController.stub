@@ -14,19 +14,22 @@ class {{ Model }}Controller extends Controller
         $query = {{ Model }}::query();
 
         if ($request->q) {
-            $query->where('name', 'like', "%{$request->q}%");
+            // multi columns search 
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', "%{$request->q}%");
+            });
         }
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('{{ Model }}/Index', [
+        return inertia('{{ modelSplitPascalCase }}/index', [
             'data' => $query->paginate(10),
         ]);
     }
 
     public function create(): Response
     {
-        return inertia('{{ Model }}/Form');
+        return inertia('{{ modelSplitPascalCase }}/form');
     }
 
     public function store(Request $request): RedirectResponse
@@ -45,7 +48,7 @@ class {{ Model }}Controller extends Controller
 
     public function edit({{ Model }} ${{ model }}): Response
     {
-        return inertia('{{ Model }}/Form', [
+        return inertia('{{ model }}/form', [
             '{{ model }}' => ${{ model }},
         ]);
     }

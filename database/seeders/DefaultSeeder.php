@@ -18,7 +18,7 @@ class DefaultSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (SettingConstant::SYSTEM as $setting) {
+        foreach (SettingConstant::all() as $setting) {
             Setting::insert(['id' => Str::ulid(), ...$setting]);
         }
 
@@ -45,11 +45,5 @@ class DefaultSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => $role->id,
         ]);
-
-        $guest = Role::create(['name' => Role::GUEST]);
-        $permission = Permission::where('name', 'view-shortlink')->first();
-        if ($permission) {
-            $guest->rolePermissions()->create(['permission_id' => $permission->id]);
-        }
     }
 }

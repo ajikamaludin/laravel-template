@@ -9,26 +9,28 @@
     "license": "MIT",
     "require": {
         "php": "^8.3.0",
+        "barryvdh/laravel-dompdf": "^3.1.1",
         "dyrynda/laravel-cascade-soft-deletes": "^4.5.0",
-        "firebase/php-jwt": "^6.11.0",
-        "guzzlehttp/guzzle": "^7.9.2",
-        "inertiajs/inertia-laravel": "^2.0.1",
-        "laravel/framework": "^12.3.0",
+        "firebase/php-jwt": "^6.11.1",
+        "guzzlehttp/guzzle": "^7.9.3",
+        "inertiajs/inertia-laravel": "^2.0.2",
+        "laravel/framework": "^12.8.1",
         "laravel/prompts": "^0.3.5",
         "laravel/tinker": "^2.10.1",
+        "maatwebsite/excel": "^3.1.64",
+        "mpdf/mpdf": "^8.2.5",
         "rap2hpoutre/fast-excel": "^5.6",
         "react/async": "^4.3",
         "spatie/async": "^1.7.0",
-        "tightenco/ziggy": "^1.8.2",
-        "barryvdh/laravel-dompdf": "^3.1.1"
+        "tightenco/ziggy": "^2.5.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^2.1.0",
         "fakerphp/faker": "^1.24.1",
-        "laravel/pint": "^1.21.2",
+        "laravel/pint": "^1.22.0",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.7.0",
-        "pestphp/pest": "^3.7.4",
+        "nunomaduro/collision": "^8.8.0",
+        "pestphp/pest": "^3.8.1",
         "pestphp/pest-plugin-laravel": "^3.1.0"
     },
     "autoload": {
@@ -80,7 +82,12 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ajikamaludin/laravel-google-calendar"
+        }
+    ],
     "minimum-stability": "stable",
     "prefer-stable": true
 }

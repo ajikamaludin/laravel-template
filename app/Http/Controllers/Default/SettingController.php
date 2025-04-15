@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Default;
 
 use App\Http\Controllers\Controller;
 use App\Models\Default\Setting;
+use App\Services\RecentActivityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return inertia('Setting/Index', [
+        return inertia('setting/index', [
             'setting' => Setting::all(),
         ]);
     }
@@ -25,17 +26,20 @@ class SettingController extends Controller
 
         DB::beginTransaction();
 
-        foreach ($request->input() as $key => $value) {
-            if ($value == '' && $key == 'app_logo') {
-                continue;
-            }
+        foreach ($request->except(['app_logo', 'invoice_watermark']) as $key => $value) {
             Setting::updateOrCreate(
                 ['key' => $key],
-                [
-                    'value' => $value ?? '',
-                    'type' => 'text',
-                ]
+                ['value' => $value ?? ''],
             );
+        }
+
+        foreach ($request->only(['app_logo', 'invoice_watermark']) as $key => $value) {
+            if ($value != '') {
+                Setting::updateOrCreate(
+                    ['key' => $key],
+                    ['value' => $value ?? ''],
+                );
+            }
         }
 
         DB::commit();

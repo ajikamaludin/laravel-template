@@ -77,4 +77,9 @@ class MenuConstant
 
         return $menu;
     }
+
+    public static function handle()
+    {
+        return self::all();
+    }
 }

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
     plugins: [
@@ -9,19 +10,16 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
+        tailwindcss(),
     ],
     build: {
         rollupOptions: {
             output: {
                 manualChunks: {
                     lodash: ['lodash'],
-                    daisyui: ['daisyui'],
                     dayjs: ['dayjs'],
                     sonner: ['sonner'],
                     reactapexcharts: ['react-apexcharts'],
-                    'react-tailwindcss-datepicker': [
-                        'react-tailwindcss-datepicker',
-                    ],
                     'react-json-pretty': ['react-json-pretty'],
                 },
             },

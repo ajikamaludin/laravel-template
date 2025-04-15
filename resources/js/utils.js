@@ -1,34 +1,42 @@
 import dayjs from 'dayjs'
 import { toast } from 'sonner'
-import { isEmpty } from 'lodash'
+
+export const isEmpty = (value) => {
+    return value === '' || value === undefined || value === null
+}
 
 export const formatDate = (date) => {
-    if (!isEmpty(date)) {
+    if (isEmpty(date)) {
         return ''
     }
     return dayjs(date).format('DD/MM/YYYY')
 }
 
 export const formatDateTime = (date) => {
-    if (!isEmpty(date)) {
+    if (isEmpty(date)) {
         return ''
     }
     return dayjs(date).format('DD/MM/YYYY HH:mm:ss')
 }
 
 export const dateToString = (date) => {
+    if (isEmpty(date)) {
+        return ''
+    }
     return dayjs(date).format('MM/DD/YYYY')
 }
 
 export const converToDate = (date) => {
-    if (isEmpty(date) == false) {
-        return new Date(date)
+    if (isEmpty(date)) {
+        return ''
     }
-
-    return ''
+    return new Date(date)
 }
 
 export function formatIDR(amount) {
+    if (isEmpty(amount) || typeof amount !== 'number') {
+        return amount
+    }
     const idFormatter = new Intl.NumberFormat('id-ID', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
@@ -59,7 +67,7 @@ export const formatIDDate = (date) => {
 export const hasPermission = (auth, permission) => {
     const { user } = auth
     if (user.role === null) {
-        return true
+        return false
     }
 
     let has = user.role.permissions.find((item) => item.name === permission)

@@ -14,7 +14,9 @@ class UserController extends Controller
     {
         $request->user()->allow('view-user', true);
 
-        $query = User::query()->with(['role']);
+        $query = User::query()
+            ->where('type', null)
+            ->with(['role']);
 
         if ($request->q) {
             $query->where('name', 'like', "%{$request->q}%");
@@ -22,7 +24,7 @@ class UserController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('User/Index', [
+        return inertia('user/index', [
             'data' => $query->paginate(),
         ]);
     }
@@ -85,6 +87,7 @@ class UserController extends Controller
         }
 
         $user->delete();
+
 
         return redirect()->route('user.index')
             ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);

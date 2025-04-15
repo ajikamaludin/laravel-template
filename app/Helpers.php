@@ -24,7 +24,11 @@ if (!function_exists('splitPascalCase')) {
 if (!function_exists('formatIDR')) {
     function formatIDR($number)
     {
-        return Number::currency($number, 'IDR');
+        if (!$number) {
+            return 0;
+        }
+
+        return trim(str_replace(',', '.', str_replace('IDR', '', (Number::currency($number, 'IDR', precision: 0)))));
     }
 }
 
@@ -32,5 +36,19 @@ if (!function_exists('formatDate')) {
     function formatDate($date)
     {
         return \Illuminate\Support\Carbon::parse($date)->format('d-m-Y');
+    }
+}
+
+if (!function_exists('formatNumZero')) {
+    function formatNumZero($n)
+    {
+        $max = 3; // 0001
+
+        $number = '';
+        foreach (range(0, $max - strlen($n)) as $_) {
+            $number .= '0';
+        }
+
+        return $number . $n;
     }
 }

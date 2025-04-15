@@ -1,0 +1,89 @@
+import React, { useEffect, useState } from 'react'
+import { router, Head, Link, usePage } from '@inertiajs/react'
+import { isEmpty } from 'lodash'
+
+import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
+import { Card, Button, TextInput } from '@/components/index'
+
+export default function Form(props) {
+    const {
+        props: { errors },
+    } = usePage()
+    const { {{ model }} } = props
+
+    const [processing, setProcessing] = useState(false)
+
+    const [name, setName] = useState('')
+
+    const handleSubmit = () => {
+        if (isEmpty({{ model }}) === false) {
+            router.put(
+                route('{{ models }}.update', {{ model }}),
+                {
+                    name: name,
+                },
+                {
+                    onStart: () => setProcessing(true),
+                    onFinish: (e) => {
+                        setProcessing(false)
+                    },
+                }
+            )
+            return
+        }
+        router.post(
+            route('{{ models }}.store'),
+            {
+                name: name,
+            },
+            {
+                onStart: () => setProcessing(true),
+                onFinish: (e) => {
+                    setProcessing(false)
+                },
+            }
+        )
+    }
+
+    useEffect(() => {
+        if (!isEmpty({{ model }})) {
+            setName({{ model }}.name)
+        }
+    }, [{{ model }}])
+
+    return (
+        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
+            <Head title="{{ Model }}" />
+
+            <div>
+                <Card>
+                    <div className="flex flex-col gap-2 justify-between">
+                        <TextInput
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            label="Name"
+                            error={errors.name}
+                        />
+                        <div className="flex items-center">
+                            <div className="flex space-x-2">
+                                <Button
+                                    onClick={handleSubmit}
+                                    processing={processing}
+                                    type="primary"
+                                >
+                                    Save
+                                </Button>
+                                <Link href={route('{{ models }}.index')}>
+                                    <Button type="secondary">
+                                        Back
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </AuthenticatedLayout>
+    )
+}

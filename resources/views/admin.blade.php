@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="business">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @routes
     @viteReactRefresh
-    @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
+    @vite(['resources/js/app.jsx', "resources/js/pages/{$page['component']}.jsx"])
     @inertiaHead
 </head>
 

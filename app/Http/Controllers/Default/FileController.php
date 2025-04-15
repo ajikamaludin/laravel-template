@@ -15,13 +15,15 @@ class FileController extends Controller
     {
         $path = Storage::disk('public')->path($name);
 
-        if (Storage::disk('public')->exists('default/' . $name)) {
-            $path = Storage::disk('public')->path('default/' . $name);
+        if (Storage::disk('default')->exists($name)) {
+            $path = Storage::disk('default')->path($name);
+
+            return response()->download($path, $name);
         }
 
         $file = File::where('hash_name', $name)->first();
 
-        return response()->download($path, $file->upload_name);
+        return response()->download($path, $file?->upload_name);
     }
 
     public function store(Request $request)

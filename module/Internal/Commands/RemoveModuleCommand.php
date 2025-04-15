@@ -36,7 +36,7 @@ class RemoveModuleCommand extends Command
         $module = $this->argument('module');
         if ($module != 'all') {
             $this->runShellCommands(['rm -rf ' . base_path('module/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/Pages/' . $module)]);
+            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $module)]);
 
             $this->info('Removed Module');
 
@@ -50,7 +50,7 @@ class RemoveModuleCommand extends Command
 
         foreach ($modules as $module) {
             $this->runShellCommands(['rm -rf ' . base_path('module/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/Pages/' . $module)]);
+            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $module)]);
         }
 
         $this->runShellCommands(['rm -rf ' . base_path('module/routes.php')]);

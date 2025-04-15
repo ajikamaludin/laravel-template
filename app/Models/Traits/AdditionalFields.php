@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait AdditionalFields
 {
-    // TODO if you use this trait, add columns _fields in table as json type
     const ADDITIONAL_FIELD = '_fields';
 
     protected $appends = ['fields'];

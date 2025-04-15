@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('{{ table }}', function (Blueprint $table) {
+            // id
             $table->ulid('id')->primary();
-            //
+
+            // relations
+
+            // columns
             $table->string('name')->nullable();
-            //
+            
+            // default
             $table->timestamps();
             $table->softDeletes();
             $table->ulid('created_by')->nullable();

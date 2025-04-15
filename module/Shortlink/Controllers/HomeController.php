@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return inertia('Shortlink/Home/Index');
+        return inertia('shortlink/home/index');
     }
 
     public function store(Request $request)

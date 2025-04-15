@@ -5,25 +5,21 @@ namespace App\Http\Controllers\Default;
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
 use App\Models\Default\User;
-use Illuminate\Support\Facades\Concurrency;
+use Illuminate\Http\Request;
+
 
 class GeneralController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        [$role_count, $user_count] = Concurrency::run([
-            fn() => Role::count(),
-            fn() => User::count(),
-        ]);
-
-        return inertia('Dashboard', [
-            'role_count' => $role_count,
-            'user_count' => $user_count,
+        return inertia('dashboard', [
+            'user_count' => User::count(),
+            'role_count' => Role::count()
         ]);
     }
 
     public function maintance()
     {
-        return inertia('Maintance');
+        return inertia('maintance');
     }
 }

@@ -15,7 +15,8 @@ class SettingService
 
     public function sync()
     {
-        $lists = collect(SettingConstant::SYSTEM)->map(fn($setting) => $setting['key'])->toArray();
+        $IndexedSetting = SettingConstant::all();
+        $lists = collect($IndexedSetting)->map(fn($setting) => $setting['key'])->toArray();
         $settings = Setting::all()->pluck('key')->toArray();
 
         // remove existing setting in database
@@ -27,7 +28,7 @@ class SettingService
         // add new setting to database
         $to_add = array_diff($lists, $settings);
         foreach ($to_add as $index => $key) {
-            Setting::create(['id' => Str::ulid(), ...SettingConstant::SYSTEM[$index]]);
+            Setting::create(['id' => Str::ulid(), ...$IndexedSetting[$index]]);
         }
 
         return [$to_add, $to_delete];

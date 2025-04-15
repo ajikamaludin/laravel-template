@@ -21,7 +21,7 @@ class FormRecordController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('CustomForm/Record/Index', [
+        return inertia('custom-form/record/index', [
             'field' => $form,
             'data' => $query->paginate(),
         ]);
@@ -29,7 +29,7 @@ class FormRecordController extends Controller
 
     public function create(Form $form)
     {
-        return inertia('CustomForm/Record/Form', [
+        return inertia('custom-form/record/form', [
             'field' => $form,
         ]);
     }
@@ -55,7 +55,7 @@ class FormRecordController extends Controller
 
     public function edit(Form $form, FormRecord $formRecord)
     {
-        return inertia('CustomForm/Record/Form', [
+        return inertia('custom-form/record/form', [
             'field' => $form,
             'item' => $formRecord,
         ]);
@@ -85,7 +85,7 @@ class FormRecordController extends Controller
 
     public function open(Form $form)
     {
-        return inertia('CustomForm/Record/PublicForm', [
+        return inertia('custom-form/record/public-form', [
             'field' => $form,
         ]);
     }

@@ -29,7 +29,7 @@ class LinkController extends Controller
 
         $query->orderBy('last_visited_at', 'desc');
 
-        return inertia('Shortlink/Link/Index', [
+        return inertia('shortlink/link/index', [
             'data' => $query->paginate(10),
         ]);
     }
@@ -82,7 +82,7 @@ class LinkController extends Controller
             $std = $std->addDay();
         }
 
-        return inertia('Shortlink/Link/Show', [
+        return inertia('shortlink/link/show', [
             'link' => $link,
             'data' => $query->paginate(20),
             'charts' => $charts,

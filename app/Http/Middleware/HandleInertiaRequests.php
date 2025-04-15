@@ -42,9 +42,10 @@ class HandleInertiaRequests extends Middleware
             ],
             'flash' => [
                 'message' => fn() => Session::get('message'),
+                'data' => fn() => Session::get('data'),
             ],
             'app' => Setting::getByKeys(['app_name', 'app_logo']),
-            'navigation' => MenuConstant::all()
+            'navigation' => MenuConstant::handle($request->user())
         ]);
     }
 }

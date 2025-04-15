@@ -14,14 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\Default\User::factory(10)->create();
-
-        // \App\Models\Default\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call([
             DefaultSeeder::class,
+            DummySeeder::class,
         ]);
     }
 }
