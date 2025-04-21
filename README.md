@@ -1,6 +1,6 @@
-# Laravel DJ Management
+# Laravel Template - DaisyUI
 
-[placeholder of description]
+This is a laravel starterkit with inertia, react, user role based access crud with admin template that you can use <a href="https://daisyui.com?ref=github.com/ajikamaludin" target="_blank">daisyui style</a> or xxx style.
 
 ## Support me
 
