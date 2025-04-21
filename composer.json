@@ -14,7 +14,7 @@
         "firebase/php-jwt": "^6.11.1",
         "guzzlehttp/guzzle": "^7.9.3",
         "inertiajs/inertia-laravel": "^2.0.2",
-        "laravel/framework": "^12.9.0",
+        "laravel/framework": "^12.9.2",
         "laravel/prompts": "^0.3.5",
         "laravel/tinker": "^2.10.1",
         "maatwebsite/excel": "^3.1.64",
@@ -29,8 +29,8 @@
         "laravel/pint": "^1.22.0",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.8.0",
-        "pestphp/pest": "^3.8.1",
-        "pestphp/pest-plugin-laravel": "^3.1.0"
+        "pestphp/pest": "^3.8.2",
+        "pestphp/pest-plugin-laravel": "^3.2.0"
     },
     "autoload": {
         "files": [
