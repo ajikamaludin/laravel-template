@@ -17,8 +17,6 @@
         "laravel/framework": "^12.10.2",
         "laravel/prompts": "^0.3.5",
         "laravel/tinker": "^2.10.1",
-        "maatwebsite/excel": "^3.1.64",
-        "rap2hpoutre/fast-excel": "^5.6",
         "react/async": "^4.3",
         "spatie/async": "^1.7.0",
         "tightenco/ziggy": "^2.5.2"
@@ -31,6 +29,10 @@
         "nunomaduro/collision": "^8.8.0",
         "pestphp/pest": "^3.8.2",
         "pestphp/pest-plugin-laravel": "^3.2.0"
+    },
+    "un-reqire": {
+        "maatwebsite/excel": "^3.1.64",
+        "rap2hpoutre/fast-excel": "^5.6"
     },
     "autoload": {
         "files": [
