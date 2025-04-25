@@ -63,7 +63,7 @@ class RouteGenerator
         return $this;
     }
 
-    public function addMenu($name,  $routeName, $permissionName, $icon = 'HiClipboardDocumentList')
+    public function addMenu($name,  $routeName, $permissionName, $icon = 'TableOfContents')
     {
         $menu = "
             [
