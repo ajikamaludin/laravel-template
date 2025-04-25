@@ -15,7 +15,6 @@ class UserController extends Controller
         $request->user()->allow('view-user', true);
 
         $query = User::query()
-            ->where('type', null)
             ->with(['role']);
 
         if ($request->q) {
