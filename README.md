@@ -86,8 +86,3 @@ php artisan scaffold
 ```
 
 ![](screenshot_generator.gif?raw=true)
-
-### the calender id ,
-
-to add event to every calender every dj must set with calender id and every event for dj must with the calender id
-share with manage and modifi the calender with email : gcalender@mycloud-217610.iam.gserviceaccount.com
