@@ -48,7 +48,7 @@ class {{ Model }}Controller extends Controller
 
     public function edit({{ Model }} ${{ model }}): Response
     {
-        return inertia({{ modelSplitPascalCase }}/form', [
+        return inertia('{{ modelSplitPascalCase }}/form', [
             '{{ model }}' => ${{ model }},
         ]);
     }
