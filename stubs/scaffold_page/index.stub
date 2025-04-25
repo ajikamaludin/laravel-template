@@ -3,7 +3,7 @@ import { router } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
 import { Head, Link } from '@inertiajs/react'
 import { Pencil, Trash } from 'lucide-react'
-import { useModalState } from '@/hooks'
+import { useModal } from '@/hooks'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
 import HasPermission from '@/components/common/has-permission'
@@ -24,7 +24,7 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
+    const confirmModal = useModal()
 
     const handleDeleteClick = ({{ model }}) => {
         confirmModal.setData({{ model }})

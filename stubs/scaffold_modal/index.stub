@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
 import { Pencil, Trash } from 'lucide-react'
-import { useModalState } from '@/hooks'
+import { useModal } from '@/hooks'
 
 import HasPermission from '@/components/common/has-permission'
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
@@ -24,8 +24,8 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
-    const formModal = useModalState()
+    const confirmModal = useModal()
+    const formModal = useModal()
 
     const toggleFormModal = ({{ model }} = null) => {
         formModal.setData({{ model }})
