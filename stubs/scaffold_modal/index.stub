@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
+import { Pencil, Trash } from 'lucide-react'
 import { useModalState } from '@/hooks'
 
 import HasPermission from '@/components/common/has-permission'
@@ -58,7 +58,13 @@ export default function Index(props) {
     }, [search])
 
     return (
-        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
+        <AuthenticatedLayout 
+            title={'{{ Model }}'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: '{{ Model }}', href: route('{{ models }}.index') },
+            ]}
+        >
             <Head title="{{ Model }}" />
 
             <div>
@@ -70,7 +76,7 @@ export default function Index(props) {
                                 onClick={() => toggleFormModal()}
                                 type="primary"
                             >
-                                Add
+                                Tambah
                             </Button>
                         </HasPermission>
                         <div className="flex items-center">
@@ -103,7 +109,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiPencil />
+                                                            <Pencil className='w-4 h-4'/>
                                                             <div>Edit</div>
                                                         </div>
                                                     </Dropdown.Item>
@@ -117,7 +123,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiTrash />
+                                                            <Trash className='w-4 h-4'/>
                                                             <div>Delete</div>
                                                         </div>
                                                     </Dropdown.Item>

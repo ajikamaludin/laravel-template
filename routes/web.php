@@ -22,10 +22,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/maintance', [GeneralController::class, 'maintance'])->name('maintance');
 
     // User
-    Route::get('/users', [UserController::class, 'index'])->name('user.index');
-    Route::post('/users', [UserController::class, 'store'])->name('user.store');
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     // Permission
     Route::delete('_permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');

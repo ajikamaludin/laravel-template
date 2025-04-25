@@ -9,14 +9,14 @@ import {
 import { InputTypes } from '../constants'
 
 export const RenderFormInput = ({ input, onChange }) => {
-    if (input.type === InputTypes.multiple) {
+    if (input.type === 'multiple') {
         return (
             <div className="form-control">
                 <div className="label">
                     <span className="label-text">{input.name}</span>
                 </div>
                 <div className="w-full grid grid-cols-4 justify-between">
-                    {input.options.split(',').map((opt) => (
+                    {(input?.options ?? '').split(',').map((opt) => (
                         <Checkbox
                             name={opt}
                             value={input.value === opt}
@@ -32,7 +32,7 @@ export const RenderFormInput = ({ input, onChange }) => {
         )
     }
 
-    if (input.type === InputTypes.checkbox) {
+    if (input.type === 'checkbox') {
         return (
             <Checkbox
                 name={input.name}
@@ -43,19 +43,19 @@ export const RenderFormInput = ({ input, onChange }) => {
         )
     }
 
-    if (input.type === InputTypes.select) {
+    if (input.type === 'select') {
         return (
             <SelectOptionArray
                 name={input.name}
                 value={input.value}
                 label={input.name}
-                options={input.options.split(',')}
+                options={(input?.options ?? '').split(',') ?? []}
                 onChange={(e) => onChange(input, e.target.value)}
             />
         )
     }
 
-    if (input.type === InputTypes.date) {
+    if (input.type === 'date') {
         return (
             <FormInputDate
                 value={input.value}
@@ -65,7 +65,7 @@ export const RenderFormInput = ({ input, onChange }) => {
         )
     }
 
-    if (input.type === InputTypes.textarea) {
+    if (input.type === 'textarea') {
         return (
             <TextareaInput
                 name={input.name}

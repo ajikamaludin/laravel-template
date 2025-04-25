@@ -23,7 +23,7 @@ export const dateToString = (date) => {
     if (isEmpty(date)) {
         return ''
     }
-    return dayjs(date).format('MM/DD/YYYY')
+    return dayjs(date).format('YYYY-MM-DD')
 }
 
 export const converToDate = (date) => {
@@ -88,4 +88,9 @@ export const showToast = (message, type) => {
         return
     }
     toast(message)
+}
+
+export const trimText = (text, maxLength = 30) => {
+    if (text.length <= maxLength) return text
+    return text.slice(0, maxLength) + '...'
 }

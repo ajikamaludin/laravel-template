@@ -97,12 +97,12 @@ export default function FormInputTime({ label, value, onChange, error }) {
                 error={error}
             />
             {showOptions && (
-                <ul className="absolute z-10 mt-1 w-full bg-base-100 max-h-48 overflow-y-auto">
+                <ul className="absolute z-10 mt-1 w-full bg-base-200 max-h-48 overflow-y-auto">
                     {filteredOptions.map((option) => (
                         <li
                             key={option}
                             onClick={() => handleOptionClick(option)}
-                            className="text-base-content px-3 py-2 text-sm cursor-pointer hover:bg-base-200"
+                            className="text-base-content px-3 py-2 text-sm cursor-pointer hover:bg-base-300"
                         >
                             {option}
                         </li>

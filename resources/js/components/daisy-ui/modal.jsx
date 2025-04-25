@@ -1,4 +1,4 @@
-import { HiXMark } from 'react-icons/hi2'
+import { X } from 'lucide-react'
 
 export default function Modal({
     children,
@@ -27,7 +27,7 @@ export default function Modal({
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                         onClick={onClose}
                     >
-                        <HiXMark className="h-5 w-5" />
+                        <X className="h-5 w-5" />
                     </button>
                 </form>
                 <div className="w-full">{children}</div>

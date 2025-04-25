@@ -7,8 +7,11 @@ import DummyDashbord from '@/components/dummy/dashboard'
 export default function Dashboard(props) {
     return (
         <AuthenticatedLayout
-            page={'Dashboard'}
-            action={''}
+            title={'Dashboard'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Summary', href: null },
+            ]}
         >
             <Head title="Dashboard" />
 

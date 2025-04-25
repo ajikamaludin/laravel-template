@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head, Link, usePage } from '@inertiajs/react'
-import { HiPlus, HiTrash } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
+import { Plus, Trash } from 'lucide-react'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
 import {
@@ -97,8 +97,16 @@ export default function Form(props) {
 
     return (
         <AuthenticatedLayout
-            page={'Module'}
-            action={'Custom Form'}
+            title={'Custom Form'}
+            breadcumbs={[
+                { name: 'Module', href: route('dashboard') },
+                {
+                    name: 'Form',
+                    href: item
+                        ? route('custom-form.forms.edit', item.id)
+                        : route('custom-form.forms.create'),
+                },
+            ]}
         >
             <Head title="Custom Form" />
 
@@ -170,10 +178,9 @@ export default function Form(props) {
                                                 />
                                             </div>
                                         </div>
-                                        {[
-                                            InputTypes.select,
-                                            InputTypes.multiple,
-                                        ].includes(item.type) && (
+                                        {['select', 'multiple'].includes(
+                                            item.type
+                                        ) && (
                                             <div>
                                                 <TextareaInput
                                                     label="Opsi"
@@ -191,9 +198,9 @@ contoh: laki-laki,perempuan"
                                             </div>
                                         )}
                                     </div>
-                                    <div>
-                                        <HiTrash
-                                            className="w-5 h-5 text-red-500"
+                                    <div className="btn-xs btn btn-ghost">
+                                        <Trash
+                                            className="w-4 h-4 text-red-500"
                                             onClick={() => removeField(index)}
                                         />
                                     </div>
@@ -206,10 +213,10 @@ contoh: laki-laki,perempuan"
                             )}
                             <div>
                                 <Button
-                                    className={'btn-sm btn-info'}
+                                    className={'btn-sm btn-outline'}
                                     onClick={addFields}
                                 >
-                                    <HiPlus className="h-5 w-5" />
+                                    <Plus className="h-5 w-5" />
                                 </Button>
                             </div>
                         </div>

@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
-import {
-    HiXMark,
-    HiArrowRightOnRectangle,
-    HiChartPie,
-    HiUser,
-    HiCog,
-    HiGlobeAlt,
-    HiInformationCircle,
-    HiDocumentCheck,
-    HiClipboardDocumentList,
-    HiCalendar,
-} from 'react-icons/hi2'
-import { LuDisc3 } from 'react-icons/lu'
 
 import { filterAllowedMenu } from './helpers.cjs'
+import {
+    LogOut,
+    MonitorDot,
+    UserRoundCog,
+    Cog,
+    Globe,
+    FormInput,
+    X,
+    TableOfContents,
+    BookText,
+    FileText,
+} from 'lucide-react'
 
 const Icons = {
-    HiXMark: HiXMark,
-    HiArrowRightOnRectangle: HiArrowRightOnRectangle,
-    HiChartPie: HiChartPie,
-    HiUser: HiUser,
-    HiCog: HiCog,
-    HiGlobeAlt: HiGlobeAlt,
-    HiInformationCircle: HiInformationCircle,
-    HiClipboardDocumentList: HiClipboardDocumentList,
-    HiDocumentCheck: HiDocumentCheck,
-    HiCalendar: HiCalendar,
-    LuDisc3: LuDisc3,
+    MonitorDot: MonitorDot,
+    UserRoundCog: UserRoundCog,
+    Cog: Cog,
+    Globe: Globe,
+    FormInput: FormInput,
+    TableOfContents: TableOfContents,
+    BookText: BookText,
+    FileText: FileText,
 }
 
 const ItemIcon = ({ icon, ...rest }) => {
@@ -42,13 +38,15 @@ const SidebarItem = ({ item }) => {
             <Link
                 href={item.route}
                 className={`${
-                    route().current(item.active) ? 'menu-active' : ''
+                    route().current(item.active)
+                        ? ' bg-base-300 opacity-90'
+                        : ''
                 }`}
             >
                 {item.icon && (
                     <ItemIcon
                         icon={item.icon}
-                        className="h-5 w-5"
+                        className="h-4 w-4"
                         aria-hidden="true"
                     />
                 )}
@@ -74,7 +72,7 @@ const SidebarItemGroup = ({ item }) => {
                     {item.icon && (
                         <ItemIcon
                             icon={item.icon}
-                            className="h-5 w-5"
+                            className="h-4 w-4"
                             aria-hidden="true"
                         />
                     )}
@@ -122,11 +120,11 @@ export default function SidebarNav({ user, show, setShow }) {
         <div
             className={`${
                 show ? 'block' : 'hidden'
-            } flex flex-col h-screen overflow-y-auto transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-50 w-full md:w-64 bg-base-200 md:block md:translate-x-0 md:end-auto md:bottom-0 `}
+            } flex flex-col h-screen overflow-y-auto transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-50 w-full md:w-64 sidebar-bg border-r border-base-200 lg:translate-x-0 lg:end-auto lg:bottom-0 `}
         >
             <div className="flex flex-col justify-between flex-1">
                 <div className="">
-                    <div className="flex flex-row justify-between md:justify-center p-6">
+                    <div className="flex flex-row justify-between items-center lg:justify-center p-6">
                         <div className="">
                             {app_logo ? (
                                 <img
@@ -143,24 +141,14 @@ export default function SidebarNav({ user, show, setShow }) {
                             )}
                         </div>
                         <div
-                            className="block md:hidden"
-                            onClick={() => setShow(false)}
+                            className="block lg:hidden"
+                            onClick={() => setShow()}
                         >
-                            <HiXMark className="w-5 h-5" />
+                            <X className="w-5 h-5" />
                         </div>
                     </div>
                     <nav className="w-full">
                         <ul className="w-full menu rounded-box">
-                            {/* <SidebarItem
-                                item={{
-                                    name: 'Dashboard',
-                                    show: true,
-                                    icon: HiChartPie,
-                                    route: route('dashboard'),
-                                    active: 'dashboard',
-                                    permission: 'view-dashboard',
-                                }}
-                            /> */}
                             {menus.map((item) => (
                                 <div key={`item-${item.name}`}>
                                     {item.items === undefined ? (
@@ -174,7 +162,7 @@ export default function SidebarNav({ user, show, setShow }) {
                                 <div
                                     onClick={() => router.post(route('logout'))}
                                 >
-                                    <HiArrowRightOnRectangle
+                                    <LogOut
                                         className="h-5 w-5"
                                         aria-hidden="true"
                                     />

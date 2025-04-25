@@ -6,10 +6,12 @@ import { Modal, Button, TextInput } from '@/components/index'
 
 export default function FormModal(props) {
     const { modalState } = props
-    const { data, setData, post, put, processing, errors, reset, clearErrors } =
-        useForm({
+    const formState = {
             name: '',
-        })
+        }
+
+    const { data, setData, post, put, processing, errors, clearErrors } =
+        useForm(formState)
 
     const handleOnChange = (event) => {
         setData(
@@ -24,7 +26,7 @@ export default function FormModal(props) {
 
     const handleReset = () => {
         modalState.setData(null)
-        reset()
+        setData(formState)
         clearErrors()
     }
 
@@ -71,10 +73,10 @@ export default function FormModal(props) {
                         processing={processing}
                         type="primary"
                     >
-                        Save
+                        Simpan
                     </Button>
                     <Button onClick={handleClose} type="secondary">
-                        Cancel
+                        Batal
                     </Button>
                 </div>
             </div>

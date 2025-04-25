@@ -89,7 +89,7 @@ export default function UpdateProfileInformation({
                         processing={processing}
                         type="primary"
                     >
-                        Save
+                        Simpan
                     </Button>
                 </div>
             </div>

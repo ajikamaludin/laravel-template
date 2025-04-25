@@ -88,10 +88,13 @@ export default function FormModal(props) {
                         processing={processing}
                         type="primary"
                     >
-                        Save
+                        Simpan
                     </Button>
-                    <Button onClick={handleClose} type="secondary">
-                        Cancel
+                    <Button
+                        onClick={handleClose}
+                        type="secondary"
+                    >
+                        Batal
                     </Button>
                 </div>
             </div>

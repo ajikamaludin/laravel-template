@@ -13,15 +13,16 @@ export default function Form(props) {
 
     const [processing, setProcessing] = useState(false)
 
-    const [name, setName] = useState('')
+    const [name, set_name] = useState('')
 
     const handleSubmit = () => {
+        const payload = {
+            name: name,
+        }
         if (isEmpty({{ model }}) === false) {
             router.put(
                 route('{{ models }}.update', {{ model }}),
-                {
-                    name: name,
-                },
+                payload,
                 {
                     onStart: () => setProcessing(true),
                     onFinish: (e) => {
@@ -33,9 +34,7 @@ export default function Form(props) {
         }
         router.post(
             route('{{ models }}.store'),
-            {
-                name: name,
-            },
+            payload,
             {
                 onStart: () => setProcessing(true),
                 onFinish: (e) => {
@@ -47,12 +46,24 @@ export default function Form(props) {
 
     useEffect(() => {
         if (!isEmpty({{ model }})) {
-            setName({{ model }}.name)
+            set_name({{ model }}.name)
         }
     }, [{{ model }}])
 
     return (
-        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
+        <AuthenticatedLayout
+            title={'{{ Model }}'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: '{{ Model }}', href: route('{{ models }}.index') },
+                {
+                    name: 'Form',
+                    href: {{ model }}
+                        ? route('{{ models }}.edit', {{ model }})
+                        : route('{{ models }}.create'),
+                },
+            ]}
+        >
             <Head title="{{ Model }}" />
 
             <div>
@@ -61,7 +72,7 @@ export default function Form(props) {
                         <TextInput
                             name="name"
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => set_name(e.target.value)}
                             label="Name"
                             error={errors.name}
                         />
@@ -72,11 +83,11 @@ export default function Form(props) {
                                     processing={processing}
                                     type="primary"
                                 >
-                                    Save
+                                    Simpan
                                 </Button>
                                 <Link href={route('{{ models }}.index')}>
                                     <Button type="secondary">
-                                        Back
+                                        Kembali
                                     </Button>
                                 </Link>
                             </div>

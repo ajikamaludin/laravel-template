@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { usePage } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
-import { HiXMark } from 'react-icons/hi2'
+import { X } from 'lucide-react'
 
 import Modal from './modal'
 import PaginationApi from './pagination-api'
 import Spinner from './spinner'
 import SearchInput from './search-input'
-import { useDebounce, useSelectApiPagination } from '@/hooks'
 import Label from './label'
 import TextInputError from './text-input-error'
+import { useDebounce, useSelectApiPagination } from '@/hooks'
 
 /**
  *
@@ -99,7 +99,9 @@ export default function SelectModalInput(props) {
         }
         setTableHeaders(
             params.headers.split('|').map((_, index) => {
-                return params.columns.split('|')[index]
+                return params.columns.split('|').filter((i) => i !== 'id')[
+                    index
+                ]
             })
         )
         setTableHeaderAlias(
@@ -149,7 +151,7 @@ export default function SelectModalInput(props) {
         <>
             <fieldset className="fieldset">
                 <Label label={label} />
-                <div className="flex flex-row">
+                <div className="join">
                     <input
                         className={`input input-bordered w-full ${
                             error && 'input-error'
@@ -164,23 +166,28 @@ export default function SelectModalInput(props) {
                     />
                     {showRemoveBtnAndReadOnly && (
                         <div
-                            className={`flex items-center justify-center border border-l-0 rounded-r-lg w-10 bg-base-300 ${
-                                error ? 'border-error' : 'border-base-100'
+                            className={`join-item btn ${
+                                error ? 'border-error' : ''
                             }`}
                             onClick={onRemove}
                         >
-                            <HiXMark className="h-4 w-4" />
+                            <X className="h-4 w-4" />
                         </div>
                     )}
                     {additionalButton && (
-                        <div className="flex items-center justify-center ml-0">
+                        <div className="join-item rounded-none">
                             {additionalButton}
                         </div>
                     )}
                 </div>
                 <TextInputError error={error} />
             </fieldset>
-            <Modal isOpen={isOpen} onClose={toggle} size={size} title={title}>
+            <Modal
+                isOpen={isOpen}
+                onClose={toggle}
+                size={size}
+                title={title}
+            >
                 <div className="mb-3"></div>
                 <SearchInput
                     value={search}
@@ -193,35 +200,39 @@ export default function SelectModalInput(props) {
                     </div>
                 ) : (
                     <>
-                        <table className="table mt-3">
-                            <thead>
-                                <tr>
-                                    {table_header_alias.map((h) => (
-                                        <th
-                                            className="capitalize"
-                                            key={`header-${h}`}
-                                        >
-                                            {h}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.data?.map((item) => (
-                                    <tr
-                                        onClick={() => handleItemSelected(item)}
-                                        key={item.id}
-                                        className="hover:bg-base-300"
-                                    >
-                                        {table_headers.map((h) => (
-                                            <td key={`${item.id}-${h}`}>
-                                                {item[h]}
-                                            </td>
+                        <div className="w-full overflow-x-auto">
+                            <table className="table mt-3">
+                                <thead>
+                                    <tr>
+                                        {table_header_alias.map((h) => (
+                                            <th
+                                                className="capitalize"
+                                                key={`header-${h}`}
+                                            >
+                                                {h}
+                                            </th>
                                         ))}
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {data.data?.map((item) => (
+                                        <tr
+                                            onClick={() =>
+                                                handleItemSelected(item)
+                                            }
+                                            key={item.id}
+                                            className="hover:bg-base-300"
+                                        >
+                                            {table_headers.map((h) => (
+                                                <td key={`${item.id}-${h}`}>
+                                                    {item[h]}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div className="w-full flex justify-center mt-2">
                             <PaginationApi

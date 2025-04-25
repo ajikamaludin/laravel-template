@@ -48,8 +48,11 @@ export default function Setting(props) {
 
     return (
         <AuthenticatedLayout
-            page={'System'}
-            action={'Setting'}
+            title={'Setting'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Setting', href: route('setting.index') },
+            ]}
         >
             <Head title="Setting" />
 
@@ -79,7 +82,7 @@ export default function Setting(props) {
                             processing={processing}
                             type="primary"
                         >
-                            Save
+                            Simpan
                         </Button>
                     </div>
                 </Card>

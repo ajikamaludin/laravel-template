@@ -27,7 +27,13 @@ export default function Page(props) {
     }
 
     return (
-        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
+        <AuthenticatedLayout 
+            title={'{{ Model }}'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: '{{ Model }}', href: route('{{ models }}.index') },
+            ]}
+        >
             <Head title="{{ Model }}" />
 
             <div>
@@ -48,7 +54,7 @@ export default function Page(props) {
                             processing={processing}
                             type="primary"
                         >
-                            Save
+                            Simpan
                         </Button>
                     </div>
                 </Card>

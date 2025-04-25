@@ -97,7 +97,7 @@ export default function UpdatePasswordForm({ className }) {
                         processing={processing}
                         type="primary"
                     >
-                        Save
+                        Simpan
                     </Button>
                 </div>
             </div>

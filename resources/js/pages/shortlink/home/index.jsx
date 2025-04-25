@@ -1,9 +1,9 @@
 import React from 'react'
 import { Head, useForm } from '@inertiajs/react'
+import { ClipboardCopy } from 'lucide-react'
 
 import CustomLayout from '@/layouts/default/custom-layout'
 import { TextInput, Button } from '@/components/index'
-import { HiClipboardDocument } from 'react-icons/hi2'
 import { showToast } from '@/utils'
 
 export default function Index(props) {
@@ -90,10 +90,11 @@ export default function Index(props) {
                     {message?.link && (
                         <div className="flex flex-col">
                             <div className="p-4  flex flex-row justify-between bg-opacity-10 bg-green-500 text-green-500">
-                                <p className="">{message.link}</p>
-
-                                <HiClipboardDocument
-                                    className="text-base-content h-5 w-5"
+                                <p className="text-base-content">
+                                    {message.link}
+                                </p>
+                                <ClipboardCopy
+                                    className="text-base-content h-5 w-5 m-1 hover:bg-accent"
                                     title="click to copy"
                                     onClick={handleCopyToClipboard}
                                 />

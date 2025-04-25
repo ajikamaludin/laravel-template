@@ -6,6 +6,7 @@ import { usePage } from '@inertiajs/react'
 import Spinner from './spinner'
 import TextInputError from './text-input-error'
 import Label from './label'
+import { trimText } from '@/utils'
 
 /**
  *
@@ -88,7 +89,7 @@ export default function FormFile({
     }
 
     return (
-        <div className="w-full fieldset">
+        <div className="fieldset">
             <Label label={label} />
             {preview && preview}
             <div
@@ -109,7 +110,7 @@ export default function FormFile({
                                 <div>{percent} Uploading...</div>
                             </div>
                         ) : (
-                            <div>{name}</div>
+                            <div>{trimText(name, 30)}</div>
                         )}
                     </div>
                 </div>

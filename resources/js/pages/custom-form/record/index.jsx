@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head, Link } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
-import { useModalState } from '@/hooks'
+import { Pencil, Trash } from 'lucide-react'
 
 import HasPermission from '@/components/common/has-permission'
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
@@ -14,6 +13,7 @@ import {
     Dropdown,
     Card,
 } from '@/components/index'
+import { useModal } from '@/hooks'
 
 const RecordTd = ({ fields, h }) => {
     const f = JSON.parse(fields).find((f) => h.id === f.id)
@@ -33,7 +33,7 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
+    const confirmModal = useModal()
 
     const handleDeleteClick = (item) => {
         confirmModal.setData(item)
@@ -69,8 +69,14 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout
-            page={'Module'}
-            action={field.name}
+            title={'Custom Form'}
+            breadcumbs={[
+                { name: 'Custom Form', href: route('custom-form.forms.index') },
+                {
+                    name: `Form - ${field.name}`,
+                    href: route('custom-form.form-records.index', field),
+                },
+            ]}
         >
             <Head title={`Record - ${field.name}`} />
 
@@ -181,7 +187,7 @@ export default function Index(props) {
                                                             )}
                                                             className="flex space-x-1 items-center"
                                                         >
-                                                            <HiPencil />
+                                                            <Pencil className="w-4 h-4" />
                                                             <div>Ubah</div>
                                                         </Link>
                                                     </Dropdown.Item>
@@ -195,7 +201,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiTrash />
+                                                            <Trash className="w-4 h-4" />
                                                             <div>Hapus</div>
                                                         </div>
                                                     </Dropdown.Item>

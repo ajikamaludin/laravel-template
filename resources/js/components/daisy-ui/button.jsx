@@ -4,18 +4,21 @@ export default function Button(props) {
     const { type } = props
 
     const types = {
-        default: 'btn-soft',
-        neutral: 'btn-neutral btn-soft',
-        primary: 'btn-primary btn-soft',
-        secondary: 'btn-secondary btn-soft',
-        accent: 'btn-accent btn-soft',
+        default: '',
+        neutral: 'btn-neutral',
+        primary: 'btn-primary',
+        secondary: 'btn-secondary',
+        accent: 'btn-accent',
         ghost: 'btn-ghost',
         link: 'btn-link',
         //
-        info: 'btn-info btn-soft',
-        error: 'btn-error btn-soft',
-        success: 'btn-success btn-soft',
-        warning: 'btn-warning btn-soft',
+        info: 'btn-info',
+        error: 'btn-error',
+        success: 'btn-success',
+        warning: 'btn-warning',
+
+        //
+        only: '',
     }
 
     return (

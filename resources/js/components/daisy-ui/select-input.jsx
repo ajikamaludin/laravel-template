@@ -87,7 +87,10 @@ export const SelectOptionArray = ({
         >
             <Option value={''}></Option>
             {options.map((option) => (
-                <Option value={option} key={option}>
+                <Option
+                    value={option}
+                    key={option}
+                >
                     {option}
                 </Option>
             ))}
@@ -130,7 +133,10 @@ export const SelectOptionObject = ({
         >
             <Option value="">{defaultOption}</Option>
             {Object.keys(options).map((option) => (
-                <Option value={options[option]} key={option}>
+                <Option
+                    value={option}
+                    key={option}
+                >
                     {options[option]}
                 </Option>
             ))}

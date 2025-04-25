@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { router } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
 import { Head, Link } from '@inertiajs/react'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
+import { Pencil, Trash } from 'lucide-react'
 import { useModalState } from '@/hooks'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
@@ -52,7 +52,13 @@ export default function Index(props) {
     }, [search])
 
     return (
-        <AuthenticatedLayout page={'System'} action={'{{ Model }}'}>
+        <AuthenticatedLayout 
+            title={'{{ Model }}'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: '{{ Model }}', href: route('{{ models }}.index') },
+            ]}
+        >
             <Head title="{{ Model }}" />
 
             <div>
@@ -61,7 +67,7 @@ export default function Index(props) {
                         <HasPermission p="create-{{ modelSplitPascalCase }}">
                             <Link href={route('{{ models }}.create')}>
                                 <Button size="sm" type="primary">
-                                    Add
+                                    Tambah
                                 </Button>
                             </Link>
                         </HasPermission>
@@ -99,7 +105,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiPencil />
+                                                            <Pencil className='w-4 h-4'/>
                                                             <div>Edit</div>
                                                         </div>
                                                     </Dropdown.Item>
@@ -113,7 +119,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiTrash />
+                                                            <Trash className='w-4 h-4'/>
                                                             <div>Delete</div>
                                                         </div>
                                                     </Dropdown.Item>

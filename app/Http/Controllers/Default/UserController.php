@@ -45,8 +45,8 @@ class UserController extends Controller
             'role_id' => $request->role_id,
         ]);
 
-        return redirect()->route('user.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+        return redirect()->route('users.index')
+            ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
     public function update(Request $request, User $user): RedirectResponse
@@ -75,21 +75,21 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
+        return redirect()->route('users.index')
+            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
     public function destroy(User $user): RedirectResponse
     {
         if ($user->role_id == null) {
-            return redirect()->route('user.index')
+            return redirect()->route('users.index')
                 ->with('message', ['type' => 'error', 'message' => 'Item default can\'t deleted']);
         }
 
         $user->delete();
 
 
-        return redirect()->route('user.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
+        return redirect()->route('users.index')
+            ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
     }
 }

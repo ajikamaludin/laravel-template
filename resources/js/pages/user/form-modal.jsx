@@ -40,12 +40,12 @@ export default function FormModal(props) {
     const handleSubmit = () => {
         const user = modalState.data
         if (user !== null) {
-            put(route('user.update', user), {
+            put(route('users.update', user), {
                 onSuccess: () => handleClose(),
             })
             return
         }
-        post(route('user.store'), {
+        post(route('users.store'), {
             onSuccess: () => handleClose(),
         })
     }
@@ -65,7 +65,11 @@ export default function FormModal(props) {
     }, [modalState])
 
     return (
-        <Modal isOpen={modalState.isOpen} onClose={handleClose} title={'User'}>
+        <Modal
+            isOpen={modalState.isOpen}
+            onClose={handleClose}
+            title={'User'}
+        >
             <div className="form-control space-y-2.5">
                 <TextInput
                     name="name"
@@ -121,10 +125,13 @@ export default function FormModal(props) {
                     processing={processing}
                     type="primary"
                 >
-                    Save
+                    Simpan
                 </Button>
-                <Button onClick={handleClose} type="secondary">
-                    Cancel
+                <Button
+                    onClick={handleClose}
+                    type="secondary"
+                >
+                    Batal
                 </Button>
             </div>
         </Modal>

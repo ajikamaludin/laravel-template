@@ -12,7 +12,7 @@ class MenuConstant
             [
                 'name' => 'Dashboard',
                 'show' => true,
-                'icon' => 'HiChartPie',
+                'icon' => 'MonitorDot',
                 'route' => route('dashboard'),
                 'active' => 'dashboard',
                 'permission' => 'view-dashboard',
@@ -20,7 +20,7 @@ class MenuConstant
             [
                 'name' => 'User',
                 'show' => true,
-                'icon' => 'HiUser',
+                'icon' => 'UserRoundCog',
                 'items' => [
                     [
                         'name' => 'Roles',
@@ -32,8 +32,8 @@ class MenuConstant
                     [
                         'name' => 'Users',
                         'show' => true,
-                        'route' => route('user.index'),
-                        'active' => 'user.index',
+                        'route' => route('users.index'),
+                        'active' => 'users.index',
                         'permission' => 'view-user',
                     ],
                 ],
@@ -41,7 +41,7 @@ class MenuConstant
             [
                 'name' => 'Setting',
                 'show' => true,
-                'icon' => 'HiCog',
+                'icon' => 'Cog',
                 'route' => route('setting.index'),
                 'active' => 'setting.index',
                 'permission' => 'view-setting',
@@ -56,7 +56,7 @@ class MenuConstant
                 [[
                     'name' => 'Shortlink',
                     'show' => true,
-                    'icon' => 'HiGlobeAlt',
+                    'icon' => 'Globe',
                     'route' => route('shortlink.link.index'),
                     'active' => 'shortlink.link.*',
                     'permission' => 'view-shortlink',
@@ -68,7 +68,7 @@ class MenuConstant
             $menu = array_merge($menu, [[
                 'name' => 'Custom Form',
                 'show' => true,
-                'icon' => 'HiInformationCircle',
+                'icon' => 'FormInput',
                 'route' => route('custom-form.forms.index'),
                 'active' => 'custom-form.forms.*',
                 'permission' => 'view-custom-form',

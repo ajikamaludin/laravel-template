@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
-import { HiEllipsisVertical } from 'react-icons/hi2'
+import { EllipsisVertical } from 'lucide-react'
 
 const Dropdown = ({ children, label }) => {
     const ref = useRef()
@@ -26,9 +26,12 @@ const Dropdown = ({ children, label }) => {
             ref={ref}
             onClick={() => setOpen(true)}
         >
-            <summary role="button" className="btn btn-neutral px-4">
+            <summary
+                role="button"
+                className="btn px-3"
+            >
                 {isEmpty(label) ? (
-                    <HiEllipsisVertical className="h-5 w-5" />
+                    <EllipsisVertical className="w-5 h-5" />
                 ) : (
                     <div>{label}</div>
                 )}

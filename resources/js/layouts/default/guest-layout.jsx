@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link, usePage } from '@inertiajs/react'
-import { isEmpty } from 'lodash'
 import { themeChange } from 'theme-change'
 import { Toaster } from 'sonner'
 import { showToast } from '@/utils'
@@ -28,8 +27,8 @@ export default function Guest({ children }) {
         <div className="min-h-screen flex flex-col sm:justify-center items-center md:pt-6 bg-base-300">
             {/* card */}
             <div className="w-full h-screen md:h-fit bg-base-100 shadow-xl max-w-md flex flex-col md:rounded-xl">
-                <div className="p-5 md:p-10">
-                    <div className="flex justify-center py-2">
+                <div className="p-5 md:px-8 md:py-10">
+                    <div className="flex justify-center pt-2 pb-4">
                         <Link href="/">
                             <>
                                 {app_logo ? (

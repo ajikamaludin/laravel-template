@@ -8,7 +8,13 @@ import UpdateProfileInformationForm from './partials/update-profile-information-
 
 export default function Edit({ mustVerifyEmail, status }) {
     return (
-        <AuthenticatedLayout page={'System'} action={'Profile'}>
+        <AuthenticatedLayout
+            title={'Profile'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Profile', href: route(route().current()) },
+            ]}
+        >
             <Head title="Profile" />
 
             <div>

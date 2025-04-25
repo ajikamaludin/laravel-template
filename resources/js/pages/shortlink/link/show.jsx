@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Chart from 'react-apexcharts'
 import { Head, router } from '@inertiajs/react'
-import { HiClipboardDocument, HiEye } from 'react-icons/hi2'
 import { isEmpty } from 'lodash'
 import { usePrevious } from 'react-use'
-import Chart from 'react-apexcharts'
+import { ClipboardCopy, Eye } from 'lucide-react'
 
-import { useModalState } from '@/hooks'
+import { useModal } from '@/hooks'
 import { formatDateTime, showToast } from '@/utils'
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
 import {
@@ -57,7 +57,7 @@ export default function Index(props) {
     })
     const preValue = usePrevious(dates)
 
-    const jsonModal = useModalState()
+    const jsonModal = useModal()
 
     const showModal = (value) => {
         jsonModal.setData(value)
@@ -85,8 +85,11 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout
-            page={'Module'}
-            action={'Shortlink'}
+            title={'Link Detail'}
+            breadcumbs={[
+                { name: 'Shortlink', href: route('shortlink.link.index') },
+                { name: 'Show', href: route('shortlink.link.show', link) },
+            ]}
         >
             <Head title="Shortlink" />
 
@@ -117,7 +120,7 @@ export default function Index(props) {
                                         <div>
                                             {route('shortlink.redirect', link)}
                                         </div>
-                                        <HiClipboardDocument className="h-5 w-5" />
+                                        <ClipboardCopy className="h-5 w-5" />
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +184,7 @@ export default function Index(props) {
                                                     showModal(visitor.request)
                                                 }
                                             >
-                                                <HiEye />
+                                                <Eye className="h-4 w-4" />
                                             </Button>
                                         </td>
                                         <td>
@@ -190,7 +193,7 @@ export default function Index(props) {
                                                     showModal(visitor.header)
                                                 }
                                             >
-                                                <HiEye />
+                                                <Eye className="h-4 w-4" />
                                             </Button>
                                         </td>
                                     </tr>

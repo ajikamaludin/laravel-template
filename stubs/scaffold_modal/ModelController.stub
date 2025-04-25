@@ -38,7 +38,7 @@ class {{ Model }}Controller extends Controller
         ]);
 
         return redirect()->route('{{ models }}.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
     public function update(Request $request, {{ Model }} ${{ model }}): RedirectResponse
@@ -54,7 +54,7 @@ class {{ Model }}Controller extends Controller
         ${{ model }}->save();
 
         return redirect()->route('{{ models }}.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
     public function destroy({{ Model }} ${{ model }}): RedirectResponse
@@ -62,6 +62,6 @@ class {{ Model }}Controller extends Controller
         ${{ model }}->delete();
 
         return redirect()->route('{{ models }}.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
     }
 }

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { router } from '@inertiajs/react'
+import { router, Head, Link } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { Head, Link } from '@inertiajs/react'
-import { HiPencil, HiTrash, HiEllipsisVertical, HiPlus } from 'react-icons/hi2'
-import { useModalState } from '@/hooks'
+import { Pencil, Trash } from 'lucide-react'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
 import HasPermission from '@/components/common/has-permission'
@@ -15,6 +13,7 @@ import {
     Button,
     Card,
 } from '@/components/index'
+import { useModal } from '@/hooks'
 
 export default function Index(props) {
     const {
@@ -24,7 +23,7 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
+    const confirmModal = useModal()
 
     const handleDeleteClick = (product) => {
         confirmModal.setData(product)
@@ -52,7 +51,13 @@ export default function Index(props) {
     }, [search])
 
     return (
-        <AuthenticatedLayout page={'System'} action={'Role'}>
+        <AuthenticatedLayout
+            title={'Roles'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Roles', href: route('roles.index') },
+            ]}
+        >
             <Head title="Role" />
 
             <div>
@@ -60,8 +65,11 @@ export default function Index(props) {
                     <div className="flex justify-between">
                         <HasPermission p="create-role">
                             <Link href={route('roles.create')}>
-                                <Button size="sm" type="primary">
-                                    Add
+                                <Button
+                                    size="sm"
+                                    type="primary"
+                                >
+                                    Tambah
                                 </Button>
                             </Link>
                         </HasPermission>
@@ -86,11 +94,7 @@ export default function Index(props) {
                                     <tr key={role.id}>
                                         <td>{role.name}</td>
                                         <td className="text-right">
-                                            <Dropdown
-                                                label={
-                                                    <HiEllipsisVertical className="h-5 w-5" />
-                                                }
-                                            >
+                                            <Dropdown>
                                                 <HasPermission p="update-role">
                                                     <Dropdown.Item
                                                         onClick={() =>
@@ -103,7 +107,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiPencil />
+                                                            <Pencil className="w-4 h-4" />
                                                             <div>Edit</div>
                                                         </div>
                                                     </Dropdown.Item>
@@ -117,7 +121,7 @@ export default function Index(props) {
                                                         }
                                                     >
                                                         <div className="flex space-x-1 items-center">
-                                                            <HiTrash />
+                                                            <Trash className="w-4 h-4" />
                                                             <div>Delete</div>
                                                         </div>
                                                     </Dropdown.Item>
@@ -130,11 +134,17 @@ export default function Index(props) {
                         </table>
                     </div>
                     <div className="w-full overflow-x-auto flex lg:justify-center">
-                        <Pagination links={links} params={params} />
+                        <Pagination
+                            links={links}
+                            params={params}
+                        />
                     </div>
                 </Card>
             </div>
-            <ModalConfirm modalState={confirmModal} onConfirm={onDelete} />
+            <ModalConfirm
+                modalState={confirmModal}
+                onConfirm={onDelete}
+            />
         </AuthenticatedLayout>
     )
 }

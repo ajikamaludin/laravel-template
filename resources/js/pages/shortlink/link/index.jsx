@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiClipboardDocument, HiEye, HiPencil, HiTrash } from 'react-icons/hi2'
-import { useModalState } from '@/hooks'
+import { ClipboardCopy, Eye, Pencil, Trash } from 'lucide-react'
 
 import { formatDateTime, showToast } from '@/utils'
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
@@ -13,6 +12,7 @@ import {
     Button,
     Card,
 } from '@/components/index'
+import { useModal } from '@/hooks'
 import FormModal from './form-modal'
 
 export default function Index(props) {
@@ -23,8 +23,8 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
-    const formModal = useModalState()
+    const confirmModal = useModal()
+    const formModal = useModal()
 
     const toggleFormModal = (link = null) => {
         formModal.setData(link)
@@ -63,8 +63,11 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout
-            page={'Module'}
-            action={'Shortlink'}
+            title={'Shortlink'}
+            breadcumbs={[
+                { name: 'Module', href: route('dashboard') },
+                { name: 'Links', href: route('shortlink.link.index') },
+            ]}
         >
             <Head title="Shortlink" />
 
@@ -123,7 +126,7 @@ export default function Index(props) {
                                                     'shortlink.redirect',
                                                     link
                                                 )}
-                                                <HiClipboardDocument className="h-5 w-5" />
+                                                <ClipboardCopy className="h-5 w-5" />
                                             </div>
                                         </td>
                                         <td>
@@ -148,7 +151,7 @@ export default function Index(props) {
                                                     }
                                                 >
                                                     <div className="flex space-x-1 items-center">
-                                                        <HiEye />
+                                                        <Eye className="h-4 w-4" />
                                                     </div>
                                                 </Button>
                                                 <Button
@@ -157,7 +160,7 @@ export default function Index(props) {
                                                     }
                                                 >
                                                     <div className="flex space-x-1 items-center">
-                                                        <HiPencil />
+                                                        <Pencil className="h-4 w-4" />
                                                     </div>
                                                 </Button>
                                                 <Button
@@ -166,7 +169,7 @@ export default function Index(props) {
                                                     }
                                                 >
                                                     <div className="flex space-x-1 items-center">
-                                                        <HiTrash />
+                                                        <Trash className="h-4 w-4" />
                                                     </div>
                                                 </Button>
                                             </div>

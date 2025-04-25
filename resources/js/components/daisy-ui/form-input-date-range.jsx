@@ -1,21 +1,21 @@
 import 'cally'
 import { useEffect, useRef, useState } from 'react'
-import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 import TextInputError from './text-input-error'
-import { formatDate } from '@/utils'
 import Label from './label'
-import { isEmpty } from 'lodash'
+import { formatDate } from '@/utils'
 
 /**
  *
- * @param {*} param0
- * @returns
  *
  * Example :
+ * // {start_date: '', end_date: ''}
  * <FormInputDateRange
- *     value={dates} // {startDate: '', endDate: ''}
+ *     value={dates}
  *     label={'Date Range'}
  *     onChange={(dates) => handle(input, date)}
+ *      errors={errors.dates}
  * />
  */
 export default function FormInputDateRange({
@@ -93,8 +93,14 @@ export default function FormInputDateRange({
                     class="cally"
                     ref={myDatepicker}
                 >
-                    <HiArrowLeft slot="previous" />
-                    <HiArrowRight slot="next" />
+                    <ChevronLeft
+                        slot="previous"
+                        className="text-base-content"
+                    />
+                    <ChevronRight
+                        slot="next"
+                        className="text-base-content"
+                    />
                     <calendar-month></calendar-month>
                 </calendar-range>
             </div>

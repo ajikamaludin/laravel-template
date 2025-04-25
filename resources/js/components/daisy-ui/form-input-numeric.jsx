@@ -10,18 +10,19 @@ export default function FormInputNumeric({
     value,
     label,
     error,
+    className = '',
 }) {
-    const defaultClassName = ``
+    const defaultClassName = `${className}`
 
     const errorClassName = `input-error`
 
-    const className = error ? errorClassName : defaultClassName
+    const customClassName = error ? errorClassName : defaultClassName
 
     return (
-        <div className="fieldset">
+        <fieldset className="fieldset">
             <Label label={label} />
             <NumericFormat
-                className={className ?? ''}
+                className={customClassName ?? 'px-0'}
                 thousandSeparator="."
                 decimalSeparator=","
                 allowNegative={false}
@@ -40,6 +41,6 @@ export default function FormInputNumeric({
                 autoComplete="off"
             />
             <TextInputError error={error} />
-        </div>
+        </fieldset>
     )
 }

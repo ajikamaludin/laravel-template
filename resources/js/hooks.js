@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
 
 export function useDebounce(value, delay) {
@@ -13,7 +14,7 @@ export function useDebounce(value, delay) {
     return debouncedValue
 }
 
-export function useModalState(state = false) {
+export function useModal(state = false) {
     const [isOpen, setIsOpen] = useState(state)
     const toggle = () => {
         setIsOpen(!isOpen)
@@ -97,4 +98,61 @@ export function useSelectApiPagination(auth, params, url = 'api.select.table') {
     }
 
     return [data, fetch, loading]
+}
+
+export function useFetcher(url = null) {
+    const {
+        props: { auth },
+    } = usePage()
+
+    const fetch = (params) => {
+        let dest = null
+
+        if (typeof url === 'string') {
+            dest = route(url, {
+                page: 1,
+                ...params,
+            })
+        } else {
+            dest = params
+        }
+
+        return axios.get(dest, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: auth.jwt_prefix + auth.jwt_token,
+            },
+        })
+    }
+
+    return [fetch]
+}
+
+export function useSidebar(defaultOpen = true) {
+    function isMobile() {
+        return window.innerWidth <= 768
+    }
+
+    const STORAGE_KEY = 'sidebar'
+
+    const [isOpen, setIsOpen] = useState(() => {
+        const saved = localStorage.getItem(STORAGE_KEY)
+        return isMobile()
+            ? false
+            : saved !== null
+            ? JSON.parse(saved)
+            : defaultOpen
+    })
+
+    useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(isOpen))
+    }, [isOpen])
+
+    const toggleSidebar = () => setIsOpen((prev) => !prev)
+
+    return {
+        isShowSidebar: isOpen,
+        toggleSidebar,
+    }
 }

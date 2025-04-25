@@ -27,6 +27,6 @@ class {{ Model }}Controller extends Controller
         );
 
         return redirect()->route('{{ models }}.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 }

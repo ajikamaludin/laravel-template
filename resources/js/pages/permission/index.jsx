@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router, Head } from '@inertiajs/react'
 import { usePrevious } from 'react-use'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
-import { useModalState } from '@/hooks'
+import { Pencil, Trash } from 'lucide-react'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
 import {
@@ -14,6 +13,7 @@ import {
     Card,
 } from '@/components/index'
 import FormModal from './form-modal'
+import { useModal } from '@/hooks'
 
 export default function Index(props) {
     const {
@@ -23,8 +23,8 @@ export default function Index(props) {
     const [search, setSearch] = useState('')
     const preValue = usePrevious(search)
 
-    const confirmModal = useModalState()
-    const formModal = useModalState()
+    const confirmModal = useModal()
+    const formModal = useModal()
 
     const toggleFormModal = (permission = null) => {
         formModal.setData(permission)
@@ -57,7 +57,13 @@ export default function Index(props) {
     }, [search])
 
     return (
-        <AuthenticatedLayout page={'System'} action={'Permission'}>
+        <AuthenticatedLayout
+            title={'Permissions'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Permissions', href: route('permissions.index') },
+            ]}
+        >
             <Head title=" Permission" />
 
             <div>
@@ -68,7 +74,7 @@ export default function Index(props) {
                             onClick={() => toggleFormModal()}
                             type="primary"
                         >
-                            Add
+                            Tambah
                         </Button>
 
                         <div className="flex items-center">
@@ -102,7 +108,7 @@ export default function Index(props) {
                                                     }
                                                 >
                                                     <div className="flex space-x-1 items-center">
-                                                        <HiPencil />
+                                                        <Pencil className="w-4 h-4" />
                                                         <div>Edit</div>
                                                     </div>
                                                 </Dropdown.Item>
@@ -114,7 +120,7 @@ export default function Index(props) {
                                                     }
                                                 >
                                                     <div className="flex space-x-1 items-center">
-                                                        <HiTrash />
+                                                        <Trash className="w-4 h-4" />
                                                         <div>Delete</div>
                                                     </div>
                                                 </Dropdown.Item>
@@ -126,11 +132,17 @@ export default function Index(props) {
                         </table>
                     </div>
                     <div className="w-full overflow-x-auto flex lg:justify-center">
-                        <Pagination links={links} params={params} />
+                        <Pagination
+                            links={links}
+                            params={params}
+                        />
                     </div>
                 </Card>
             </div>
-            <ModalConfirm onConfirm={onDelete} modalState={confirmModal} />
+            <ModalConfirm
+                onConfirm={onDelete}
+                modalState={confirmModal}
+            />
             <FormModal modalState={formModal} />
         </AuthenticatedLayout>
     )

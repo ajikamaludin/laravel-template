@@ -1,8 +1,9 @@
-import Label from './label'
 import 'cally'
 import { useEffect, useRef, useState } from 'react'
-import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 import TextInputError from './text-input-error'
+import Label from './label'
 import { formatDate } from '@/utils'
 
 /**
@@ -84,9 +85,18 @@ export default function FormInputDate({
                 ref={popover}
             >
                 {/* pure html not react components */}
-                <calendar-date class="cally" ref={myDatepicker}>
-                    <HiArrowLeft slot="previous" />
-                    <HiArrowRight slot="next" />
+                <calendar-date
+                    class="cally"
+                    ref={myDatepicker}
+                >
+                    <ChevronLeft
+                        slot="previous"
+                        className="text-base-content"
+                    />
+                    <ChevronRight
+                        slot="next"
+                        className="text-base-content"
+                    />
                     <calendar-month></calendar-month>
                 </calendar-date>
             </div>

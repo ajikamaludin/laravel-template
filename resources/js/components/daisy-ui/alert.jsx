@@ -1,4 +1,4 @@
-import { HiXCircle } from 'react-icons/hi2'
+import { CircleX } from 'lucide-react'
 
 export default function Alert({ type = 'error', message }) {
     if (!message) {
@@ -13,7 +13,7 @@ export default function Alert({ type = 'error', message }) {
 
     return (
         <div className={className[type]}>
-            <HiXCircle className="h-5 w-5" />
+            <CircleX />
             <span>{message}</span>
         </div>
     )

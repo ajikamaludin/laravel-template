@@ -1,6 +1,7 @@
 import { router } from '@inertiajs/react'
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
+
 import qs from 'qs'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PageLink = ({ active, label, url, params }) => {
     const className = active ? 'join-item btn btn-active' : 'join-item btn'
@@ -23,20 +24,26 @@ const PageLink = ({ active, label, url, params }) => {
                 className="join-item btn"
                 aria-label="Previous"
             >
-                <HiOutlineChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4" />
             </button>
         )
     }
     if (label == 'Next &raquo;') {
         return (
-            <button onClick={onClick} className="join-item btn">
-                <HiOutlineChevronRight className="w-4 h-4" />
+            <button
+                onClick={onClick}
+                className="join-item btn"
+            >
+                <ChevronRight className="w-4 h-4" />
             </button>
         )
     }
 
     return (
-        <button className={className} onClick={onClick}>
+        <button
+            className={className}
+            onClick={onClick}
+        >
             {label}
         </button>
     )
@@ -52,14 +59,23 @@ const PageInactive = ({ label }) => {
                 className="join-item btn btn-disabled"
                 aria-label="Previous"
             >
-                <HiOutlineChevronLeft className="w-4 h-4 text-base-content" />
+                <Icon
+                    icon="lucide:chevron-left"
+                    className="w-4 h-4 text-base-content"
+                />
             </button>
         )
     }
     if (label == 'Next &raquo;') {
         return (
-            <button className="join-item btn btn-disabled" aria-label="Next">
-                <HiOutlineChevronRight className="w-4 h-4 text-base-content" />
+            <button
+                className="join-item btn btn-disabled"
+                aria-label="Next"
+            >
+                <Icon
+                    icon="lucide:chevron-right"
+                    className="w-4 h-4 text-base-content"
+                />
             </button>
         )
     }

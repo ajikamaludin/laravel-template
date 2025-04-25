@@ -7,7 +7,7 @@ class SettingConstant
     public static function all()
     {
         return [
-            ['key' => 'app_name', 'value' => 'Daisy UI', 'type' => 'text'],
+            ['key' => 'app_name', 'value' => 'Daisy UI v5', 'type' => 'text'],
             ['key' => 'app_logo', 'value' => '', 'type' => 'image'],
         ];
     }

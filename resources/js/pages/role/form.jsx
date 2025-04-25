@@ -99,11 +99,17 @@ export default function Role(props) {
 
     return (
         <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            flash={props.flash}
-            page={'System'}
-            action={'Role'}
+            title={'Role'}
+            breadcumbs={[
+                { name: 'Dashboard', href: route('dashboard') },
+                { name: 'Roles', href: route('roles.index') },
+                {
+                    name: 'Form',
+                    href: role
+                        ? route('roles.edit', role)
+                        : route('roles.create'),
+                },
+            ]}
         >
             <Head title="Role" />
 
@@ -150,10 +156,10 @@ export default function Role(props) {
                                     processing={processing}
                                     type="primary"
                                 >
-                                    Save
+                                    Simpan
                                 </Button>
                                 <Link href={route('roles.index')}>
-                                    <Button type="secondary">Back</Button>
+                                    <Button type="secondary">Kembali</Button>
                                 </Link>
                             </div>
                         </div>

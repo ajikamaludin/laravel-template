@@ -1,4 +1,4 @@
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PageLink = ({ active, label, page, onPageChange }) => {
     const className = active ? 'join-item btn btn-active' : 'join-item btn'
@@ -10,7 +10,7 @@ const PageLink = ({ active, label, page, onPageChange }) => {
                 className="join-item btn"
                 aria-label="Previous"
             >
-                <HiOutlineChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4" />
             </button>
         )
     }
@@ -20,13 +20,16 @@ const PageLink = ({ active, label, page, onPageChange }) => {
                 onClick={() => onPageChange(+page + 1)}
                 className="join-item btn"
             >
-                <HiOutlineChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4" />
             </button>
         )
     }
 
     return (
-        <button className={className} onClick={() => onPageChange(label)}>
+        <button
+            className={className}
+            onClick={() => onPageChange(label)}
+        >
             {label}
         </button>
     )
@@ -42,14 +45,17 @@ const PageInactive = ({ label }) => {
                 className="join-item btn btn-disabled"
                 aria-label="Previous"
             >
-                <HiOutlineChevronLeft className="w-4 h-4 text-base-content" />
+                <ChevronLeft className="w-4 h-4 text-base-content" />
             </button>
         )
     }
     if (label == 'Next &raquo;') {
         return (
-            <button className="join-item btn btn-disabled" aria-label="Next">
-                <HiOutlineChevronRight className="w-4 h-4 text-base-content" />
+            <button
+                className="join-item btn btn-disabled"
+                aria-label="Next"
+            >
+                <ChevronRight className="w-4 h-4 text-base-content" />
             </button>
         )
     }

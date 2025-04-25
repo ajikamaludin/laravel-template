@@ -38,7 +38,7 @@ class PermissionController extends Controller
         ]);
 
         return redirect()->route('permissions.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
     public function update(Request $request, Permission $permission): RedirectResponse
@@ -56,7 +56,7 @@ class PermissionController extends Controller
         $permission->save();
 
         return redirect()->route('permissions.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
     public function destroy(Permission $permission): RedirectResponse
@@ -64,6 +64,6 @@ class PermissionController extends Controller
         $permission->delete();
 
         return redirect()->route('permissions.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
     }
 }

@@ -1,15 +1,27 @@
+import { Link } from '@inertiajs/react'
+
 const Breadcrumb = (props) => {
     return (
-        <div className="breadcrumbs text-sm px-4 border-base-200 border-y">
+        <div className="breadcrumbs text-sm hidden md:block">
             <ul>{props.children}</ul>
         </div>
     )
 }
 
-Breadcrumb.Item = ({ onClick, children }) => {
+Breadcrumb.Item = ({ r, children }) => {
+    if (r === null || r === undefined) {
+        return (
+            <li>
+                <p>{children}</p>
+            </li>
+        )
+    }
+
     return (
-        <li onClick={onClick}>
-            <p>{children}</p>
+        <li>
+            <Link href={r}>
+                <p>{children}</p>
+            </Link>
         </li>
     )
 }

@@ -104,8 +104,14 @@ export default function Form() {
 
     return (
         <AuthenticatedLayout
-            page={'Module'}
-            action={field.name}
+            title={'Custom Form'}
+            breadcumbs={[
+                { name: 'Custom Form', href: route('custom-form.forms.index') },
+                {
+                    name: `Form - ${field.name}`,
+                    href: route('custom-form.form-records.index', field),
+                },
+            ]}
         >
             <Head title={`Record - ${field.name}`} />
 

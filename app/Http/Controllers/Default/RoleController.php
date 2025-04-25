@@ -56,7 +56,7 @@ class RoleController extends Controller
         DB::commit();
 
         return redirect()->route('roles.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
     public function edit(Role $role): Response
@@ -96,7 +96,7 @@ class RoleController extends Controller
         DB::commit();
 
         return redirect()->route('roles.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
     public function destroy(Role $role): RedirectResponse
@@ -105,7 +105,7 @@ class RoleController extends Controller
 
         if ($deleted) {
             return redirect()->route('roles.index')
-                ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
+                ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
         }
 
         return redirect()->route('roles.index')

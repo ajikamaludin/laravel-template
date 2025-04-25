@@ -1,5 +1,5 @@
-import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
-import TextInput from './text-input'
+import { Search } from 'lucide-react'
+import { forwardRef } from 'react'
 
 /**
  *
@@ -12,14 +12,23 @@ import TextInput from './text-input'
  *   value={search}
  * />
  */
-export default function SearchInput({ onChange, value }) {
+const SearchInput = forwardRef((props, ref) => {
     return (
-        <TextInput
-            onChange={onChange}
-            value={value}
-            type="search"
-            placeholder="Search..."
-            icon={<HiOutlineMagnifyingGlass />}
-        />
+        <form>
+            <label className="input w-full">
+                <Search
+                    icon="lucide:search"
+                    className="w-4 h-4 opacity-50"
+                />
+                <input
+                    ref={ref}
+                    type="search"
+                    placeholder="Search"
+                    {...props}
+                />
+            </label>
+        </form>
     )
-}
+})
+
+export default SearchInput
