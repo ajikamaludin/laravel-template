@@ -18,7 +18,9 @@ export default function ModalConfirm({ onConfirm, modalState }) {
             onClose={onCancel}
         >
             <div className="text-center text-content">
-                <h3 className="mb-5 text-lg font-normal ">Are you sure ?</h3>
+                <h3 className="mb-5  text-xl font-bold h-36 flex justify-center items-center">
+                    Are you sure ?
+                </h3>
                 <div className="flex justify-center gap-4">
                     <Button
                         type="error"
