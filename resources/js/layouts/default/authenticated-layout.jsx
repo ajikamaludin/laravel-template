@@ -41,7 +41,7 @@ export default function AuthenticatedLayout({
             <main
                 className={`transition ${isShowSidebar ? 'lg:ml-64' : 'ml-0 '}`}
             >
-                <nav className="navbar-bg border-b border-base-200">
+                <nav className="bg-base-200 border-b border-base-300">
                     <div className="mx-auto px-4 py-2">
                         <div className="flex justify-between">
                             <div className="-mr-2 flex items-center space-x-2">

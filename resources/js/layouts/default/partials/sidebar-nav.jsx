@@ -38,9 +38,7 @@ const SidebarItem = ({ item }) => {
             <Link
                 href={item.route}
                 className={`${
-                    route().current(item.active)
-                        ? ' bg-base-300 opacity-90'
-                        : ''
+                    route().current(item.active) ? ' menu-active' : ''
                 }`}
             >
                 {item.icon && (
@@ -120,7 +118,7 @@ export default function SidebarNav({ user, show, setShow }) {
         <div
             className={`${
                 show ? 'block' : 'hidden'
-            } flex flex-col h-screen overflow-y-auto transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-50 w-full md:w-64 sidebar-bg border-r border-base-200 lg:translate-x-0 lg:end-auto lg:bottom-0 `}
+            } flex flex-col h-screen overflow-y-auto transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-50 w-full md:w-64 bg-base-200 border-r border-base-300 lg:translate-x-0 lg:end-auto lg:bottom-0 `}
         >
             <div className="flex flex-col justify-between flex-1">
                 <div className="">

@@ -36,7 +36,7 @@ const Dropdown = ({ children, label }) => {
                     <div>{label}</div>
                 )}
             </summary>
-            <ul className="p-2 shadow-sm menu dropdown-content z-1 bg-base-300 rounded-box w-52">
+            <ul className="p-2 shadow menu dropdown-content bg-base-100 z-1 w-52">
                 {children}
             </ul>
         </details>
@@ -44,7 +44,13 @@ const Dropdown = ({ children, label }) => {
 }
 
 Dropdown.Item = ({ children, ...props }) => {
-    return <li {...props}>{children}</li>
+    return (
+        <li {...props}>
+            <div className="btn btn-sm btn-block btn-ghost justify-start">
+                {children}
+            </div>
+        </li>
+    )
 }
 
 export default Dropdown

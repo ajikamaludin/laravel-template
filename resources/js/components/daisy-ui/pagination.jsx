@@ -59,10 +59,7 @@ const PageInactive = ({ label }) => {
                 className="join-item btn btn-disabled"
                 aria-label="Previous"
             >
-                <Icon
-                    icon="lucide:chevron-left"
-                    className="w-4 h-4 text-base-content"
-                />
+                <ChevronLeft className="w-4 h-4 text-base-content" />
             </button>
         )
     }
@@ -72,10 +69,7 @@ const PageInactive = ({ label }) => {
                 className="join-item btn btn-disabled"
                 aria-label="Next"
             >
-                <Icon
-                    icon="lucide:chevron-right"
-                    className="w-4 h-4 text-base-content"
-                />
+                <ChevronRight className="w-4 h-4 text-base-content" />
             </button>
         )
     }

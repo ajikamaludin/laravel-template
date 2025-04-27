@@ -7,8 +7,8 @@ export default function UserProfileMenu() {
     } = usePage()
 
     return (
-        <details className="dropdown dropdown-end p-1 hover:bg-base-200 rounded-md">
-            <summary className="btn btn-ghost px-0 my-0">
+        <details className="dropdown dropdown-end p-1 hover:bg-base-100 rounded-md">
+            <summary className="btn btn-link text-base-content no-underline px-0 my-0">
                 <div className="flex flex-row gap-2">
                     <div className="avatar avatar-placeholder">
                         <div className="bg-neutral text-neutral-content w-9 h-9 rounded-full">
@@ -29,11 +29,12 @@ export default function UserProfileMenu() {
                 </div>
             </summary>
 
-            <ul className="mt-2 menu dropdown-content z-1 bg-base-300 rounded-box w-52">
+            <ul className="mt-2 menu dropdown-content z-1 bg-base-100  shadow rounded-box w-52">
                 <li>
                     <Link
                         href={route('profile.edit')}
                         as="button"
+                        className="btn btn-sm btn-block btn-ghost justify-start"
                     >
                         <User className="w-4 h-4" />
                         My Profile
@@ -44,7 +45,7 @@ export default function UserProfileMenu() {
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="text-red-400"
+                        className="btn btn-sm btn-block btn-error btn-ghost justify-start"
                     >
                         <LogOut className="w-4 h-4" />
                         Logout

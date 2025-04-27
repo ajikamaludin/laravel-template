@@ -153,15 +153,16 @@ export default function SelectModalInput(props) {
                 <Label label={label} />
                 <div className="join">
                     <input
-                        className={`input input-bordered w-full ${
-                            error && 'input-error'
-                        } ${
-                            showRemoveBtnAndReadOnly &&
-                            'border-r-0 rounded-r-none'
+                        className={`input w-full ${
+                            error ? 'input-error' : ''
+                        }  ${
+                            showRemoveBtnAndReadOnly
+                                ? 'border-r-0 rounded-r-none'
+                                : ''
                         }`}
                         value={selected}
                         onClick={readOnly ? null : toggle}
-                        placeholder={placeholder}
+                        placeholder={placeholder ?? null}
                         readOnly={true}
                     />
                     {showRemoveBtnAndReadOnly && (

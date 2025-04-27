@@ -20,7 +20,7 @@
     @inertiaHead
 </head>
 
-<body class="antialiased" author="aji19kamaludin@gmail.com" id="root">
+<body class="antialiased bg-base-300" author="aji19kamaludin@gmail.com" id="root">
     @inertia
 </body>
 

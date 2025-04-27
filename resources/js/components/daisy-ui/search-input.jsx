@@ -16,10 +16,7 @@ const SearchInput = forwardRef((props, ref) => {
     return (
         <form>
             <label className="input w-full">
-                <Search
-                    icon="lucide:search"
-                    className="w-4 h-4 opacity-50"
-                />
+                <Search className="w-4 h-4 opacity-50" />
                 <input
                     ref={ref}
                     type="search"

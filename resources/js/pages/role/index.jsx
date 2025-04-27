@@ -106,10 +106,10 @@ export default function Index(props) {
                                                             )
                                                         }
                                                     >
-                                                        <div className="flex space-x-1 items-center">
-                                                            <Pencil className="w-4 h-4" />
-                                                            <div>Edit</div>
-                                                        </div>
+                                                        {/* <div className="flex space-x-1 items-center"> */}
+                                                        <Pencil className="w-4 h-4" />
+                                                        <div>Edit</div>
+                                                        {/* </div> */}
                                                     </Dropdown.Item>
                                                 </HasPermission>
                                                 <HasPermission p="delete-role">
