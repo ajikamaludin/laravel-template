@@ -14,7 +14,7 @@
         "firebase/php-jwt": "^6.11.1",
         "guzzlehttp/guzzle": "^7.9.3",
         "inertiajs/inertia-laravel": "^2.0.2",
-        "laravel/framework": "^12.10.2",
+        "laravel/framework": "^12.12.0",
         "laravel/prompts": "^0.3.5",
         "laravel/tinker": "^2.10.1",
         "react/async": "^4.3",

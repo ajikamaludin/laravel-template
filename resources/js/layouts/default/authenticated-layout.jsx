@@ -18,7 +18,7 @@ export default function AuthenticatedLayout({
     const {
         props: { auth, flash },
     } = usePage()
-    const { isShowSidebar, toggleSidebar } = useSidebar(false)
+    const { isShowSidebar, toggleSidebar } = useSidebar(true)
 
     useEffect(() => {
         if (flash.message !== null) {

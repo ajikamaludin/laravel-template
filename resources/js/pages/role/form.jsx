@@ -3,7 +3,7 @@ import { router, Head, Link, usePage } from '@inertiajs/react'
 import { isEmpty } from 'lodash'
 
 import AuthenticatedLayout from '@/layouts/default/authenticated-layout'
-import { TextInput, Button, Checkbox, Card } from '@/components/index'
+import { TextInput, Button, Checkbox, Card, Label } from '@/components/index'
 
 export default function Role(props) {
     const {
@@ -14,85 +14,97 @@ export default function Role(props) {
     const [processing, setProcessing] = useState(false)
 
     const [name, setName] = useState('')
-    const [permins, setPermins] = useState(
-        permissions.map((permin) => {
-            return { ...permin, checked: false }
-        })
-    )
+    const [permins, setPermins] = useState(permissions)
 
-    const handleCheckPermission = (e) => {
+    const handleCheckPermission = (g, n) => {
         setPermins(
-            permins.map((item) => {
-                if (item.name === e.target.name) {
-                    return {
+            Object.fromEntries(
+                Object.entries(permins).map(([group, items]) => [
+                    group,
+                    items.map((item) => ({
                         ...item,
-                        checked: !item.checked,
-                    }
-                }
-                return item
-            })
+                        checked:
+                            g === group && item.name === n
+                                ? !item.checked
+                                : item.checked,
+                    })),
+                ])
+            )
         )
     }
 
-    const handleCheckAll = (e) => {
+    const handleCheckAll = (checked) => {
+        console.log(checked)
         setPermins(
-            permins.map((item) => {
-                return {
-                    ...item,
-                    checked: e.target.checked,
-                }
-            })
+            Object.fromEntries(
+                Object.entries(permins).map(([group, items]) => [
+                    group,
+                    items.map((item) => ({
+                        ...item,
+                        checked: checked,
+                    })),
+                ])
+            )
+        )
+    }
+
+    const handleCheckGroup = (g, e) => {
+        setPermins(
+            Object.fromEntries(
+                Object.entries(permins).map(([group, items]) => [
+                    group,
+                    items.map((item) => ({
+                        ...item,
+                        checked: g === group ? e.target.checked : item.checked,
+                    })),
+                ])
+            )
         )
     }
 
     const handleSubmit = () => {
-        if (isEmpty(role) === false) {
-            router.put(
-                route('roles.update', role),
-                {
-                    name: name,
-                    permissions: permins.filter((item) => item.checked),
-                },
-                {
-                    onStart: () => setProcessing(true),
-                    onFinish: (e) => {
-                        setProcessing(false)
-                    },
-                }
-            )
-            return
+        const payload = {
+            name: name,
+            permissions: Object.values(permins)
+                .flat()
+                .filter((item) => item.checked),
         }
-        router.post(
-            route('roles.store'),
-            {
-                name: name,
-                permissions: permins.filter((item) => item.checked),
-            },
-            {
+
+        if (isEmpty(role) === false) {
+            router.put(route('roles.update', role), payload, {
                 onStart: () => setProcessing(true),
                 onFinish: (e) => {
                     setProcessing(false)
                 },
-            }
-        )
+            })
+            return
+        }
+        router.post(route('roles.store'), payload, {
+            onStart: () => setProcessing(true),
+            onFinish: (e) => {
+                setProcessing(false)
+            },
+        })
     }
 
     useEffect(() => {
         if (!isEmpty(role)) {
             setName(role.name)
             setPermins(
-                permins.map((item) => {
-                    const isExists = role.permissions.find(
-                        (permit) => permit.id === item.id
-                    )
-                    if (isExists) {
-                        return {
-                            ...item,
-                            checked: true,
-                        }
-                    }
-                    return item
-                })
+                Object.fromEntries(
+                    Object.entries(permissions).map(([group, items]) => [
+                        group,
+                        items.map((item) => {
+                            return {
+                                ...item,
+                                checked:
+                                    role.permissions.find(
+                                        (permit) => permit.name === item.name
+                                    ) !== undefined,
+                            }
+                        }),
+                    ])
+                )
             )
         }
     }, [role])
@@ -125,23 +137,58 @@ export default function Role(props) {
                         />
                         <Checkbox
                             label={'Check All'}
-                            onChange={handleCheckAll}
+                            onChange={(e) => handleCheckAll(e.target.checked)}
                         />
                         <div
-                            className={`grid grid-cols-1 md:grid-cols-4 border border-rounded border-gray-400 rounded-lg p-2 gap-2 ${
+                            className={`flex flex-col border border-rounded border-gray-400 rounded-lg p-2 gap-2 ${
                                 errors.permissions
                                     ? 'border-red-600'
                                     : 'border-gray-400'
                             }`}
                         >
-                            {permins.map((item) => (
-                                <Checkbox
-                                    key={item.id}
-                                    label={item.label}
-                                    value={item.checked}
-                                    name={item.name}
-                                    onChange={handleCheckPermission}
-                                />
+                            {Object.keys(permins).map((group) => (
+                                <div
+                                    key={group}
+                                    className="flex flex-col gap-2 rounded border border-gray-400 p-2"
+                                >
+                                    <div className="flex items-center space-x-3">
+                                        <Checkbox
+                                            id={`check-${group}`}
+                                            onChange={(e) =>
+                                                handleCheckGroup(group, e)
+                                            }
+                                        />
+                                        <Label label={group} />
+                                    </div>
+                                    <div
+                                        className={`grid grid-cols-1 gap-2 md:grid-cols-4 ${
+                                            errors.permissions
+                                                ? 'border-red-600'
+                                                : 'border-gray-400 dark:border-gray-700'
+                                        }`}
+                                    >
+                                        {permins[group].map((item) => (
+                                            <div
+                                                className="flex items-center space-x-3"
+                                                key={item.id}
+                                            >
+                                                <Checkbox
+                                                    id={item.label}
+                                                    onChange={() =>
+                                                        handleCheckPermission(
+                                                            group,
+                                                            item.name
+                                                        )
+                                                    }
+                                                    key={item.id}
+                                                    label={item.label}
+                                                    value={item.checked}
+                                                    name={item.name}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
                         {errors.permissions && (

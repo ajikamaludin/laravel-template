@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Default;
 
+use App\Attributes\Permission as AttributesPermission;
 use App\Http\Controllers\Controller;
 use App\Models\Default\Permission;
 use App\Models\Default\Role;
@@ -13,6 +14,7 @@ use Inertia\Response;
 
 class RoleController extends Controller
 {
+    #[AttributesPermission('view-role')]
     public function index(Request $request): Response
     {
         $request->user()->allow('view-role', true);
@@ -30,13 +32,17 @@ class RoleController extends Controller
         ]);
     }
 
+    #[AttributesPermission('create-role')]
     public function create(): Response
     {
         return inertia('role/form', [
-            'permissions' => Permission::all(),
+            'permissions' => Permission::all()
+                ->groupBy('group')
+                ->toArray(),
         ]);
     }
 
+    #[AttributesPermission('create-role')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -56,17 +62,21 @@ class RoleController extends Controller
         DB::commit();
 
         return redirect()->route('roles.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has beed created']);
     }
 
+    #[AttributesPermission('update-role')]
     public function edit(Role $role): Response
     {
         return inertia('role/form', [
             'role' => $role->load(['permissions']),
-            'permissions' => Permission::all(),
+            'permissions' => Permission::all()
+                ->groupBy('group')
+                ->toArray(),
         ]);
     }
 
+    #[AttributesPermission('update-role')]
     public function update(Request $request, Role $role): RedirectResponse
     {
         $request->validate([
@@ -96,16 +106,17 @@ class RoleController extends Controller
         DB::commit();
 
         return redirect()->route('roles.index')
-            ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
+            ->with('message', ['type' => 'success', 'message' => 'Item has beed updated']);
     }
 
+    #[AttributesPermission('delete-role')]
     public function destroy(Role $role): RedirectResponse
     {
         $deleted = $role->delete();
 
         if ($deleted) {
             return redirect()->route('roles.index')
-                ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
+                ->with('message', ['type' => 'success', 'message' => 'Item has beed deleted']);
         }
 
         return redirect()->route('roles.index')

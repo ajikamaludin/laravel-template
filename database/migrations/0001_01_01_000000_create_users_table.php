@@ -46,6 +46,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('label');
             $table->string('name');
+            $table->string('group');
             $table->timestamps();
         });
 

@@ -36,7 +36,7 @@ const Dropdown = ({ children, label }) => {
                     <div>{label}</div>
                 )}
             </summary>
-            <ul className="p-2 shadow menu dropdown-content bg-base-100 z-1 w-52">
+            <ul className="p-2 shadow menu dropdown-content bg-base-200 z-1 w-52">
                 {children}
             </ul>
         </details>

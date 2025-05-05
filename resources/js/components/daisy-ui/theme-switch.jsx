@@ -2,12 +2,12 @@ import { Moon, Settings2, Sun } from 'lucide-react'
 
 export function ThemeSwitch() {
     const themes = [
+        'dark',
+        'business',
+        'light',
         'nord',
         'dim',
         'winter',
-        'business',
-        'dark',
-        'light',
         'cupcake',
         'corporate',
         'lofi',

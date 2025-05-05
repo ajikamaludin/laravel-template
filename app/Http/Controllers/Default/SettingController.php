@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Default;
 
+use App\Attributes\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Default\Setting;
-use App\Services\RecentActivityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
+    #[Permission('view-setting')]
     public function index()
     {
         return inertia('setting/index', [
@@ -17,6 +18,7 @@ class SettingController extends Controller
         ]);
     }
 
+    #[Permission('update-setting')]
     public function update(Request $request)
     {
         $request->validate([

@@ -13,5 +13,6 @@ class Permission extends Model
     protected $fillable = [
         'name',
         'label',
+        'group',
     ];
 }

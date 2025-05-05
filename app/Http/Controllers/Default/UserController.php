@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Default;
 
+use App\Attributes\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Default\User;
 use Illuminate\Http\RedirectResponse;
@@ -10,6 +11,7 @@ use Inertia\Response;
 
 class UserController extends Controller
 {
+    #[Permission('view-user')]
     public function index(Request $request): Response
     {
         $request->user()->allow('view-user', true);
@@ -28,6 +30,7 @@ class UserController extends Controller
         ]);
     }
 
+    #[Permission('create-user')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -48,6 +51,7 @@ class UserController extends Controller
             ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
+    #[Permission('update-user')]
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
@@ -78,6 +82,7 @@ class UserController extends Controller
             ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
+    #[Permission('delete-user')]
     public function destroy(User $user): RedirectResponse
     {
         if ($user->role_id == null) {
@@ -86,7 +91,6 @@ class UserController extends Controller
         }
 
         $user->delete();
-
 
         return redirect()->route('users.index')
             ->with('message', ['type' => 'success', 'message' => 'Item has been deleted']);
