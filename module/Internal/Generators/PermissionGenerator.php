@@ -14,9 +14,9 @@ class PermissionGenerator
         return new PermissionGenerator;
     }
 
-    public function addPermission($name, $label)
+    public function addPermission($name, $label, $group)
     {
-        $permission = "\t\t['label' => '" . $label . "', 'name' => '" . $name . "'],\n";
+        $permission = "\t\t['label' => '" . $label . "', 'name' => '" . $name . "' , 'group' => '" . $group . "'],\n";
 
         // Open the file in read mode to read its contents
         $file = File::get(app_path($this->permissionFile));

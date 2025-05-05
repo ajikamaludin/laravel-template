@@ -309,7 +309,7 @@ class ScaffoldGenerator
                 ]);
 
             // Permission
-            PermissionGenerator::new()->addPermission('view-' . $this->model, 'View ' . $this->Model);
+            PermissionGenerator::new()->addPermission('view-' . $this->model, 'View ' . $this->Model, $this->Model);
             PermissionService::new()->sync();
         } catch (\Exception $e) {
             $this->removeDefaultDestinations();
@@ -338,10 +338,10 @@ class ScaffoldGenerator
     {
         PermissionGenerator::new()
             ->addPermissions([
-                ["view-{$this->modelSplitPascalCase}", "View {$this->ModelSplit}"],
-                ["create-{$this->modelSplitPascalCase}", "Create {$this->ModelSplit}"],
-                ["update-{$this->modelSplitPascalCase}", "Update {$this->ModelSplit}"],
-                ["delete-{$this->modelSplitPascalCase}", "Delete {$this->ModelSplit}"],
+                ["view-{$this->modelSplitPascalCase}", "View {$this->ModelSplit}", $this->modelSplitPascalCase],
+                ["create-{$this->modelSplitPascalCase}", "Create {$this->ModelSplit}", $this->modelSplitPascalCase],
+                ["update-{$this->modelSplitPascalCase}", "Update {$this->ModelSplit}", $this->modelSplitPascalCase],
+                ["delete-{$this->modelSplitPascalCase}", "Delete {$this->ModelSplit}", $this->modelSplitPascalCase],
             ]);
 
         PermissionService::new()->sync();
