@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\{{ Model }};
+use App\Attributes\Permission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
 class {{ Model }}Controller extends Controller
 {
+    #[Permission('view-{{ modelSplitPascalCase }}')]
     public function index(Request $request): Response
     {
         $query = {{ Model }}::query();
@@ -27,11 +29,13 @@ class {{ Model }}Controller extends Controller
         ]);
     }
 
+    #[Permission('create-{{ modelSplitPascalCase }}')]
     public function create(): Response
     {
         return inertia('{{ modelSplitPascalCase }}/form');
     }
 
+    #[Permission('create-{{ modelSplitPascalCase }}')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -46,6 +50,7 @@ class {{ Model }}Controller extends Controller
             ->with('message', ['type' => 'success', 'message' => 'Item has been created']);
     }
 
+    #[Permission('update-{{ modelSplitPascalCase }}')]
     public function edit({{ Model }} ${{ model }}): Response
     {
         return inertia('{{ modelSplitPascalCase }}/form', [
@@ -53,6 +58,7 @@ class {{ Model }}Controller extends Controller
         ]);
     }
 
+    #[Permission('update-{{ modelSplitPascalCase }}')]
     public function update(Request $request, {{ Model }} ${{ model }}): RedirectResponse
     {
         $request->validate([
@@ -69,6 +75,7 @@ class {{ Model }}Controller extends Controller
             ->with('message', ['type' => 'success', 'message' => 'Item has been updated']);
     }
 
+    #[Permission('delete-{{ modelSplitPascalCase }}')]
     public function destroy({{ Model }} ${{ model }}): RedirectResponse
     {
         ${{ model }}->delete();
