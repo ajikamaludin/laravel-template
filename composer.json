@@ -13,20 +13,20 @@
         "dyrynda/laravel-cascade-soft-deletes": "^4.5.0",
         "firebase/php-jwt": "^6.11.1",
         "guzzlehttp/guzzle": "^7.9.3",
-        "inertiajs/inertia-laravel": "^2.0.2",
-        "laravel/framework": "^12.12.0",
-        "laravel/prompts": "^0.3.5",
+        "inertiajs/inertia-laravel": "^2.0.4",
+        "laravel/framework": "^12.21.0",
+        "laravel/prompts": "^0.3.6",
         "laravel/tinker": "^2.10.1",
         "react/async": "^4.3",
         "spatie/async": "^1.7.0",
-        "tightenco/ziggy": "^2.5.2"
+        "tightenco/ziggy": "^2.5.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^2.1.0",
         "fakerphp/faker": "^1.24.1",
-        "laravel/pint": "^1.22.0",
+        "laravel/pint": "^1.24.0",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.8.0",
+        "nunomaduro/collision": "^8.8.2",
         "pestphp/pest": "^3.8.2",
         "pestphp/pest-plugin-laravel": "^3.2.0"
     },

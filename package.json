@@ -19,7 +19,7 @@
     "daisyui": "^5.0.28",
     "dayjs": "^1.11.13",
     "is": "^3.3.0",
-    "laravel-vite-plugin": "^1.2.0",
+    "laravel-vite-plugin": "^2.0.0",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "postcss": "^8.5.3",
@@ -30,10 +30,10 @@
     "react-json-pretty": "^2.2.0",
     "react-number-format": "^5.4.3",
     "react-use": "^17.6.0",
-    "lucide-react": "^0.503.0",
+    "lucide-react": "^0.536.0",
     "sonner": "^2.0.3",
     "tailwindcss": "^4.0.9",
     "theme-change": "^2.5.0",
-    "vite": "^6.3.3"
+    "vite": "^7.0.6"
   }
 }
