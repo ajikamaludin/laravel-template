@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Attributes\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +13,7 @@ class PermissionVerification
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -20,9 +21,9 @@ class PermissionVerification
         [$controller, $method] = explode('@', $controllerAction);
 
         $reflection = new \ReflectionMethod($controller, $method);
-        $attributes = $reflection->getAttributes(\App\Attributes\Permission::class);
+        $attributes = $reflection->getAttributes(Permission::class);
 
-        if (!empty($attributes)) {
+        if (! empty($attributes)) {
             $permissions = $attributes[0]->newInstance()->permissions;
             $allows = [];
             foreach ($permissions as $permission) {
@@ -30,7 +31,7 @@ class PermissionVerification
             }
 
             // any allows not true abort
-            if (!in_array(true, $allows)) {
+            if (! in_array(true, $allows)) {
                 abort(403);
             }
         }

@@ -12,6 +12,6 @@ trait AdditionalFields
 
     public function fields(): Attribute
     {
-        return Attribute::make(get: fn() =>  json_decode($this->{self::ADDITIONAL_FIELD} != null ? $this->{self::ADDITIONAL_FIELD} : '[]'));
+        return Attribute::make(get: fn () => json_decode($this->{self::ADDITIONAL_FIELD} != null ? $this->{self::ADDITIONAL_FIELD} : '[]'));
     }
 }

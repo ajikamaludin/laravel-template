@@ -2,8 +2,8 @@
 
 namespace Module\Internal\Commands;
 
-use Module\Internal\Services\PermissionService;
 use Illuminate\Console\Command;
+use Module\Internal\Services\PermissionService;
 
 class PermissionCommand extends Command
 {
@@ -24,7 +24,7 @@ class PermissionCommand extends Command
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['sync-permission', 'syncp', 'sp']);
 
@@ -37,6 +37,6 @@ class PermissionCommand extends Command
     public function handle()
     {
         [$to_add, $to_delete] = PermissionService::new()->sync();
-        $this->info('Permission synced : ' . count($to_add) . ' added, ' . count($to_delete) . ' deleted');
+        $this->info('Permission synced : '.count($to_add).' added, '.count($to_delete).' deleted');
     }
 }

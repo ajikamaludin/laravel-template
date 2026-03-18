@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Module\CustomForm\Controllers\FormController;
 use Module\CustomForm\Controllers\FormRecordController;
-use Illuminate\Support\Facades\Route;
 
 Route::prefix('custom-form')
     ->name('custom-form.')

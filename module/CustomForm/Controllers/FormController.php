@@ -4,8 +4,8 @@ namespace Module\CustomForm\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
-use Module\CustomForm\Models\Form;
 use Illuminate\Http\Request;
+use Module\CustomForm\Models\Form;
 
 class FormController extends Controller
 {

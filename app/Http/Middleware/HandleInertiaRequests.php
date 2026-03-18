@@ -41,11 +41,11 @@ class HandleInertiaRequests extends Middleware
                 'jwt_prefix' => UserJwtService::KEYPREFIX,
             ],
             'flash' => [
-                'message' => fn() => Session::get('message'),
-                'data' => fn() => Session::get('data'),
+                'message' => fn () => Session::get('message'),
+                'data' => fn () => Session::get('data'),
             ],
             'app' => Setting::getByKeys(['app_name', 'app_logo']),
-            'navigation' => MenuConstant::handle($request->user())
+            'navigation' => MenuConstant::handle($request->user()),
         ]);
     }
 }

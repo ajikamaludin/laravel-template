@@ -25,5 +25,5 @@ Route::middleware([JwtCustomApiVerification::class])
 
 Route::middleware([JwtCustomApiVerification::class])
     ->group(function () {
-        // 
+        //
     });

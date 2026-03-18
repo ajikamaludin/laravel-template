@@ -21,7 +21,7 @@ class RemoveModuleCommand extends Command
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['rm', 'module']);
 
@@ -35,8 +35,8 @@ class RemoveModuleCommand extends Command
     {
         $module = $this->argument('module');
         if ($module != 'all') {
-            $this->runShellCommands(['rm -rf ' . base_path('module/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $module)]);
+            $this->runShellCommands(['rm -rf '.base_path('module/'.$module)]);
+            $this->runShellCommands(['rm -rf '.resource_path('js/pages/'.$module)]);
 
             $this->info('Removed Module');
 
@@ -49,11 +49,11 @@ class RemoveModuleCommand extends Command
         ];
 
         foreach ($modules as $key => $module) {
-            $this->runShellCommands(['rm -rf ' . base_path('module/' . $module)]);
-            $this->runShellCommands(['rm -rf ' . resource_path('js/pages/' . $key)]);
+            $this->runShellCommands(['rm -rf '.base_path('module/'.$module)]);
+            $this->runShellCommands(['rm -rf '.resource_path('js/pages/'.$key)]);
         }
 
-        $this->runShellCommands(['rm -rf ' . base_path('module/routes.php')]);
+        $this->runShellCommands(['rm -rf '.base_path('module/routes.php')]);
         $this->info('Removed Modules');
     }
 }

@@ -3,10 +3,10 @@
 namespace Module\CustomForm\Controllers;
 
 use App\Http\Controllers\Controller;
-use Module\CustomForm\Models\Form;
-use Module\CustomForm\Models\FormRecord;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Module\CustomForm\Models\Form;
+use Module\CustomForm\Models\FormRecord;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class FormRecordController extends Controller
@@ -16,7 +16,7 @@ class FormRecordController extends Controller
         $query = FormRecord::query()->where('form_id', $form->id);
 
         if ($request->q != '') {
-            $query->where('fields', 'like', '%' . $request->q . '%');
+            $query->where('fields', 'like', '%'.$request->q.'%');
         }
 
         $query->orderBy('created_at', 'desc');
@@ -113,7 +113,7 @@ class FormRecordController extends Controller
             $collections->add($d);
         }
 
-        $name = $form->name . '_' . now()->format('d-m-Y_H-i') . '.xlsx';
+        $name = $form->name.'_'.now()->format('d-m-Y_H-i').'.xlsx';
 
         return (new FastExcel($collections))->download($name);
     }

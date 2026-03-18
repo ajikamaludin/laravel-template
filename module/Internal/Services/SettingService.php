@@ -16,7 +16,7 @@ class SettingService
     public function sync()
     {
         $IndexedSetting = SettingConstant::all();
-        $lists = collect($IndexedSetting)->map(fn($setting) => $setting['key'])->toArray();
+        $lists = collect($IndexedSetting)->map(fn ($setting) => $setting['key'])->toArray();
         $settings = Setting::all()->pluck('key')->toArray();
 
         // remove existing setting in database

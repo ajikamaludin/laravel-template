@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 
-if (!function_exists('splitPascalCase')) {
+if (! function_exists('splitPascalCase')) {
     function splitPascalCase($string)
     {
         $word = '';
@@ -14,17 +15,17 @@ if (!function_exists('splitPascalCase')) {
 
                 continue;
             }
-            $word .= '-' . $s;
+            $word .= '-'.$s;
         }
 
         return $word;
     }
 }
 
-if (!function_exists('formatIDR')) {
+if (! function_exists('formatIDR')) {
     function formatIDR($number)
     {
-        if (!$number) {
+        if (! $number) {
             return 0;
         }
 
@@ -32,14 +33,14 @@ if (!function_exists('formatIDR')) {
     }
 }
 
-if (!function_exists('formatDate')) {
+if (! function_exists('formatDate')) {
     function formatDate($date)
     {
-        return \Illuminate\Support\Carbon::parse($date)->format('d-m-Y');
+        return Carbon::parse($date)->format('d-m-Y');
     }
 }
 
-if (!function_exists('formatNumZero')) {
+if (! function_exists('formatNumZero')) {
     function formatNumZero($n)
     {
         $max = 3; // 0001
@@ -49,6 +50,6 @@ if (!function_exists('formatNumZero')) {
             $number .= '0';
         }
 
-        return $number . $n;
+        return $number.$n;
     }
 }

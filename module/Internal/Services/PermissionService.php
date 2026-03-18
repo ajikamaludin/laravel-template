@@ -17,7 +17,7 @@ class PermissionService
     public function sync()
     {
         $defaultPermissions = PermissionConstant::all();
-        $lists = collect($defaultPermissions)->map(fn($permission) => $permission['name'])->toArray();
+        $lists = collect($defaultPermissions)->map(fn ($permission) => $permission['name'])->toArray();
         $permissions = Permission::all()->pluck('name')->toArray();
 
         // remove existing permission in database

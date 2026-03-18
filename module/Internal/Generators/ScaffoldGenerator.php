@@ -2,9 +2,9 @@
 
 namespace Module\Internal\Generators;
 
-use Module\Internal\Services\PermissionService;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Module\Internal\Services\PermissionService;
 
 class ScaffoldGenerator
 {
@@ -157,31 +157,31 @@ class ScaffoldGenerator
 
     public bool $adminAccess = false;
 
-    public array $defaultDestinations; //for revert purpose
+    public array $defaultDestinations; // for revert purpose
 
-    public array $fields; //not yet used
+    public array $fields; // not yet used
 
     public array $replaces;
 
     public function __construct(
-        string $model, //$model always CamelCase
+        string $model, // $model always CamelCase
         bool $adminAccess = false,
         array $fields = [],
         public $createModelClass = false,
     ) {
-        //Customer -> customer or CustomerCare -> customerCare
+        // Customer -> customer or CustomerCare -> customerCare
         $this->model = Str::camel($model);
 
         // Customer -> Customer or CustomerCare -> Customer Care
-        $this->ModelSplit = implode(" ", explode("-", splitPascalCase($model)));
+        $this->ModelSplit = implode(' ', explode('-', splitPascalCase($model)));
 
-        //Customer -> customer or CustomerCare -> customer-care
+        // Customer -> customer or CustomerCare -> customer-care
         $this->modelSplitPascalCase = str(splitPascalCase($model))->lower();
 
-        //Customer -> customers or CustomerCare -> customer-cares
+        // Customer -> customers or CustomerCare -> customer-cares
         $this->models = Str::plural(str(splitPascalCase($model))->lower());
 
-        $this->Model = $model; //Customer
+        $this->Model = $model; // Customer
 
         $this->adminAccess = $adminAccess;
 
@@ -208,7 +208,7 @@ class ScaffoldGenerator
 
     public function isModelExists()
     {
-        return File::exists(app_path('Models/' . $this->Model . '.php'));
+        return File::exists(app_path('Models/'.$this->Model.'.php'));
     }
 
     public function withProtectedAdminAccess($adminAccess)
@@ -243,10 +243,10 @@ class ScaffoldGenerator
                 ->addWebUse($this->Model)
                 ->addMenu($this->Model, $this->models, "view-{$this->modelSplitPascalCase}")
                 ->addWebRoutes([
-                    ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
-                    ['post', $this->models, $this->Model, 'store', $this->models . '.store', $positionName],
-                    ['put', $this->models . '/{' . $this->model . '}', $this->Model, 'update', $this->models . '.update', $positionName],
-                    ['delete', $this->models . '/{' . $this->model . '}', $this->Model, 'destroy', $this->models . '.destroy', $positionName],
+                    ['get', $this->models, $this->Model, 'index', $this->models.'.index', $positionName],
+                    ['post', $this->models, $this->Model, 'store', $this->models.'.store', $positionName],
+                    ['put', $this->models.'/{'.$this->model.'}', $this->Model, 'update', $this->models.'.update', $positionName],
+                    ['delete', $this->models.'/{'.$this->model.'}', $this->Model, 'destroy', $this->models.'.destroy', $positionName],
                 ]);
 
             // Permission
@@ -274,7 +274,7 @@ class ScaffoldGenerator
             $positionName = $this->adminAccess ? '// #Admin' : null;
             RouteGenerator::new()
                 ->addWebUse($this->Model)
-                ->addMenu($this->Model, $this->models,  "view-{$this->modelSplitPascalCase}")
+                ->addMenu($this->Model, $this->models, "view-{$this->modelSplitPascalCase}")
                 ->addWebRoute('resource', $this->models, $this->Model, positionName: $positionName);
 
             // Permission
@@ -304,12 +304,12 @@ class ScaffoldGenerator
                 ->addWebUse($this->Model)
                 ->addMenu($this->Model, $this->models, "view-{$this->modelSplitPascalCase}")
                 ->addWebRoutes([
-                    ['get', $this->models, $this->Model, 'index', $this->models . '.index', $positionName],
-                    ['post', $this->models, $this->Model, 'update', $this->models . '.update', $positionName],
+                    ['get', $this->models, $this->Model, 'index', $this->models.'.index', $positionName],
+                    ['post', $this->models, $this->Model, 'update', $this->models.'.update', $positionName],
                 ]);
 
             // Permission
-            PermissionGenerator::new()->addPermission('view-' . $this->model, 'View ' . $this->Model, $this->Model);
+            PermissionGenerator::new()->addPermission('view-'.$this->model, 'View '.$this->Model, $this->Model);
             PermissionService::new()->sync();
         } catch (\Exception $e) {
             $this->removeDefaultDestinations();
@@ -330,7 +330,7 @@ class ScaffoldGenerator
             File::delete($d);
         }
         if ($this->createModelClass) {
-            File::delete(app_path('Models/' . $this->Model . '.php'));
+            File::delete(app_path('Models/'.$this->Model.'.php'));
         }
     }
 

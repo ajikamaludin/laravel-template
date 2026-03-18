@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Module\Shortlink\Controllers\HomeController;
 use Module\Shortlink\Controllers\LinkController;
-use Illuminate\Support\Facades\Route;
 
 Route::prefix('shortlink')
     ->name('shortlink.')

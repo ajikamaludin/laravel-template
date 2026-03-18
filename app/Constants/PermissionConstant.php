@@ -24,12 +24,11 @@ class PermissionConstant
 
         // #Add New Permission Below!
 
-
     ];
 
     public static function all()
     {
-        return array_merge(self::LIST,  self::modules());
+        return array_merge(self::LIST, self::modules());
     }
 
     private static function modules()

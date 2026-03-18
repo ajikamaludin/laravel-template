@@ -47,16 +47,16 @@ class Setting extends Model
     {
         $value = Setting::where('key', $key)->value('value');
 
-        $default = storage_path('app/default/' . $value);
+        $default = storage_path('app/default/'.$value);
         if (file_exists($default)) {
             return $default;
         }
 
-        return storage_path('app/public/' . $value);
+        return storage_path('app/public/'.$value);
     }
 
     public function url(): Attribute
     {
-        return Attribute::make(get: fn() => $this->type == 'image' && $this->value != '' ? route('file.show', ['file' => $this->value]) : null);
+        return Attribute::make(get: fn () => $this->type == 'image' && $this->value != '' ? route('file.show', ['file' => $this->value]) : null);
     }
 }

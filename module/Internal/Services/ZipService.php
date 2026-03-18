@@ -15,7 +15,7 @@ class ZipService
 
     protected $numThreads = 4;
 
-    protected $chunkSize = 2000; //2000 files
+    protected $chunkSize = 2000; // 2000 files
 
     protected $excludedContains = [
         '.git/',

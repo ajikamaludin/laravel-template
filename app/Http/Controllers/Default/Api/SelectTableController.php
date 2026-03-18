@@ -32,7 +32,7 @@ class SelectTableController extends Controller
         if ($request->q != '') {
             $query->where(function ($query) use ($select_fields, $request) {
                 foreach ($select_fields as $sq) {
-                    $query->orWhere($sq, 'like', '%' . $request->q . '%');
+                    $query->orWhere($sq, 'like', '%'.$request->q.'%');
                 }
             });
         }

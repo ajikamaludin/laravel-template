@@ -15,7 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('upload_name')->nullable();
             $table->string('hash_name')->nullable();
-            $table->string('name')->nullable(); //re-/named by user
+            $table->string('name')->nullable(); // re-/named by user
             $table->string('type')->nullable(); // d / f
             $table->string('dir')->nullable(); // parent dir
             $table->timestamps();

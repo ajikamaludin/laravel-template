@@ -23,7 +23,7 @@ class SettingCommand extends Command
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['sync-setting', 'synst', 'st']);
 
@@ -36,6 +36,6 @@ class SettingCommand extends Command
     public function handle()
     {
         [$to_add, $to_delete] = SettingService::new()->sync();
-        $this->info('Setting synced : ' . count($to_add) . ' added, ' . count($to_delete) . ' deleted');
+        $this->info('Setting synced : '.count($to_add).' added, '.count($to_delete).' deleted');
     }
 }

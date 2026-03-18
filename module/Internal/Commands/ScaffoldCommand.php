@@ -2,10 +2,10 @@
 
 namespace Module\Internal\Commands;
 
-use Module\Internal\Generators\ScaffoldGenerator;
-use Module\Internal\Rules\PascalCase;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Facades\Validator;
+use Module\Internal\Generators\ScaffoldGenerator;
+use Module\Internal\Rules\PascalCase;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
@@ -29,7 +29,7 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['scaffold', 'gen', 'sc']);
 
@@ -53,7 +53,7 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        $model = $this->argument('model'); //input must CamelCase
+        $model = $this->argument('model'); // input must CamelCase
 
         $validator = Validator::make(
             ['model' => $model],
@@ -61,7 +61,7 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
         );
 
         if ($validator->fails()) {
-            $this->error('Validation failed: ' . $validator->errors()->first('model'));
+            $this->error('Validation failed: '.$validator->errors()->first('model'));
 
             return 1;
         }
@@ -74,10 +74,10 @@ class ScaffoldCommand extends Command implements PromptsForMissingInput
             return 1;
         }
 
-        if (!$scaffold->isModelExists()) {
+        if (! $scaffold->isModelExists()) {
             $_ = $scaffold->withCreateModelClass(
                 $this,
-                $_ = confirm("App\Models\\" . $scaffold->Model . ' does not exist, create it ?')
+                $_ = confirm("App\Models\\".$scaffold->Model.' does not exist, create it ?')
             );
         }
 

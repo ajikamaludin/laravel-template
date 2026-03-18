@@ -122,7 +122,7 @@ class StubFileGenerator
 
         // Check destination path is valid
         if (! File::isDirectory($this->to)) {
-            throw new RuntimeException('The given folder path is not valid : ' . $this->to);
+            throw new RuntimeException('The given folder path is not valid : '.$this->to);
         }
 
         // Get file content

@@ -3,8 +3,8 @@
 namespace Module\Shortlink\Controllers;
 
 use App\Http\Controllers\Controller;
-use Module\Shortlink\Models\Link;
 use Illuminate\Http\Request;
+use Module\Shortlink\Models\Link;
 
 class HomeController extends Controller
 {
@@ -55,6 +55,7 @@ class HomeController extends Controller
             if ($link->bot_link != null) {
                 return redirect($link->bot_link, 302);
             }
+
             return redirect()->route('shortlink.home');
         }
 

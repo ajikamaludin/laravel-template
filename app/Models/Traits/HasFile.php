@@ -10,6 +10,6 @@ trait HasFile
 
     public function fileUrl(): Attribute
     {
-        return Attribute::make(get: fn() => $this->{self::FILE_FIELD_PLACEHOLDER} != '' ? route('file.show', ['file' => $this->{self::FILE_FIELD_PLACEHOLDER}]) : null);
+        return Attribute::make(get: fn () => $this->{self::FILE_FIELD_PLACEHOLDER} != '' ? route('file.show', ['file' => $this->{self::FILE_FIELD_PLACEHOLDER}]) : null);
     }
 }

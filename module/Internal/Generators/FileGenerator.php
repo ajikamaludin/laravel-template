@@ -7,9 +7,13 @@ use Illuminate\Support\Str;
 class FileGenerator
 {
     protected $model;
+
     protected $resourcePath;
+
     protected $replaces;
+
     protected $controllerPath;
+
     protected $controllerName;
 
     public function __construct(
@@ -19,7 +23,7 @@ class FileGenerator
         $this->resourcePath = resource_path("js/pages/{$this->model}/");
 
         $this->controllerPath = app_path('Http/Controllers/');
-        $this->controllerName = $this->Model . 'Controller';
+        $this->controllerName = $this->Model.'Controller';
     }
 
     public static function new($Model)
@@ -44,7 +48,7 @@ class FileGenerator
     public function ScaffoldModal()
     {
         // ModelController.php
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'ModelController.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/').'ModelController.stub')
             ->to($this->controllerPath)
             ->name($this->controllerName)
             ->ext('php')
@@ -52,7 +56,7 @@ class FileGenerator
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'index.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/').'index.stub')
             ->to($this->resourcePath)
             ->name('index')
             ->ext('jsx')
@@ -60,7 +64,7 @@ class FileGenerator
             ->generate();
 
         // FormModal.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/') . 'form-modal.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_modal/').'form-modal.stub')
             ->to($this->resourcePath)
             ->name('form-modal')
             ->ext('jsx')
@@ -71,7 +75,7 @@ class FileGenerator
     public function ScaffoldPage()
     {
         // ModelController.php
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'ModelController.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/').'ModelController.stub')
             ->to($this->controllerPath)
             ->name($this->controllerName)
             ->ext('php')
@@ -79,7 +83,7 @@ class FileGenerator
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'index.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/').'index.stub')
             ->to($this->resourcePath)
             ->name('index')
             ->ext('jsx')
@@ -87,7 +91,7 @@ class FileGenerator
             ->generate();
 
         // form.jsx
-        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/') . 'form.stub')
+        (new StubFileGenerator)->from(base_path('stubs/scaffold_page/').'form.stub')
             ->to($this->resourcePath)
             ->name('form')
             ->ext('jsx')
@@ -98,7 +102,7 @@ class FileGenerator
     public function ScaffoldSinglePage()
     {
         // ModelController.php
-        (new StubFileGenerator)->from(base_path('stubs/single_page/') . 'ModelController.stub')
+        (new StubFileGenerator)->from(base_path('stubs/single_page/').'ModelController.stub')
             ->to($this->controllerPath)
             ->name($this->controllerName)
             ->ext('php')
@@ -106,7 +110,7 @@ class FileGenerator
             ->generate();
 
         // Index.jsx
-        (new StubFileGenerator)->from(base_path('stubs/single_page/') . 'index.stub')
+        (new StubFileGenerator)->from(base_path('stubs/single_page/').'index.stub')
             ->to($this->resourcePath)
             ->name('index')
             ->ext('jsx')

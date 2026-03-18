@@ -2,6 +2,7 @@
 
 namespace Module\Shortlink\Models;
 
+use App\Models\Default\User;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,7 @@ class Link extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\Default\User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function visitor()

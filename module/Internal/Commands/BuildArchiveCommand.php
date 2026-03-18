@@ -2,8 +2,8 @@
 
 namespace Module\Internal\Commands;
 
-use Module\Internal\Services\ZipService;
 use Exception;
+use Module\Internal\Services\ZipService;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\spin;
@@ -27,7 +27,7 @@ class BuildArchiveCommand extends Command
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['compress', 'build', 'b', 'zip']);
 
@@ -39,7 +39,7 @@ class BuildArchiveCommand extends Command
      */
     public function handle()
     {
-        $zipName = str_replace(' ', '', basename(base_path())) . '.zip';
+        $zipName = str_replace(' ', '', basename(base_path())).'.zip';
         if ($this->option('remove') != 'n') {
             try {
                 unlink(base_path($zipName));
@@ -55,12 +55,12 @@ class BuildArchiveCommand extends Command
         $zipService = new ZipService;
 
         $withRawJs = confirm('includes resources/js ?', false);
-        if (!$withRawJs) {
+        if (! $withRawJs) {
             $zipService->addExcludedContains('resources/js');
         }
 
         $withModules = confirm('includes module ?', true);
-        if (!$withModules) {
+        if (! $withModules) {
             $zipService->addExcludedContains('module');
         }
 
@@ -74,14 +74,14 @@ class BuildArchiveCommand extends Command
 
             $this->runShellCommands(['php artisan optimize:clear']);
 
-            spin(fn() => $zipService->create(base_path(), $zipName), 'Zipping files . . . .');
+            spin(fn () => $zipService->create(base_path(), $zipName), 'Zipping files . . . .');
 
             $endTime = microtime(true);
             $timeTaken = number_format($endTime - $startTime, 2);
 
             $this->info("Successfuly create compressed zip file: $timeTaken second");
         } catch (Exception $e) {
-            $this->error('Error : ' . $e->getMessage());
+            $this->error('Error : '.$e->getMessage());
         }
     }
 }

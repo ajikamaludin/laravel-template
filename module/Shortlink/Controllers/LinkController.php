@@ -4,11 +4,11 @@ namespace Module\Shortlink\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Default\Role;
-use Module\Shortlink\Models\Link;
-use Module\Shortlink\Models\LinkVisitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Module\Shortlink\Models\Link;
+use Module\Shortlink\Models\LinkVisitor;
 
 class LinkController extends Controller
 {
@@ -71,7 +71,7 @@ class LinkController extends Controller
                 DB::raw('DATE(created_at) as date'),
                 DB::raw('COUNT(id) as visitor'),
             ])
-            ->mapWithKeys(fn($item) => [$item['date'] => $item['visitor']]);
+            ->mapWithKeys(fn ($item) => [$item['date'] => $item['visitor']]);
 
         $std = Carbon::parse($startDate);
         while ($std <= $endDate) {
